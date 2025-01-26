@@ -6597,7 +6597,7 @@ sanity-diff-patch@^4.0.0:
   dependencies:
     "@sanity/diff-match-patch" "^3.1.1"
 
-sanity-plugin-internationalized-array@^3.0.3:
+sanity-plugin-internationalized-array@^3.0.3, sanity-plugin-internationalized-array@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/sanity-plugin-internationalized-array/-/sanity-plugin-internationalized-array-3.1.1.tgz#2693e72a3d5ce11b3ab1d1aba055b92a5c8ac774"
   integrity sha512-ohu8ev5VUAmWGZOESmelhj01oydckgtTK0wDTaZvNs+O0mRJijkKZEqj5uJFP/e2fRClyRje36RLUCA4d6MmFw==

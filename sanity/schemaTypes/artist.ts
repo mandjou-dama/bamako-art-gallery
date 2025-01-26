@@ -3,8 +3,8 @@ import { defineField, defineType } from "sanity";
 import { baseLanguage } from "./localeStringType";
 
 export default defineType({
-  title: "Presenter",
-  name: "presenter",
+  title: "Artist",
+  name: "artist",
   type: "document",
   fields: [
     defineField({
@@ -12,14 +12,9 @@ export default defineType({
       type: "string",
     }),
     defineField({
-      name: "title",
-      type: "string",
+      name: "description",
+      type: "internationalizedArrayDescription",
+      //of: [{ type: "block" }],
     }),
   ],
-  preview: {
-    select: {
-      title: "name",
-      subtitle: baseLanguage ? `title.${baseLanguage.id}` : "title",
-    },
-  },
 });
