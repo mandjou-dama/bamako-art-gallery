@@ -7,7 +7,6 @@
 import { visionTool } from "@sanity/vision";
 import { defineConfig, defineField } from "sanity";
 import { structureTool } from "sanity/structure";
-import { documentInternationalization } from "@sanity/document-internationalization";
 import { internationalizedArray } from "sanity-plugin-internationalized-array";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
@@ -32,8 +31,7 @@ export default defineConfig({
       fieldTypes: [
         defineField({
           name: "description",
-          type: "array",
-          of: [{ type: "block" }],
+          type: "string",
         }),
       ],
     }),

@@ -1,0 +1,14 @@
+{
+  "navbar": {
+    "artistes": "Artists",
+    "expositions": "Exhibitions",
+    "viewingRoom": "Viewing Room",
+    "artActu": "Art News",
+    "aPropos": "About"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Welcome to"
+    }
+  }
+}
