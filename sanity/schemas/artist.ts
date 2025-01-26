@@ -12,7 +12,7 @@ export default defineType({
     }),
     defineField({
       name: "description",
-      type: "internationalizedArrayContent",
+      type: "internationalizedArrayDescription",
     }),
   ],
 });

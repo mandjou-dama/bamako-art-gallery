@@ -28,8 +28,14 @@ export default defineConfig({
         { id: "en", title: "English" },
         { id: "fr", title: "French" },
       ],
-      fieldTypes: ["content"],
       defaultLanguages: ["fr"],
+      fieldTypes: [
+        defineField({
+          name: "description",
+          type: "array",
+          of: [{ type: "block" }],
+        }),
+      ],
     }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
