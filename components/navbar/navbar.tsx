@@ -12,8 +12,6 @@ const Navbar = async (props: Props) => {
   const locale = await getLocale();
   const messages = await getMessages();
 
-  console.log(locale);
-
   return (
     <nav className={styles.navbar}>
       <div className="logo">
@@ -29,10 +27,24 @@ const Navbar = async (props: Props) => {
         </div>
 
         <div className={styles.lang_container}>
-          <button className={locale === "fr" ? styles.lang_button_active : ""}>
+          <button
+            className={
+              locale === "fr"
+                ? styles.lang_button_active
+                : styles.lang_button_inactive
+            }
+          >
             fr
           </button>
-          <button>en</button>
+          <button
+            className={
+              locale === "en"
+                ? styles.lang_button_active
+                : styles.lang_button_inactive
+            }
+          >
+            en
+          </button>
         </div>
       </div>
     </nav>
