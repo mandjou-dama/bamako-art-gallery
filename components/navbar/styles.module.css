@@ -11,6 +11,10 @@
   gap: 4rem;
 }
 
+.hamburger_menu_container {
+  display: none;
+}
+
 .links {
   display: flex;
   align-items: center;
@@ -48,4 +52,14 @@
 
 .lang_button_inactive {
   font-weight: 300;
+}
+
+@media screen and (max-width: 859px) {
+  .links_container {
+    display: none;
+  }
+  .hamburger_menu_container {
+    display: block;
+    cursor: pointer;
+  }
 }
