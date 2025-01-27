@@ -1,6 +1,8 @@
 :root {
-  --background: "";
-  --foreground: "";
+  --white: "#FFFFFF";
+  --black: "#202217";
+  --black-20: "rgba(32, 34, 23, 0.2)";
+  --black-50: "rgba(32, 34, 23, 0.5)";
 }
 
 html,
@@ -10,9 +12,9 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  background: var(--white);
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
