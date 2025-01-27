@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.links_container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.links a {
+  color: var(--black);
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.lang_container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.lang_container button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.lang_container button:hover {
+  cursor: pointer;
+}
+
+.lang_button_active {
+  font-weight: 500;
+}

@@ -8,6 +8,9 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
+// components
+import Navbar from "@/components/navbar/navbar";
+
 const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700"],
 });
@@ -40,7 +43,10 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${poppins.className}`}>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <div className="container">
+            <Navbar />
+            {children}
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
