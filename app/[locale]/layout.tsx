@@ -13,7 +13,7 @@ import Navbar from "@/components/navbar/navbar";
 import Menu from "@/components/menu/menu";
 
 const poppins = Poppins({
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

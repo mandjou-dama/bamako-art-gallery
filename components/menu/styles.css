@@ -32,7 +32,8 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-.menu_link_item_holder {
+.menu_link_item_holder,
+.hamburger_menu_link_item_holder {
   position: relative;
 }
 
@@ -76,11 +77,11 @@
 }
 
 .hamburger_lang_button_active {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .hamburger_lang_button_inactive {
-  font-weight: 300;
+  font-weight: 100;
 }
 
 .hamburger_separator {
@@ -89,4 +90,20 @@
   background-color: rgba(255, 255, 255, 0.151);
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.hamburger_menu_link_item_holder {
+  opacity: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .menu_overlay {
+    gap: 3rem;
+  }
+  .menu_link_item_holder a {
+    font-size: 1.5rem;
+  }
+  .hamburger_lang_container button {
+    font-size: 1.3rem;
+  }
 }

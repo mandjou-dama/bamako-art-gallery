@@ -23,7 +23,7 @@
 
 .links a {
   color: var(--black);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 300;
   text-transform: uppercase;
 }
@@ -31,7 +31,7 @@
 .lang_container {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.8rem;
 }
 
 .lang_container button {
@@ -61,5 +61,11 @@
   .hamburger_menu_container {
     display: block;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    padding: 1rem;
   }
 }

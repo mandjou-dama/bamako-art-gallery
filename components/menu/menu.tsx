@@ -53,6 +53,13 @@ const Menu = (props: Props) => {
           duration: 1,
           width: "100%",
           delay: -0.65,
+        })
+        .to(".hamburger_menu_link_item_holder", {
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power4.inOut",
+          delay: -0.55,
         });
     },
     { scope: container }
@@ -106,24 +113,29 @@ const Menu = (props: Props) => {
           <div className="hamburger_separator"></div>
 
           <div className="hamburger_lang_container">
-            <button
-              className={
-                locale === "fr"
-                  ? "hamburger_lang_button_active"
-                  : "hamburger_lang_button_inactive"
-              }
-            >
-              fr
-            </button>
-            <button
-              className={
-                locale === "en"
-                  ? "hamburger_lang_button_active"
-                  : "hamburger_lang_button_inactive"
-              }
-            >
-              en
-            </button>
+            <div className="hamburger_menu_link_item_holder">
+              <button
+                className={
+                  locale === "fr"
+                    ? "hamburger_lang_button_active"
+                    : "hamburger_lang_button_inactive"
+                }
+              >
+                fr
+              </button>
+            </div>
+
+            <div className="hamburger_menu_link_item_holder">
+              <button
+                className={
+                  locale === "en"
+                    ? "hamburger_lang_button_active"
+                    : "hamburger_lang_button_inactive"
+                }
+              >
+                en
+              </button>
+            </div>
           </div>
         </div>
 
