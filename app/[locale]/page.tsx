@@ -35,21 +35,11 @@ const getArtist = async (): Promise<Artist[]> => {
 };
 
 export default async function Home({ params }: { params: { locale: string } }) {
-  const t = await getTranslations("navbar");
-  const { locale } = await params;
-
-  // Fetch artist data
-  const artists = await getArtist();
-  const artist = artists[0]; // Assuming you want to display the first artist
-
-  // Get the description based on the current locale
-  const artistDescription = getDescriptionByLocale(artist.description, locale);
-
   return (
-    <div className={styles.page}>
-      <h1>{t("artistes")}</h1>
-      <p>Artist Name: {artist.name}</p>
-      <p>Artist Description: {artistDescription}</p>
+    <div className="body_container">
+      <div className={styles.page}>
+        <p>Bonjour</p>
+      </div>
     </div>
   );
 }

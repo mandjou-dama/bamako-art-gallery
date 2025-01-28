@@ -53,4 +53,11 @@ button {
   max-width: 1440px;
   margin: 0 auto;
   padding: 15px;
+  position: relative;
+  padding-top: 80px;
+}
+
+.body_container {
+  margin-top: 2rem;
+  min-height: 200vh;
 }
