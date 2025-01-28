@@ -24,11 +24,11 @@ const Navbar = (props: Props) => {
       </Link>
       <div className={styles.links_container}>
         <div className={styles.links}>
-          <Link href="#">{t("artistes")}</Link>
-          <Link href="#">{t("expositions")}</Link>
-          <Link href="#">{t("viewingRoom")}</Link>
-          <Link href="#">{t("artActu")}</Link>
-          <Link href="#">{t("aPropos")}</Link>
+          <Link href="/artists">{t("artistes")}</Link>
+          <Link href="/expositions">{t("expositions")}</Link>
+          <Link href="/viewing-room">{t("viewingRoom")}</Link>
+          <Link href="/art-actu">{t("artActu")}</Link>
+          <Link href="/about">{t("aPropos")}</Link>
         </div>
 
         <div className={styles.lang_container}>

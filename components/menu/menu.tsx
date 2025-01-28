@@ -22,11 +22,11 @@ const Menu = (props: Props) => {
 
   const menuLinks = [
     { path: "/", label: t("home") },
-    { path: "/", label: t("artistes") },
-    { path: "/", label: t("expositions") },
-    { path: "/", label: t("viewingRoom") },
-    { path: "/", label: t("artActu") },
-    { path: "/", label: t("aPropos") },
+    { path: "/artists", label: t("artistes") },
+    { path: "/expositions", label: t("expositions") },
+    { path: "/viewing-room", label: t("viewingRoom") },
+    { path: "/art-actu", label: t("artActu") },
+    { path: "/about", label: t("aPropos") },
   ];
 
   console.log(isOpen);
@@ -103,7 +103,11 @@ const Menu = (props: Props) => {
           {menuLinks.map((link, index) => (
             <div className="menu_link_item" key={index}>
               <div className="menu_link_item_holder">
-                <Link className="menu_link" href={link.path}>
+                <Link
+                  onClick={setIsOpen}
+                  className="menu_link"
+                  href={link.path}
+                >
                   {link.label}
                 </Link>
               </div>
