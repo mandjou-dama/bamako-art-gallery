@@ -54,10 +54,7 @@ const Navbar = (props: Props) => {
       </div>
 
       {/* hamburger menu */}
-      <div
-        onClick={() => setIsOpen()}
-        className={styles.hamburger_menu_container}
-      >
+      <div onClick={setIsOpen} className={styles.hamburger_menu_container}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
