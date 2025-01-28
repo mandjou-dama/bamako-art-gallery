@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { getLocale, getTranslations } from "next-intl/server";
+import { useTranslations, useLocale } from "next-intl";
+import { useMenuStore } from "@/store/useMenu";
 
 import styles from "./styles.module.css";
 
@@ -9,15 +12,16 @@ import Logo from "@/public/logo.png";
 
 type Props = {};
 
-const Navbar = async (props: Props) => {
-  const locale = await getLocale();
-  const t = await getTranslations("navbar");
+const Navbar = (props: Props) => {
+  const locale = useLocale();
+  const t = useTranslations("navbar");
+  const { setIsOpen } = useMenuStore();
 
   return (
     <nav className={styles.navbar}>
-      <div className="logo">
+      <Link href={"/"} className="logo">
         <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
-      </div>
+      </Link>
       <div className={styles.links_container}>
         <div className={styles.links}>
           <Link href="#">{t("artistes")}</Link>
@@ -50,7 +54,10 @@ const Navbar = async (props: Props) => {
       </div>
 
       {/* hamburger menu */}
-      <div className={styles.hamburger_menu_container}>
+      <div
+        onClick={() => setIsOpen()}
+        className={styles.hamburger_menu_container}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -58,9 +65,9 @@ const Navbar = async (props: Props) => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="menu_icon"
         >
           <line x1="4" x2="20" y1="12" y2="12" />

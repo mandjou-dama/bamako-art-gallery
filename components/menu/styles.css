@@ -1,0 +1,39 @@
+.menu_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  z-index: 2;
+  /* background-color: rgba(32, 34, 23, 1); */
+  background-color: #fff;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu_link_item {
+  width: max-content;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.menu_link_item_holder {
+  position: relative;
+}
+
+.menu_link_item_holder a {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 300;
+}

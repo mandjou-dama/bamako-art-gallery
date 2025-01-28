@@ -23,7 +23,7 @@
 
 .links a {
   color: var(--black);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 300;
   text-transform: uppercase;
 }
@@ -37,7 +37,7 @@
 .lang_container button {
   background: none;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   display: inline-block;
 }
