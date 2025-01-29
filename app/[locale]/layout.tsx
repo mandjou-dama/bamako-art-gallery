@@ -46,10 +46,10 @@ export default async function LocaleLayout({
       <body className={`${poppins.className}`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
+          <Cursor />
           <div className="container">
             <Menu />
             {children}
-            <Cursor />
           </div>
         </NextIntlClientProvider>
       </body>

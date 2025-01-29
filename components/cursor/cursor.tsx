@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import "./styles.css";
+import { useGSAP } from "@gsap/react";
 
 export default function Cursor() {
   const mouse = useRef({ x: 0, y: 0 });
@@ -39,47 +40,59 @@ export default function Cursor() {
     gsap.set(circle.current, { x, y, xPercent: -50, yPercent: -50 });
   };
 
-  useEffect(() => {
-    animate();
-    window.addEventListener("mousemove", manageMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", manageMouseMove);
-    };
-  }, []);
+  useGSAP(
+    () => {
+      animate();
+      window.addEventListener("mousemove", manageMouseMove);
+      return () => {
+        window.removeEventListener("mousemove", manageMouseMove);
+      };
+    },
+    { scope: circle }
+  );
 
-  useEffect(() => {
-    const cursorElement = circle.current;
+  //   useEffect(() => {
+  //     const cursorElement = circle.current;
 
-    const handleMouseEnter = () => {
-      if (cursorElement) {
-        cursorElement.style.width = "50px";
-        cursorElement.style.height = "50px";
-      }
-    };
+  //     const handleMouseEnter = () => {
+  //       if (cursorElement) {
+  //         cursorElement.style.width = "50px";
+  //         cursorElement.style.height = "50px";
+  //       }
+  //     };
 
-    const handleMouseLeave = () => {
-      if (cursorElement) {
-        cursorElement.style.width = "20px";
-        cursorElement.style.height = "20px";
-      }
-    };
+  //     const handleMouseLeave = () => {
+  //       if (cursorElement) {
+  //         cursorElement.style.width = "30px";
+  //         cursorElement.style.height = "30px";
+  //       }
+  //     };
 
-    document.querySelectorAll("img").forEach((img) => {
-      img.addEventListener("mouseenter", handleMouseEnter);
-      img.addEventListener("mouseleave", handleMouseLeave);
-    });
+  //     document.querySelectorAll("img").forEach((img) => {
+  //       img.addEventListener("mouseenter", handleMouseEnter);
+  //       img.addEventListener("mouseleave", handleMouseLeave);
+  //     });
 
-    return () => {
-      document.querySelectorAll("img").forEach((img) => {
-        img.removeEventListener("mouseenter", handleMouseEnter);
-        img.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
-  }, []);
+  //     return () => {
+  //       document.querySelectorAll("img").forEach((img) => {
+  //         img.removeEventListener("mouseenter", handleMouseEnter);
+  //         img.removeEventListener("mouseleave", handleMouseLeave);
+  //       });
+  //     };
+  //   }, []);
 
   return (
     <div className="cursor_wrapper">
-      <div ref={circle} className="cursor" />
+      <div
+        style={{
+          backgroundColor: "rgba(0, 0, 0, .3)",
+          width: size,
+          height: size,
+          transition: `height 0.3s ease-out, width 0.3s ease-out, filter 0.3s ease-out, backdrop-filter 0.3s ease-out, background-color 0.3s ease-out`,
+        }}
+        className="custom_cursor"
+        ref={circle}
+      />
     </div>
   );
 }

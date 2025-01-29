@@ -109,9 +109,20 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <h4 className="section_title">
           à la recherche de votre prochain coup de coeur ?
         </h4>
-        <div className="section_elements_wrapper">
+        <div className="section_elements_wrapper four_elements">
           <SmallCard />
           <SmallCard />
+          <SmallCard />
+          <SmallCard />
+        </div>
+      </section>
+
+      <section className="section">
+        <div>
+          <h4 className="section_title">expositions</h4>
+        </div>
+
+        <div className="section_elements_wrapper two_elements">
           <SmallCard />
           <SmallCard />
         </div>

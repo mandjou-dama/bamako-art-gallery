@@ -1,8 +1,8 @@
 :root {
-  --white: "#FFFFFF";
-  --black: "#202217";
-  --black-20: "rgba(32, 34, 23, 0.2)";
-  --black-50: "rgba(32, 34, 23, 0.5)";
+  --white: #fff;
+  --black: #000;
+  --black-20: rgba(32, 34, 23, 0.2);
+  --black-50: rgba(32, 34, 23, 0.5);
 }
 
 html,
@@ -13,7 +13,7 @@ body {
 
 body {
   color: var(--black);
-  background: var(--white);
+  background-color: var(--white);
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -72,4 +72,42 @@ button {
 
 .section_elements_wrapper {
   margin-top: 30px;
+}
+
+.section_elements_wrapper.four_elements {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+}
+
+.section_elements_wrapper.two_elements {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.section_elements_wrapper.four_elements img {
+  aspect-ratio: 1/1;
+}
+
+.section_elements_wrapper.two_elements img {
+  height: 580px;
+  aspect-ratio: 1/1;
+}
+
+@media screen and (max-width: 859px) {
+  .section_elements_wrapper.four_elements {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section h4 {
+    font-size: 18px;
+    width: 100%;
+  }
+  .section_elements_wrapper.four_elements {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 }
