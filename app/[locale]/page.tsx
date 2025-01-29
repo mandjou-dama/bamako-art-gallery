@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { fetchArtist } from "@/sanity/fetch";
 
+import { SmallCard } from "@/components/cards/cards";
+
 import "./page.css";
 
 // Define the types for the artist data
@@ -107,7 +109,12 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <h4 className="section_title">
           à la recherche de votre prochain coup de coeur ?
         </h4>
-        <div className="section_elements_wrapper"></div>
+        <div className="section_elements_wrapper">
+          <SmallCard />
+          <SmallCard />
+          <SmallCard />
+          <SmallCard />
+        </div>
       </section>
     </div>
   );

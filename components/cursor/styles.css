@@ -1,0 +1,20 @@
+.cursor_wrapper {
+  position: relative;
+  z-index: 11;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 100%;
+  pointer-events: none;
+  mix-blend-mode: difference !important;
+  transition:
+    width 0.3s ease-out,
+    height 0.3s ease-out,
+    filter 0.3s ease-out;
+}
