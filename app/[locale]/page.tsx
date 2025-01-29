@@ -7,6 +7,7 @@ import { fetchArtist } from "@/sanity/fetch";
 import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
+import SeeMore from "@/components/see_more/see_more";
 
 // Define the types for the artist data
 type InternationalizedDescription = {
@@ -118,11 +119,26 @@ export default async function Home({ params }: { params: { locale: string } }) {
       </section>
 
       <section className="section">
-        <div>
+        <div className="section_header">
           <h4 className="section_title">expositions</h4>
+          <SeeMore message="voir toutes les expositions" />
         </div>
 
         <div className="section_elements_wrapper two_elements">
+          <SmallCard />
+          <SmallCard />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section_header">
+          <h4 className="section_title">Artistes</h4>
+          <SeeMore message="voir tous les artist" />
+        </div>
+
+        <div className="section_elements_wrapper rounded_four_elements">
+          <SmallCard />
+          <SmallCard />
           <SmallCard />
           <SmallCard />
         </div>
