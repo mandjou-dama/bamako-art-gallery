@@ -1,0 +1,37 @@
+.engagement_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.engagement_card_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  background-color: var(--black);
+  border-radius: 100%;
+}
+
+.engagement_card svg {
+  width: 50px;
+  height: 50px;
+}
+
+.engagement_card_infos {
+  margin-top: 15px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.engagement_card_infos h6 {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.engagement_card_infos P {
+  font-size: 14px;
+  font-weight: 200;
+}

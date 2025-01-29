@@ -60,13 +60,24 @@ button {
 
 .section {
   width: 100%;
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 .section_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.section_header.engagement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.section_header.engagement h4 {
+  width: 100%;
 }
 
 .section h4 {
@@ -151,6 +162,13 @@ button {
   width: 110px;
   aspect-ratio: 1/1;
   height: auto;
+}
+
+.section_elements_wrapper.engagement_three_elements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
 @media screen and (max-width: 859px) {

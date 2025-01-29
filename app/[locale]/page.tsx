@@ -9,6 +9,7 @@ import { SmallCard } from "@/components/cards/cards";
 import "./page.css";
 import SeeMore from "@/components/see_more/see_more";
 import ActuCard from "@/components/cards/actu";
+import { EngagementCard } from "@/components/engagement/engagement";
 
 // Define the types for the artist data
 type InternationalizedDescription = {
@@ -175,6 +176,18 @@ export default async function Home({ params }: { params: { locale: string } }) {
             <path d="M19 5L5 19" />
           </svg>
         </Link>
+      </section>
+
+      <section className="section">
+        <div className="section_header engagement">
+          <h4 className="section_title">Nos engagements</h4>
+        </div>
+
+        <div className="section_elements_wrapper engagement_three_elements">
+          <EngagementCard />
+          <EngagementCard />
+          <EngagementCard />
+        </div>
       </section>
     </div>
   );
