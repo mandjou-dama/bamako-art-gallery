@@ -1,0 +1,38 @@
+.small_card {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.small_card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.small_card_footer {
+  margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small_card_footer_headline {
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.small_card_footer svg {
+  width: 14px;
+  height: 14px;
+}
+
+.small_card_footer_name {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+@media screen and (max-width: 480px) {
+  .small_card_footer_name {
+    font-size: 16px;
+  }
+}

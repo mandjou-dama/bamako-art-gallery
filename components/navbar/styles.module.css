@@ -1,0 +1,95 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  transition:
+    backdrop-filter 0.3s,
+    background-color 0.3s,
+    -webkit-backdrop-filter 0.3s;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  z-index: 8;
+}
+
+.navbar_wrapper {
+  max-width: 1440px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.links_container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4rem;
+}
+
+.hamburger_menu_container {
+  display: none;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.links a {
+  color: var(--black);
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.lang_container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.lang_container button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.lang_container button:hover {
+  cursor: pointer;
+}
+
+.lang_button_active {
+  font-weight: 500;
+}
+
+.lang_button_inactive {
+  font-weight: 300;
+}
+
+@media screen and (max-width: 859px) {
+  .links_container {
+    display: none;
+  }
+  .hamburger_menu_container {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 0;
+  }
+  .navbar_wrapper {
+    padding: 1rem 1.6rem;
+  }
+}
