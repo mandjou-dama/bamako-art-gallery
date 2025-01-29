@@ -99,7 +99,16 @@ export default async function Home({ params }: { params: { locale: string } }) {
             </div>
           </div>
         </div>
+
+        <div className="separator"></div>
       </div>
+
+      <section className="section">
+        <h4 className="section_title">
+          à la recherche de votre prochain coup de coeur ?
+        </h4>
+        <div className="section_elements_wrapper"></div>
+      </section>
     </div>
   );
 }
