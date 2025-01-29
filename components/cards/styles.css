@@ -31,6 +31,60 @@
   margin-bottom: 2px;
 }
 
+/* ACTU CARD STYLES */
+.actu_card {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  text-transform: uppercase;
+}
+
+.actu_card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.actu_card_infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.actu_card_info_subline {
+  font-size: 14;
+  font-weight: 200;
+}
+
+.actu_card_info_title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis at the end */
+}
+
+.actu_card_link_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.actu_card_link_text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actu_card_link_text p {
+  font-size: 14;
+  font-weight: 200;
+}
+
+.actu_card_link_text svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 480px) {
   .small_card_footer_name {
     font-size: 16px;

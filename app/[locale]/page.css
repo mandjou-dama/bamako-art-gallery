@@ -93,6 +93,24 @@
   cursor: pointer;
 }
 
+.see_more_actu {
+  color: var(--white);
+  background-color: var(--black);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  gap: 5px;
+}
+
+.see_more_actu svg {
+  width: 14px;
+  height: 14px;
+}
+
 @media screen and (max-width: 712px) {
   .home_hero_infos h1 {
     font-size: 52px;

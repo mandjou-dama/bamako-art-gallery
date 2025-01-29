@@ -78,6 +78,7 @@ button {
 
 .section_elements_wrapper {
   margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 /* SECTION FOR FOUR ELEMENTS */
@@ -110,32 +111,46 @@ button {
   gap: 50px;
 }
 
-.section_elements_wrapper.section_elements_wrapper.rounded_four_elements img {
+.section_elements_wrapper.rounded_four_elements img {
   aspect-ratio: 1/1;
   border-radius: 100%;
 }
 
-.section_elements_wrapper.section_elements_wrapper.rounded_four_elements
-  .small_card_footer {
+.section_elements_wrapper.rounded_four_elements .small_card {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.section_elements_wrapper.section_elements_wrapper.rounded_four_elements
-  .small_card_footer
-  svg {
+.section_elements_wrapper.rounded_four_elements .small_card_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section_elements_wrapper.rounded_four_elements .small_card_footer svg {
   display: none;
 }
 
-.section_elements_wrapper.section_elements_wrapper.rounded_four_elements
-  .separator {
+.section_elements_wrapper.rounded_four_elements .separator {
   display: none;
 }
 
-.section_elements_wrapper.section_elements_wrapper.rounded_four_elements
-  .small_card_footer_name {
+.section_elements_wrapper.rounded_four_elements .small_card_footer_name {
   text-align: center;
+}
+
+/* SECTION FOR THREE ACTU ELEMENTS */
+.section_elements_wrapper.four_actu_elements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.section_elements_wrapper.four_actu_elements img {
+  width: 110px;
+  aspect-ratio: 1/1;
+  height: auto;
 }
 
 @media screen and (max-width: 859px) {
@@ -148,14 +163,16 @@ button {
   .section_elements_wrapper.rounded_four_elements {
     grid-template-columns: repeat(2, 1fr);
   }
-  .section_elements_wrapper.section_elements_wrapper.rounded_four_elements
-    .small_card
-    a {
+  .section_elements_wrapper.four_actu_elements {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .section_elements_wrapper.rounded_four_elements .small_card a {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .section_elements_wrapper.section_elements_wrapper.rounded_four_elements img {
+  .section_elements_wrapper.rounded_four_elements img {
     width: 260px;
     aspect-ratio: 1/1;
     margin-bottom: 3px;
@@ -191,9 +208,13 @@ button {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
-  .section_elements_wrapper.section_elements_wrapper.rounded_four_elements img {
+  .section_elements_wrapper.rounded_four_elements img {
     width: 100%;
     aspect-ratio: 1/1;
+  }
+  .section_elements_wrapper.four_actu_elements {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
   }
 }
 

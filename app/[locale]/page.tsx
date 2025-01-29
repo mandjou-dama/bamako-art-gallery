@@ -8,6 +8,7 @@ import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
 import SeeMore from "@/components/see_more/see_more";
+import ActuCard from "@/components/cards/actu";
 
 // Define the types for the artist data
 type InternationalizedDescription = {
@@ -133,7 +134,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
       <section className="section">
         <div className="section_header">
           <h4 className="section_title">Artistes</h4>
-          <SeeMore message="voir tous les artist" />
+          <SeeMore message="voir tous les artistes" />
         </div>
 
         <div className="section_elements_wrapper rounded_four_elements">
@@ -142,6 +143,38 @@ export default async function Home({ params }: { params: { locale: string } }) {
           <SmallCard />
           <SmallCard />
         </div>
+      </section>
+
+      <section className="section">
+        <h4 className="section_title">Art'Actu</h4>
+
+        <div className="section_elements_wrapper four_actu_elements">
+          <ActuCard />
+          <ActuCard />
+          <ActuCard />
+          <ActuCard />
+          <ActuCard />
+          <ActuCard />
+        </div>
+
+        <Link href={""} className="see_more_actu">
+          voir plus d'actualités
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-move-up-right"
+          >
+            <path d="M13 5H19V11" />
+            <path d="M19 5L5 19" />
+          </svg>
+        </Link>
       </section>
     </div>
   );
