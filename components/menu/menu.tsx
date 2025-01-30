@@ -29,7 +29,7 @@ const Menu = (props: Props) => {
     { path: "/about", label: t("aPropos") },
   ];
 
-  console.log(isOpen);
+  // console.log(isOpen);
 
   useGSAP(
     () => {

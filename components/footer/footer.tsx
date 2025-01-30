@@ -15,7 +15,6 @@ const Footer = (props: Props) => {
     e.preventDefault();
   };
 
-  const locale = useLocale();
   const t = useTranslations("footer");
 
   return (
@@ -242,7 +241,12 @@ const Footer = (props: Props) => {
             <div className="footer_newsletter_wrapper">
               <p className="footer_headline">Newsletter</p>
               <form action="" onSubmit={onSubmit}>
-                <input type="text" placeholder={t("newsletter.placeholder")} />
+                <input
+                  type="email"
+                  required
+                  suppressHydrationWarning
+                  placeholder={t("newsletter.placeholder")}
+                />
                 <button type="submit">
                   {t("newsletter.button")}
                   <svg
