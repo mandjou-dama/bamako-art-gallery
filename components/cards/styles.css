@@ -84,6 +84,32 @@
   height: 14px;
 }
 
+/* ARTIST CARD */
+.artist_wrapper {
+  width: 100%;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.artist_wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.artist_wrapper button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  font-size: 14px;
+  padding: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 480px) {
   .small_card_footer_name {
