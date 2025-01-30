@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useMenuStore } from "@/store/useMenu";
+import { useRouter } from "next/navigation";
 
 import styles from "./styles.module.css";
 
@@ -17,7 +18,12 @@ type NavLink = {
   label: string;
 };
 
+type LangLink = {
+  lang: string;
+};
+
 const Navbar = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("navbar");
@@ -33,6 +39,18 @@ const Navbar = () => {
       { href: "/about", key: "aPropos", label: t("aPropos") },
     ],
     [t]
+  );
+
+  const langLinks: LangLink[] = useMemo(
+    () => [
+      {
+        lang: "fr",
+      },
+      {
+        lang: "en",
+      },
+    ],
+    []
   );
 
   // Check if a link is active based on the current pathname
@@ -60,8 +78,10 @@ const Navbar = () => {
           </div>
 
           <div className={styles.lang_container}>
-            {["fr", "en"].map((lang) => (
-              <button
+            {langLinks.map(({ lang }) => (
+              <Link
+                href={`${pathname.replace(`${locale}/`, "")}`}
+                locale={lang}
                 key={lang}
                 className={
                   locale === lang
@@ -70,7 +90,7 @@ const Navbar = () => {
                 }
               >
                 {lang}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
