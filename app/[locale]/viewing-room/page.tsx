@@ -9,10 +9,10 @@ export default function Page() {
         <div className="viewing_room_hero_infos">
           <h4>Viewing Room</h4>
           <p>
-            Plongez dans un univers artistique captivant à travers nos
-            expositions uniques. Explorez des œuvres qui racontent des
-            histoires, éveillent des émotions et célèbrent la créativité sous
-            toutes ses formes.
+            La Viewing Room vous offre une expérience immersive dans nos
+            collections les plus captivantes. Que vous soyez chez vous ou en
+            déplacement, découvrez des œuvres uniques, accompagnées de récits et
+            d'histoires exclusives.
           </p>
         </div>
         <div className="separator"></div>
