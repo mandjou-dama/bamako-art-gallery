@@ -9,7 +9,7 @@ type Props = {};
 const ArtistCard = (props: Props) => {
   return (
     <div className="artist_wrapper">
-      <Link href={"/about"}>
+      <Link href={"/artist"}>
         <Image
           width={1260}
           height={750}
