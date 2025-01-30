@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useMenuStore } from "@/store/useMenu";
 
@@ -10,51 +11,71 @@ import styles from "./styles.module.css";
 
 import Logo from "@/public/logo.png";
 
-type Props = {};
+type NavLink = {
+  href: string;
+  key: string;
+  label: string;
+};
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
+  const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("navbar");
   const { setIsOpen } = useMenuStore();
 
+  // Define navigation links
+  const navLinks: NavLink[] = useMemo(
+    () => [
+      { href: "/artists", key: "artistes", label: t("artistes") },
+      { href: "/expositions", key: "expositions", label: t("expositions") },
+      { href: "/viewing-room", key: "viewingRoom", label: t("viewingRoom") },
+      { href: "/art-actu", key: "artActu", label: t("artActu") },
+      { href: "/about", key: "aPropos", label: t("aPropos") },
+    ],
+    [t]
+  );
+
+  // Check if a link is active based on the current pathname
+  const isActive = (href: string) => pathname.includes(href);
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar_wrapper}>
-        <Link href={"/"} className="logo">
+        <Link href="/" className="logo">
           <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
         </Link>
         <div className={styles.links_container}>
           <div className={styles.links}>
-            <Link href="/artists">{t("artistes")}</Link>
-            <Link href="/expositions">{t("expositions")}</Link>
-            <Link href="/viewing-room">{t("viewingRoom")}</Link>
-            <Link href="/art-actu">{t("artActu")}</Link>
-            <Link href="/about">{t("aPropos")}</Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.key}
+                href={link.href}
+                style={{
+                  fontWeight: isActive(link.href) ? "500" : "200",
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           <div className={styles.lang_container}>
-            <button
-              className={
-                locale === "fr"
-                  ? styles.lang_button_active
-                  : styles.lang_button_inactive
-              }
-            >
-              fr
-            </button>
-            <button
-              className={
-                locale === "en"
-                  ? styles.lang_button_active
-                  : styles.lang_button_inactive
-              }
-            >
-              en
-            </button>
+            {["fr", "en"].map((lang) => (
+              <button
+                key={lang}
+                className={
+                  locale === lang
+                    ? styles.lang_button_active
+                    : styles.lang_button_inactive
+                }
+              >
+                {lang}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* hamburger menu */}
+        {/* Hamburger menu */}
         <div onClick={setIsOpen} className={styles.hamburger_menu_container}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,4 +99,4 @@ const Navbar = (props: Props) => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

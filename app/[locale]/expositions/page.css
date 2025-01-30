@@ -18,5 +18,15 @@
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 200;
-  width: 40%;
+  width: 60%;
+}
+
+.expositions_wrapper .section:nth-child(1) {
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 859px) {
+  .expositions_hero_infos p {
+    width: 100%;
+  }
 }
