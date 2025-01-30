@@ -1,12 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 type Props = {};
 
 import "./styles.css";
 
-const ActuCard = (props: Props) => {
+const ActuCard = async (props: Props) => {
+  const t = await getTranslations("components");
+
   return (
     <Link href={""} className="actu_card">
       <Image
@@ -27,7 +30,7 @@ const ActuCard = (props: Props) => {
 
         <div className="actu_card_link_wrapper">
           <div className="actu_card_link_text">
-            <p>Lire l'article</p>
+            <p>{t("actuCard.link")}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

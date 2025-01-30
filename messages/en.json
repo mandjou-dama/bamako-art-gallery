@@ -7,9 +7,59 @@
     "artActu": "Art News",
     "aPropos": "About"
   },
+  "components": {
+    "actuCard": {
+      "link": "Read full article"
+    }
+  },
   "home": {
     "hero": {
       "subtitle": "Welcome to"
+    },
+    "sections": {
+      "coupDeCoeur": {
+        "message": "Looking for your next favorite piece?"
+      },
+      "expositions": {
+        "message": "Exhibitions",
+        "link": "See all exhibitions"
+      },
+      "artistes": {
+        "message": "Artists",
+        "link": "See all artists"
+      },
+      "artActu": {
+        "message": "Art News",
+        "link": "See more news"
+      },
+      "engagement": {
+        "message": "Our Commitments",
+        "engagement_1": "Certificate of Authenticity",
+        "engagement_1_content": "We provide a certificate of authenticity when you acquire an artwork.",
+        "engagement_2": "Our Experts",
+        "engagement_2_content": "Our art advisors are available to assist you with your purchases.",
+        "engagement_3": "A Unique Selection",
+        "engagement_3_content": "We offer a selection inspired by the African continent."
+      }
+    }
+  },
+  "footer": {
+    "liensUtils": {
+      "message": "Useful Links",
+      "contact": "Contact Us",
+      "inscription": "Artist Registration"
+    },
+    "reseaux": {
+      "message": "Our Social Networks"
+    },
+    "newsletter": {
+      "placeholder": "Your email address",
+      "button": "Sign Up"
+    },
+    "copyright": {
+      "message": "Copyright © 2025, Bamako Art Gallery, all rights reserved",
+      "mention": "Legal Notices",
+      "cookies": "Cookie Policy"
     }
   }
 }

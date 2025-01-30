@@ -41,11 +41,13 @@ const getArtist = async (): Promise<Artist[]> => {
 };
 
 export default async function Home({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("home");
+
   return (
     <div className="home_page">
       <div className="home_hero">
         <div className="home_hero_infos">
-          <p>Bienvenue sur</p>
+          <p>{t("hero.subtitle")}</p>
           <h1>Bamako Art Gallery</h1>
         </div>
 
@@ -109,9 +111,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
       </div>
 
       <section className="section">
-        <h4 className="section_title">
-          à la recherche de votre prochain coup de coeur ?
-        </h4>
+        <h4 className="section_title">{t("sections.coupDeCoeur.message")}</h4>
         <div className="section_elements_wrapper four_elements">
           <SmallCard />
           <SmallCard />
@@ -122,8 +122,8 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
       <section className="section">
         <div className="section_header">
-          <h4 className="section_title">expositions</h4>
-          <SeeMore message="voir toutes les expositions" />
+          <h4 className="section_title">{t("sections.expositions.message")}</h4>
+          <SeeMore message={t("sections.expositions.link")} />
         </div>
 
         <div className="section_elements_wrapper two_elements">
@@ -134,8 +134,8 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
       <section className="section">
         <div className="section_header">
-          <h4 className="section_title">Artistes</h4>
-          <SeeMore message="voir tous les artistes" />
+          <h4 className="section_title">{t("sections.artistes.message")}</h4>
+          <SeeMore message={t("sections.artistes.link")} />
         </div>
 
         <div className="section_elements_wrapper rounded_four_elements">
@@ -147,7 +147,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
       </section>
 
       <section className="section">
-        <h4 className="section_title">Art'Actu</h4>
+        <h4 className="section_title">{t("sections.artActu.message")}</h4>
 
         <div className="section_elements_wrapper four_actu_elements">
           <ActuCard />
@@ -159,7 +159,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
         </div>
 
         <Link href={""} className="see_more_actu">
-          voir plus d'actualités
+          {t("sections.artActu.link")}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -180,13 +180,22 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
       <section className="section">
         <div className="section_header engagement">
-          <h4 className="section_title">Nos engagements</h4>
+          <h4 className="section_title">{t("sections.engagement.message")}</h4>
         </div>
 
         <div className="section_elements_wrapper engagement_three_elements">
-          <EngagementCard />
-          <EngagementCard />
-          <EngagementCard />
+          <EngagementCard
+            title={t("sections.engagement.engagement_1")}
+            content={t("sections.engagement.engagement_1_content")}
+          />
+          <EngagementCard
+            title={t("sections.engagement.engagement_2")}
+            content={t("sections.engagement.engagement_2_content")}
+          />
+          <EngagementCard
+            title={t("sections.engagement.engagement_3")}
+            content={t("sections.engagement.engagement_3_content")}
+          />
         </div>
       </section>
     </div>

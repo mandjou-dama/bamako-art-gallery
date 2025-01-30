@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import { useTranslations, useLocale } from "next-intl";
 
 import Logo from "@/public/logo.png";
 import "./styles.css";
@@ -13,6 +14,9 @@ const Footer = (props: Props) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
   };
+
+  const locale = useLocale();
+  const t = useTranslations("footer");
 
   return (
     <div className="footer">
@@ -28,15 +32,17 @@ const Footer = (props: Props) => {
           <div className="footer_row links">
             <div className="footer_row_link_wrapper">
               <div className="footer_row_link_container">
-                <p className="footer_headline">Liens utiles</p>
-                <Link href="mailto:mandjoudama@gmail.com">nous contacter</Link>
+                <p className="footer_headline">{t("liensUtils.message")}</p>
                 <Link href="mailto:mandjoudama@gmail.com">
-                  inscription artistes
+                  {t("liensUtils.contact")}
+                </Link>
+                <Link href="mailto:mandjoudama@gmail.com">
+                  {t("liensUtils.inscription")}
                 </Link>
               </div>
 
               <div>
-                <p className="footer_headline">Nos réseaux</p>
+                <p className="footer_headline">{t("reseaux.message")}</p>
                 <div className="footer_icons">
                   <Link href={"instagram"}>
                     <svg
@@ -236,9 +242,9 @@ const Footer = (props: Props) => {
             <div className="footer_newsletter_wrapper">
               <p className="footer_headline">Newsletter</p>
               <form action="" onSubmit={onSubmit}>
-                <input type="text" />
+                <input type="text" placeholder={t("newsletter.placeholder")} />
                 <button type="submit">
-                  S'inscrire
+                  {t("newsletter.button")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -260,10 +266,10 @@ const Footer = (props: Props) => {
           </div>
 
           <div className="footer_row copyright">
-            <p>Copyright © 2025, bamako art gallery, tous droits réservés</p>
+            <p>{t("copyright.message")}</p>
             <div>
-              <Link href={""}>mentions légales</Link>
-              <Link href={""}>politique des cookies</Link>
+              <Link href={""}>{t("copyright.mention")}</Link>
+              <Link href={""}>{t("copyright.cookies")}</Link>
             </div>
           </div>
         </div>

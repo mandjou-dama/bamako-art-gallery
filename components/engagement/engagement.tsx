@@ -1,9 +1,12 @@
 import React from "react";
 import "./styles.css";
 
-type Props = {};
+type Props = {
+  title: string;
+  content: string;
+};
 
-export const EngagementCard = (props: Props) => {
+export const EngagementCard = ({ title, content }: Props) => {
   return (
     <div className="engagement_card">
       <div className="engagement_card_icon">
@@ -39,11 +42,8 @@ export const EngagementCard = (props: Props) => {
       </div>
 
       <div className="engagement_card_infos">
-        <h6>Certificat d'authenticité </h6>
-        <p>
-          Nous fournissons un certificat d'authenticité lors de l'acquisition de
-          votre œuvre d'art.
-        </p>
+        <h6>{title}</h6>
+        <p>{content}</p>
       </div>
     </div>
   );
