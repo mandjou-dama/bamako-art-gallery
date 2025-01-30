@@ -164,11 +164,11 @@ button {
   height: auto;
 }
 
+/* SECTION FOR ENGAGEMENT THREE ELEMENTS*/
 .section_elements_wrapper.engagement_three_elements {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
 }
 
 @media screen and (max-width: 859px) {
@@ -184,6 +184,10 @@ button {
   .section_elements_wrapper.four_actu_elements {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .section_elements_wrapper.engagement_three_elements {
+    flex-wrap: wrap;
+    gap: 30px;
   }
   .section_elements_wrapper.rounded_four_elements .small_card a {
     display: flex;

@@ -35,3 +35,17 @@
   font-size: 14px;
   font-weight: 200;
 }
+
+@media screen and (max-width: 480px) {
+  .engagement_card_icon {
+    width: 100px;
+    height: 100px;
+  }
+  .engagement_card svg {
+    width: 30px;
+    height: 30px;
+  }
+  .engagement_card_infos h6 {
+    font-size: 16px;
+  }
+}
