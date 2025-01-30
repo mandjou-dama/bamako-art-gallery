@@ -42,7 +42,9 @@ export const SmallCard = ({
           </svg>
         </div>
 
-        <p className="small_card_footer_name">Photographie</p>
+        <p className="small_card_footer_name">
+          Lorem ipsum, dolor sit amet consectetur adipisicing.
+        </p>
 
         <div className="separator"></div>
       </Link>

@@ -177,9 +177,24 @@ button {
   gap: 30px;
 }
 
+/* SECTION FOR  THREE ELEMENTS */
+.section_elements_wrapper.three_elements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.section_elements_wrapper.three_elements img {
+  height: 580px;
+  aspect-ratio: 1/1;
+}
+
 @media screen and (max-width: 859px) {
   .section h4 {
     width: auto;
+  }
+  .section_elements_wrapper.three_elements {
+    gap: 30px;
   }
   .section_elements_wrapper.four_elements {
     grid-template-columns: repeat(2, 1fr);
@@ -208,6 +223,9 @@ button {
     aspect-ratio: 1/1;
     margin-bottom: 3px;
   }
+  .section_elements_wrapper.three_elements img {
+    height: 380px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -221,6 +239,9 @@ button {
   .section h4 {
     font-size: 18px;
     width: auto;
+  }
+  .section_elements_wrapper.three_elements {
+    grid-template-columns: repeat(2, 1fr);
   }
   .section_elements_wrapper.four_elements {
     grid-template-columns: repeat(2, 1fr);
@@ -245,6 +266,9 @@ button {
   .section_elements_wrapper.rounded_four_elements img {
     width: 100%;
     aspect-ratio: 1/1;
+  }
+  .section_elements_wrapper.three_elements img {
+    height: 350px;
   }
   .section_elements_wrapper.four_actu_elements {
     grid-template-columns: repeat(1, 1fr);
