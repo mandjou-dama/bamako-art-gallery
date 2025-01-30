@@ -43,6 +43,44 @@
       }
     }
   },
+  "artistes": {
+    "hero": {
+      "headline": "Artists",
+      "description": "Explore the works and universe of our artists, unique talents who push the boundaries of creativity."
+    }
+  },
+  "expositions": {
+    "hero": {
+      "headline": "Exhibitions",
+      "description": "Immerse yourself in a captivating artistic universe through our unique exhibitions. Explore works that tell stories, evoke emotions, and celebrate creativity in all its forms."
+    },
+    "sections": {
+      "enCours": "Current Exhibitions",
+      "aVenir": "Upcoming Exhibitions",
+      "passer": "Past Exhibitions"
+    }
+  },
+  "viewingRoom": {
+    "hero": {
+      "headline": "Viewing Room",
+      "description": "The Viewing Room offers you an immersive experience in our most captivating collections. Whether you're at home or on the go, discover unique works, accompanied by exclusive stories and narratives."
+    }
+  },
+  "artActu": {
+    "hero": {
+      "headline": "Art News",
+      "description": "Art News is your daily source for the latest updates in the art scene. From artist interviews to exhibition previews and emerging trends, everything you need to fuel your passion for art is here. Don't miss out on what's making waves in the art world."
+    }
+  },
+  "about": {
+    "hero": {
+      "headline": "About",
+      "description": "We are dedicated to showcasing talented artists and exceptional works that inspire and move."
+    },
+    "team": {
+      "message": "Team"
+    }
+  },
   "footer": {
     "liensUtils": {
       "message": "Useful Links",

@@ -1,5 +1,5 @@
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import ActuCard from "@/components/cards/actu";
 
 import "./page.css";
 
@@ -24,16 +24,14 @@ const team = [
   },
 ];
 
-export default function Page() {
+export default async function Page() {
+  const t = await getTranslations("about");
   return (
     <div className="about_page">
       <div className="about_hero">
         <div className="about_hero_infos">
-          <h4>à propos</h4>
-          <p>
-            Nous sommes dédiés à mettre en lumière des artistes talentueux et
-            des œuvres exceptionnelles qui inspirent et émeuvent.
-          </p>
+          <h4>{t("hero.headline")}</h4>
+          <p>{t("hero.description")}</p>
         </div>
         <div className="separator"></div>
       </div>
@@ -109,7 +107,7 @@ export default function Page() {
 
         <section className="section">
           <div className="section_header">
-            <h4 className="section_title">L'équipe</h4>
+            <h4 className="section_title">{t("team.message")}</h4>
           </div>
 
           <div className="team_container">

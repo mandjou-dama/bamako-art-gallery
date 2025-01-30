@@ -1,20 +1,17 @@
+import { getTranslations } from "next-intl/server";
 import ActuCard from "@/components/cards/actu";
 
 import "./page.css";
 
-export default function Page() {
+export default async function Page() {
+  const t = await getTranslations("artActu.hero");
+
   return (
     <div className="art_actu_page">
       <div className="art_actu_hero">
         <div className="art_actu_hero_infos">
-          <h4>Art'Actu</h4>
-          <p>
-            Art'Actu est votre source quotidienne pour les dernières actualités
-            de la scène artistique. Des interviews d'artistes, des aperçus
-            d'expositions et des tendances émergentes : tout ce qu'il faut pour
-            nourrir votre passion pour l'art se trouve ici. Ne manquez rien de
-            ce qui fait vibrer le monde artistique.
-          </p>
+          <h4>{t("headline")}</h4>
+          <p>{t("description")}</p>
         </div>
         <div className="separator"></div>
       </div>

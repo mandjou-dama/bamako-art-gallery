@@ -3,16 +3,15 @@ import { getTranslations } from "next-intl/server";
 import "./page.css";
 import ArtistCard from "@/components/cards/artist";
 
-export default function Page() {
+export default async function Page() {
+  const t = await getTranslations("artistes.hero");
+
   return (
     <div className="artists_page">
       <div className="artists_hero">
         <div className="artists_hero_infos">
-          <h4>Artistes</h4>
-          <p>
-            Explorez les œuvres et l'univers de nos artistes, des talents
-            uniques qui repoussent les limites de la créativité.
-          </p>
+          <h4>{t("headline")}</h4>
+          <p>{t("description")}</p>
         </div>
         <div className="separator"></div>
       </div>

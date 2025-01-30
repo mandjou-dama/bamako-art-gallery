@@ -1,19 +1,17 @@
+import { getTranslations } from "next-intl/server";
+
 import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
 
-export default function Page() {
+export default async function Page() {
+  const t = await getTranslations("viewingRoom.hero");
   return (
     <div className="viewing_room_page">
       <div className="viewing_room_hero">
         <div className="viewing_room_hero_infos">
-          <h4>Viewing Room</h4>
-          <p>
-            La Viewing Room vous offre une expérience immersive dans nos
-            collections les plus captivantes. Que vous soyez chez vous ou en
-            déplacement, découvrez des œuvres uniques, accompagnées de récits et
-            d'histoires exclusives.
-          </p>
+          <h4>{t("headline")}</h4>
+          <p>{t("description")}</p>
         </div>
         <div className="separator"></div>
       </div>
