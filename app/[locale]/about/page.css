@@ -113,6 +113,11 @@
   .about_section img {
     height: auto;
   }
+
+  .team_card {
+    width: 100%;
+  }
+
   .team_card img {
     width: 100%;
     height: auto;

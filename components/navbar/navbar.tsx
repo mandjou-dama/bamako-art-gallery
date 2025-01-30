@@ -80,7 +80,7 @@ const Navbar = () => {
           <div className={styles.lang_container}>
             {langLinks.map(({ lang }) => (
               <Link
-                href={`${pathname.replace(`${locale}/`, "")}`}
+                href={`${pathname.replace(`/${locale}`, "/")}`}
                 locale={lang}
                 key={lang}
                 className={

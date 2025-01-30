@@ -241,7 +241,7 @@ button {
     width: auto;
   }
   .section_elements_wrapper.three_elements {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   .section_elements_wrapper.four_elements {
     grid-template-columns: repeat(2, 1fr);
