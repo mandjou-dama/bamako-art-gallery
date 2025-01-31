@@ -3,11 +3,7 @@ import React from "react";
 
 import "./page.css";
 
-export default function ExpositionPage({
-  params,
-}: {
-  params: { name: string };
-}) {
+export default function ExpositionPage() {
   return (
     <div className="exposition_page">
       <div className="exposition_page_hero">

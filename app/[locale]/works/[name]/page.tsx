@@ -3,11 +3,7 @@ import React from "react";
 
 import "./page.css";
 
-export default async function WorkPage({
-  params,
-}: {
-  params: { name: string };
-}) {
+export default async function WorkPage() {
   return (
     <div className="work_page">
       <div className="work_page_hero">

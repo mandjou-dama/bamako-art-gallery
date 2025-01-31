@@ -24,7 +24,7 @@ const presses = [
   },
 ];
 
-export default function ArtistPage({ params }: { params: { name: string } }) {
+export default function ArtistPage() {
   return (
     <div className="artist_page">
       <section className="section artist_page_hero">
