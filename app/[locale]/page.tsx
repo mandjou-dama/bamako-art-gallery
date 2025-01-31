@@ -40,7 +40,12 @@ const getArtist = async (): Promise<Artist[]> => {
   return artists;
 };
 
-export default async function Home({ params }: { params: { locale: string } }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const slug = (await params).locale;
   const t = await getTranslations("home");
 
   return (

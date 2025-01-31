@@ -106,13 +106,12 @@
 @media screen and (max-width: 859px) {
   .footer_elements_wrapper {
     padding: 4rem 0.8rem 2rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
   }
   .footer_column.infos {
     width: fit-content;
-  }
-  .footer_elements_wrapper {
-    grid-template-columns: 1;
-    gap: 50px;
   }
   .footer_row.links {
     display: flex;
