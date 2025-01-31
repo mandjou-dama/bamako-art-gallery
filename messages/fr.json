@@ -1,14 +1,103 @@
 {
   "navbar": {
+    "home": "Accueil",
     "artistes": "Artistes",
     "expositions": "Expositions",
     "viewingRoom": "Viewing Room",
     "artActu": "Art'Actu",
     "aPropos": "À Propos"
   },
+  "components": {
+    "actuCard": {
+      "link": "Lire l'article"
+    }
+  },
   "home": {
     "hero": {
       "subtitle": "Bienvenue sur"
+    },
+    "sections": {
+      "coupDeCoeur": {
+        "message": "à la recherche de votre prochain coup de coeur ?"
+      },
+      "expositions": {
+        "message": "Expositions",
+        "link": "Voir toutes les expositions"
+      },
+      "artistes": {
+        "message": "Artistes",
+        "link": "voir tous les artistes"
+      },
+      "artActu": {
+        "message": "Art'Actu",
+        "link": "voir plus d'actualités"
+      },
+      "engagement": {
+        "message": "Nos engagements",
+        "engagement_1": "Certificat d'authenticité",
+        "engagement_1_content": "Nous fournissons un certificat d'authenticité lors de l'acquisition de votre œuvre d'art.",
+        "engagement_2": "Nos experts",
+        "engagement_2_content": "Nos conseillers en art sont à votre disposition pour vous accompagner dans vos achats.",
+        "engagement_3": "Une sélection originale",
+        "engagement_3_content": "Nous vous proposons une sélection inspirée par le continent africain."
+      }
+    }
+  },
+  "artistes": {
+    "hero": {
+      "headline": "Artistes",
+      "description": "Explorez les œuvres et l'univers de nos artistes, des talents uniques qui repoussent les limites de la créativité."
+    }
+  },
+  "expositions": {
+    "hero": {
+      "headline": "Expositions",
+      "description": "Plongez dans un univers artistique captivant à travers nos expositions uniques. Explorez des œuvres qui racontent des histoires, éveillent des émotions et célèbrent la créativité sous toutes ses formes."
+    },
+    "sections": {
+      "enCours": "Expositions en cours",
+      "aVenir": "Expositions à venir",
+      "passer": "Expositions passées"
+    }
+  },
+  "viewingRoom": {
+    "hero": {
+      "headline": "Viewing Room",
+      "description": "La Viewing Room vous offre une expérience immersive dans nos collections les plus captivantes. Que vous soyez chez vous ou en déplacement, découvrez des œuvres uniques, accompagnées de récits et d'histoires exclusives."
+    }
+  },
+  "artActu": {
+    "hero": {
+      "headline": "Art'Actu",
+      "description": "Art'Actu est votre source quotidienne pour les dernières actualités de la scène artistique. Des interviews d'artistes, des aperçus d'expositions et des tendances émergentes : tout ce qu'il faut pour nourrir votre passion pour l'art se trouve ici. Ne manquez rien de ce qui fait vibrer le monde artistique."
+    }
+  },
+  "about": {
+    "hero": {
+      "headline": "à propos",
+      "description": "Nous sommes dédiés à mettre en lumière des artistes talentueux et des œuvres exceptionnelles qui inspirent et émeuvent."
+    },
+    "team": {
+      "message": "L'équipe"
+    }
+  },
+  "footer": {
+    "liensUtils": {
+      "message": "Liens utiles",
+      "contact": "Nous contacter",
+      "inscription": "inscription artistes"
+    },
+    "reseaux": {
+      "message": "Nos réseaux"
+    },
+    "newsletter": {
+      "placeholder": "votre adresse email",
+      "button": "s'inscrire"
+    },
+    "copyright": {
+      "message": "Copyright © 2025, bamako art gallery, tous droits réservés",
+      "mention": "mentions légales",
+      "cookies": "politique des cookies"
     }
   }
 }

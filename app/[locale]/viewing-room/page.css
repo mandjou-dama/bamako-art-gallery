@@ -1,0 +1,32 @@
+.viewing_room_page {
+  width: 100%;
+}
+
+.viewing_room_hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.viewing_room_hero_infos h4 {
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.viewing_room_hero_infos p {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 200;
+  width: 60%;
+}
+
+.viewing_room_wrapper .section:nth-child(1) {
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 859px) {
+  .viewing_room_hero_infos p {
+    width: 100%;
+  }
+}
