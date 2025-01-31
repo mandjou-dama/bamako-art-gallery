@@ -59,9 +59,10 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar_wrapper}>
-        {pathname.includes(`${locale}/expositions`) && pathname.length > 15 ? (
-          <Link
-            href="/expositions"
+        {(pathname.includes(`${locale}/expositions`) && pathname.length > 15) ||
+        pathname.includes(`${locale}/works`) ? (
+          <button
+            onClick={() => router.back()}
             className="logo"
             style={{
               display: "flex",
@@ -90,7 +91,7 @@ const Navbar = () => {
               <path d="M2 12H22" />
             </svg>
             Retour
-          </Link>
+          </button>
         ) : (
           <Link href="/" className="logo">
             <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
