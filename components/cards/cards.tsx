@@ -16,12 +16,14 @@ export const SmallCard = ({
   return (
     <div className="small_card">
       <Link href={"/"}>
-        <Image
-          width={1260}
-          height={750}
-          src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-        />
+        <div className="small_card_image_container">
+          <Image
+            width={1260}
+            height={750}
+            src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+          />
+        </div>
 
         <div className="small_card_footer">
           <p className="small_card_footer_headline">Catégorie</p>

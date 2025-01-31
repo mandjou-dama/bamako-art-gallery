@@ -57,7 +57,7 @@ button {
 
 .container {
   max-width: 1440px;
-  min-height: 200vh;
+  /* min-height: 200vh; */
   margin: 0 auto;
   padding: 15px;
   position: relative;
@@ -105,7 +105,7 @@ button {
   gap: 50px;
 }
 
-.section_elements_wrapper.four_elements img {
+.section_elements_wrapper.four_elements .small_card_image_container {
   aspect-ratio: 1/1;
 }
 
@@ -116,7 +116,7 @@ button {
   gap: 50px;
 }
 
-.section_elements_wrapper.two_elements img {
+.section_elements_wrapper.two_elements .small_card_image_container {
   height: 580px;
   aspect-ratio: 1/1;
 }
@@ -128,7 +128,7 @@ button {
   gap: 50px;
 }
 
-.section_elements_wrapper.rounded_four_elements img {
+.section_elements_wrapper.rounded_four_elements .small_card_image_container {
   aspect-ratio: 1/1;
   border-radius: 100%;
 }
@@ -184,7 +184,7 @@ button {
   gap: 50px;
 }
 
-.section_elements_wrapper.three_elements img {
+.section_elements_wrapper.three_elements .small_card_image_container {
   height: 580px;
   aspect-ratio: 1/1;
 }
@@ -218,12 +218,12 @@ button {
     flex-direction: column;
     align-items: center;
   }
-  .section_elements_wrapper.rounded_four_elements img {
+  .section_elements_wrapper.rounded_four_elements .small_card_image_container {
     width: 260px;
     aspect-ratio: 1/1;
     margin-bottom: 3px;
   }
-  .section_elements_wrapper.three_elements img {
+  .section_elements_wrapper.three_elements .small_card_image_container {
     height: 380px;
   }
 }
@@ -251,7 +251,7 @@ button {
     grid-template-columns: repeat(1, 1fr);
     gap: 30px;
   }
-  .section_elements_wrapper.two_elements img {
+  .section_elements_wrapper.two_elements .small_card_image_container {
     height: 380px;
     aspect-ratio: 1/1;
   }
@@ -263,11 +263,11 @@ button {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
-  .section_elements_wrapper.rounded_four_elements img {
+  .section_elements_wrapper.rounded_four_elements .small_card_image_container {
     width: 100%;
     aspect-ratio: 1/1;
   }
-  .section_elements_wrapper.three_elements img {
+  .section_elements_wrapper.three_elements .small_card_image_container {
     height: 350px;
   }
   .section_elements_wrapper.four_actu_elements {
