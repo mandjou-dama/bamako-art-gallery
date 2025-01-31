@@ -24,13 +24,7 @@ const presses = [
   },
 ];
 
-export default async function ArtistPage({
-  params,
-}: {
-  params: { name: string };
-}) {
-  const { name } = await params;
-
+export default function ArtistPage({ params }: { params: { name: string } }) {
   return (
     <div className="artist_page">
       <section className="section artist_page_hero">

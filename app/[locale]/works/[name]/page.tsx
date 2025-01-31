@@ -3,13 +3,11 @@ import React from "react";
 
 import "./page.css";
 
-export default async function ExpositionPage({
+export default async function WorkPage({
   params,
 }: {
   params: { name: string };
 }) {
-  const { name } = await params;
-
   return (
     <div className="work_page">
       <div className="work_page_hero">
