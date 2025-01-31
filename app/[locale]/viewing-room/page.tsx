@@ -19,12 +19,12 @@ export default async function Page() {
       <div className="viewing_room_wrapper">
         <section className="section">
           <div className="section_elements_wrapper three_elements">
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
           </div>
         </section>
       </div>

@@ -19,21 +19,21 @@ export default async function Page() {
       <div className="art_actu_wrapper">
         <section className="section">
           <div className="section_elements_wrapper four_actu_elements">
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
-            <ActuCard />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
+            <ActuCard link="https://google.com" />
           </div>
         </section>
       </div>

@@ -183,7 +183,8 @@ button {
 }
 
 .section_elements_wrapper.three_elements .small_card_image_container {
-  height: 580px;
+  width: 100%;
+  height: auto;
   aspect-ratio: 1/1;
 }
 
@@ -192,6 +193,7 @@ button {
     width: auto;
   }
   .section_elements_wrapper.three_elements {
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
   .section_elements_wrapper.two_elements {
@@ -225,7 +227,9 @@ button {
   }
 
   .section_elements_wrapper.three_elements .small_card_image_container {
-    height: 380px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
   }
 }
 
@@ -264,6 +268,7 @@ button {
     gap: 30px;
   }
   .section_elements_wrapper.three_elements .small_card_image_container {
+    aspect-ratio: auto;
     height: 350px;
   }
   .section_elements_wrapper.four_actu_elements {

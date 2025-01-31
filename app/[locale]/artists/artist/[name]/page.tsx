@@ -104,18 +104,18 @@ export default async function ArtistPage({
         </div>
 
         <div className="section_elements_wrapper two_elements">
-          <SmallCard />
-          <SmallCard />
+          <SmallCard link="/expositions/dfdf" />
+          <SmallCard link="/expositions/dfdf" />
         </div>
       </section>
 
       <section className="section">
         <h4 className="section_title">Oeuvres</h4>
         <div className="section_elements_wrapper four_elements">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+          <SmallCard link="/works/sder" />
+          <SmallCard link="/works/sder" />
+          <SmallCard link="/works/sder" />
+          <SmallCard link="/works/sder" />
         </div>
       </section>
 

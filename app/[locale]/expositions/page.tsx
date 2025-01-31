@@ -23,8 +23,8 @@ export default async function Page() {
           </div>
 
           <div className="section_elements_wrapper two_elements">
-            <SmallCard />
-            <SmallCard />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
           </div>
         </section>
 
@@ -34,18 +34,18 @@ export default async function Page() {
           </div>
 
           <div className="section_elements_wrapper two_elements">
-            <SmallCard />
-            <SmallCard />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
           </div>
         </section>
 
         <section className="section">
           <h4 className="section_title">{t("sections.passer")}</h4>
           <div className="section_elements_wrapper four_elements">
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
+            <SmallCard link="/expositions/kjhj" />
           </div>
         </section>
       </div>
