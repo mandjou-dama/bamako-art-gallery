@@ -3,15 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-type Props = {};
+type Props = {
+  link?: string;
+};
 
 import "./styles.css";
 
-const ActuCard = async (props: Props) => {
+const ActuCard = async ({ link }: Props) => {
   const t = await getTranslations("components");
 
   return (
-    <Link href={""} className="actu_card">
+    <Link href={link ? link : ""} className="actu_card">
       <Image
         width={1260}
         height={750}

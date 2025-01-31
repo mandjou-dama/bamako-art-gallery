@@ -1,21 +1,26 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { getLocale } from "next-intl/server";
 
 import "./styles.css";
 
-export const SmallCard = ({
+export const SmallCard = async ({
   subline,
   image,
   name,
+  link,
 }: {
   subline?: string;
   name?: string;
   image?: string;
+  link?: string;
 }) => {
+  const local = await getLocale();
+
   return (
     <div className="small_card">
-      <Link href={"/"}>
+      <Link href={link ? link : ""}>
         <div className="small_card_image_container">
           <Image
             width={1260}
@@ -26,7 +31,9 @@ export const SmallCard = ({
         </div>
 
         <div className="small_card_footer">
-          <p className="small_card_footer_headline">Catégorie</p>
+          <p className="small_card_footer_headline">
+            {subline ? subline : "Catégorie"}
+          </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -45,7 +52,7 @@ export const SmallCard = ({
         </div>
 
         <p className="small_card_footer_name">
-          Lorem ipsum, dolor sit amet consectetur adipisicing.
+          {name ? name : "Lorem ipsum, dolor sit amet consectetur adipisicing."}
         </p>
 
         <div className="separator"></div>

@@ -3,12 +3,13 @@ import { Link } from "@/i18n/routing";
 
 type Props = {
   message: string;
+  link?: string;
 };
 
-function SeeMore({ message }: Props) {
+function SeeMore({ message, link }: Props) {
   return (
     <Link
-      href={""}
+      href={link ? link : ""}
       style={{
         display: "flex",
         alignItems: "center",

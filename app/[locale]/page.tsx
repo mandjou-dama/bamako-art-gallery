@@ -113,36 +113,63 @@ export default async function Home({ params }: { params: { locale: string } }) {
       <section className="section">
         <h4 className="section_title">{t("sections.coupDeCoeur.message")}</h4>
         <div className="section_elements_wrapper four_elements">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+          <SmallCard name="Peinture" link="/works" />
+          <SmallCard name="Photographie" link="/works" />
+          <SmallCard name="Sculpture" link="/works" />
+          <SmallCard name="Design" link="/works" />
         </div>
       </section>
 
       <section className="section">
         <div className="section_header">
           <h4 className="section_title">{t("sections.expositions.message")}</h4>
-          <SeeMore message={t("sections.expositions.link")} />
+          <SeeMore
+            link="/expositions"
+            message={t("sections.expositions.link")}
+          />
         </div>
 
         <div className="section_elements_wrapper two_elements">
-          <SmallCard />
-          <SmallCard />
+          <SmallCard
+            name="Les vestiges de l'ancien monde"
+            subline="exposition collective"
+            link="/expositions/dhd"
+          />
+          <SmallCard
+            name="Devenir un bout d'homme"
+            subline="Moussa Diallo"
+            link="/expositions/lkl"
+          />
         </div>
       </section>
 
       <section className="section">
         <div className="section_header">
           <h4 className="section_title">{t("sections.artistes.message")}</h4>
-          <SeeMore message={t("sections.artistes.link")} />
+          <SeeMore link="/artists" message={t("sections.artistes.link")} />
         </div>
 
         <div className="section_elements_wrapper rounded_four_elements">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+          <SmallCard
+            subline="Peinture"
+            name="Kankou Fofana"
+            link="/artists/artist/dsds"
+          />
+          <SmallCard
+            subline="Photographie"
+            name="Alfousseiny Coulibaly"
+            link="/artists/artist/dsds"
+          />
+          <SmallCard
+            subline="Design"
+            name="Boubacar Berthé"
+            link="/artists/artist/dsds"
+          />
+          <SmallCard
+            subline="Sculpture"
+            name="Fanta Mady Doucouré"
+            link="/artists/artist/dsds"
+          />
         </div>
       </section>
 
@@ -150,15 +177,15 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <h4 className="section_title">{t("sections.artActu.message")}</h4>
 
         <div className="section_elements_wrapper four_actu_elements">
-          <ActuCard />
-          <ActuCard />
-          <ActuCard />
-          <ActuCard />
-          <ActuCard />
-          <ActuCard />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
         </div>
 
-        <Link href={""} className="see_more_actu">
+        <Link href={"/art-actu"} className="see_more_actu">
           {t("sections.artActu.link")}
           <svg
             xmlns="http://www.w3.org/2000/svg"
