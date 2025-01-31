@@ -21,12 +21,6 @@
   text-transform: uppercase;
 }
 
-.separator {
-  height: 1px;
-  width: 100%;
-  background-color: rgba(32, 34, 23, 0.2);
-}
-
 .home_hero_slider {
   width: 100%;
   height: 65vh;
@@ -91,6 +85,24 @@
 
 .hero_slider_footer_arrows svg {
   cursor: pointer;
+}
+
+.see_more_actu {
+  color: var(--white);
+  background-color: var(--black);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  gap: 5px;
+}
+
+.see_more_actu svg {
+  width: 14px;
+  height: 14px;
 }
 
 @media screen and (max-width: 712px) {

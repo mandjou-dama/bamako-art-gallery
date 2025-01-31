@@ -12,6 +12,7 @@ import { routing } from "@/i18n/routing";
 import Navbar from "@/components/navbar/navbar";
 import Menu from "@/components/menu/menu";
 import Cursor from "@/components/cursor/cursor";
+import Footer from "@/components/footer/footer";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -50,6 +51,7 @@ export default async function LocaleLayout({
           <div className="container">
             <Menu />
             {children}
+            <Footer />
           </div>
         </NextIntlClientProvider>
       </body>

@@ -7,9 +7,97 @@
     "artActu": "Art News",
     "aPropos": "About"
   },
+  "components": {
+    "actuCard": {
+      "link": "Read full article"
+    }
+  },
   "home": {
     "hero": {
       "subtitle": "Welcome to"
+    },
+    "sections": {
+      "coupDeCoeur": {
+        "message": "Looking for your next favorite piece?"
+      },
+      "expositions": {
+        "message": "Exhibitions",
+        "link": "See all exhibitions"
+      },
+      "artistes": {
+        "message": "Artists",
+        "link": "See all artists"
+      },
+      "artActu": {
+        "message": "Art News",
+        "link": "See more news"
+      },
+      "engagement": {
+        "message": "Our Commitments",
+        "engagement_1": "Certificate of Authenticity",
+        "engagement_1_content": "We provide a certificate of authenticity when you acquire an artwork.",
+        "engagement_2": "Our Experts",
+        "engagement_2_content": "Our art advisors are available to assist you with your purchases.",
+        "engagement_3": "A Unique Selection",
+        "engagement_3_content": "We offer a selection inspired by the African continent."
+      }
+    }
+  },
+  "artistes": {
+    "hero": {
+      "headline": "Artists",
+      "description": "Explore the works and universe of our artists, unique talents who push the boundaries of creativity."
+    }
+  },
+  "expositions": {
+    "hero": {
+      "headline": "Exhibitions",
+      "description": "Immerse yourself in a captivating artistic universe through our unique exhibitions. Explore works that tell stories, evoke emotions, and celebrate creativity in all its forms."
+    },
+    "sections": {
+      "enCours": "Current Exhibitions",
+      "aVenir": "Upcoming Exhibitions",
+      "passer": "Past Exhibitions"
+    }
+  },
+  "viewingRoom": {
+    "hero": {
+      "headline": "Viewing Room",
+      "description": "The Viewing Room offers you an immersive experience in our most captivating collections. Whether you're at home or on the go, discover unique works, accompanied by exclusive stories and narratives."
+    }
+  },
+  "artActu": {
+    "hero": {
+      "headline": "Art News",
+      "description": "Art News is your daily source for the latest updates in the art scene. From artist interviews to exhibition previews and emerging trends, everything you need to fuel your passion for art is here. Don't miss out on what's making waves in the art world."
+    }
+  },
+  "about": {
+    "hero": {
+      "headline": "About",
+      "description": "We are dedicated to showcasing talented artists and exceptional works that inspire and move."
+    },
+    "team": {
+      "message": "Team"
+    }
+  },
+  "footer": {
+    "liensUtils": {
+      "message": "Useful Links",
+      "contact": "Contact Us",
+      "inscription": "Artist Registration"
+    },
+    "reseaux": {
+      "message": "Our Social Networks"
+    },
+    "newsletter": {
+      "placeholder": "Your email address",
+      "button": "Sign Up"
+    },
+    "copyright": {
+      "message": "Copyright © 2025, Bamako Art Gallery, all rights reserved",
+      "mention": "Legal Notices",
+      "cookies": "Cookie Policy"
     }
   }
 }

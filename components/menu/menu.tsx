@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
+import { usePathname, useRouter } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { useMenuStore } from "@/store/useMenu";
 
@@ -15,10 +16,14 @@ type Props = {};
 const Menu = (props: Props) => {
   const t = useTranslations("navbar");
   const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
   const { isOpen, setIsOpen } = useMenuStore();
+
   //@ts-ignore
   const container = useRef<HTMLDivElement>();
   const tl = useRef<gsap.core.Timeline | null>(null);
+  const prevLocale = useRef(locale); // Store previous locale
 
   const menuLinks = [
     { path: "/", label: t("home") },
@@ -29,7 +34,7 @@ const Menu = (props: Props) => {
     { path: "/about", label: t("aPropos") },
   ];
 
-  console.log(isOpen);
+  // console.log(isOpen);
 
   useGSAP(
     () => {
@@ -72,6 +77,20 @@ const Menu = (props: Props) => {
       tl.current && tl.current.reverse();
     }
   }, [isOpen]);
+
+  const handleLangChange = (newLocale: string) => {
+    if (newLocale !== locale) {
+      tl.current?.reverse();
+
+      setTimeout(() => {
+        prevLocale.current = newLocale;
+        router.push(`/${newLocale}${pathname.replace(`/${locale}`, "")}`);
+        setIsOpen();
+      }, 2500);
+    }
+
+    console.log(`/${newLocale}${pathname.replace(`/${locale}`, "")}`);
+  };
 
   return (
     <div className="menu_wrapper" ref={container}>
@@ -119,6 +138,7 @@ const Menu = (props: Props) => {
           <div className="hamburger_lang_container">
             <div className="hamburger_menu_link_item_holder">
               <button
+                onClick={() => handleLangChange("fr")}
                 className={
                   locale === "fr"
                     ? "hamburger_lang_button_active"
@@ -131,6 +151,7 @@ const Menu = (props: Props) => {
 
             <div className="hamburger_menu_link_item_holder">
               <button
+                onClick={() => handleLangChange("en")}
                 className={
                   locale === "en"
                     ? "hamburger_lang_button_active"

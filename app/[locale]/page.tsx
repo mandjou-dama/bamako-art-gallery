@@ -8,6 +8,8 @@ import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
 import SeeMore from "@/components/see_more/see_more";
+import ActuCard from "@/components/cards/actu";
+import { EngagementCard } from "@/components/engagement/engagement";
 
 // Define the types for the artist data
 type InternationalizedDescription = {
@@ -39,11 +41,13 @@ const getArtist = async (): Promise<Artist[]> => {
 };
 
 export default async function Home({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("home");
+
   return (
     <div className="home_page">
       <div className="home_hero">
         <div className="home_hero_infos">
-          <p>Bienvenue sur</p>
+          <p>{t("hero.subtitle")}</p>
           <h1>Bamako Art Gallery</h1>
         </div>
 
@@ -107,40 +111,118 @@ export default async function Home({ params }: { params: { locale: string } }) {
       </div>
 
       <section className="section">
-        <h4 className="section_title">
-          à la recherche de votre prochain coup de coeur ?
-        </h4>
+        <h4 className="section_title">{t("sections.coupDeCoeur.message")}</h4>
         <div className="section_elements_wrapper four_elements">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+          <SmallCard name="Peinture" link="/works" />
+          <SmallCard name="Photographie" link="/works" />
+          <SmallCard name="Sculpture" link="/works" />
+          <SmallCard name="Design" link="/works" />
         </div>
       </section>
 
       <section className="section">
         <div className="section_header">
-          <h4 className="section_title">expositions</h4>
-          <SeeMore message="voir toutes les expositions" />
+          <h4 className="section_title">{t("sections.expositions.message")}</h4>
+          <SeeMore
+            link="/expositions"
+            message={t("sections.expositions.link")}
+          />
         </div>
 
         <div className="section_elements_wrapper two_elements">
-          <SmallCard />
-          <SmallCard />
+          <SmallCard
+            name="Les vestiges de l'ancien monde"
+            subline="exposition collective"
+            link="/expositions/dhd"
+          />
+          <SmallCard
+            name="Devenir un bout d'homme"
+            subline="Moussa Diallo"
+            link="/expositions/lkl"
+          />
         </div>
       </section>
 
       <section className="section">
         <div className="section_header">
-          <h4 className="section_title">Artistes</h4>
-          <SeeMore message="voir tous les artist" />
+          <h4 className="section_title">{t("sections.artistes.message")}</h4>
+          <SeeMore link="/artists" message={t("sections.artistes.link")} />
         </div>
 
         <div className="section_elements_wrapper rounded_four_elements">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+          <SmallCard
+            subline="Peinture"
+            name="Kankou Fofana"
+            link="/artists/artist/dsds"
+          />
+          <SmallCard
+            subline="Photographie"
+            name="Alfousseiny Coulibaly"
+            link="/artists/artist/dsds"
+          />
+          <SmallCard
+            subline="Design"
+            name="Boubacar Berthé"
+            link="/artists/artist/dsds"
+          />
+          <SmallCard
+            subline="Sculpture"
+            name="Fanta Mady Doucouré"
+            link="/artists/artist/dsds"
+          />
+        </div>
+      </section>
+
+      <section className="section">
+        <h4 className="section_title">{t("sections.artActu.message")}</h4>
+
+        <div className="section_elements_wrapper four_actu_elements">
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+          <ActuCard link="https://google.com" />
+        </div>
+
+        <Link href={"/art-actu"} className="see_more_actu">
+          {t("sections.artActu.link")}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-move-up-right"
+          >
+            <path d="M13 5H19V11" />
+            <path d="M19 5L5 19" />
+          </svg>
+        </Link>
+      </section>
+
+      <section className="section">
+        <div className="section_header engagement">
+          <h4 className="section_title">{t("sections.engagement.message")}</h4>
+        </div>
+
+        <div className="section_elements_wrapper engagement_three_elements">
+          <EngagementCard
+            title={t("sections.engagement.engagement_1")}
+            content={t("sections.engagement.engagement_1_content")}
+          />
+          <EngagementCard
+            title={t("sections.engagement.engagement_2")}
+            content={t("sections.engagement.engagement_2_content")}
+          />
+          <EngagementCard
+            title={t("sections.engagement.engagement_3")}
+            content={t("sections.engagement.engagement_3_content")}
+          />
         </div>
       </section>
     </div>

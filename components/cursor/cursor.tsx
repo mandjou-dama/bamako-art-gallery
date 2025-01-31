@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 
 import "./styles.css";
@@ -37,6 +37,7 @@ export default function Cursor() {
   };
 
   const moveCircle = (x: number, y: number): void => {
+    if (!circle.current) return; // Prevent errors if component unmounts
     gsap.set(circle.current, { x, y, xPercent: -50, yPercent: -50 });
   };
 
