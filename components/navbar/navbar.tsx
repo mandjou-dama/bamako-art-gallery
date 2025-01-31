@@ -59,9 +59,44 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar_wrapper}>
-        <Link href="/" className="logo">
-          <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
-        </Link>
+        {pathname.includes(`${locale}/expositions`) && pathname.length > 15 ? (
+          <Link
+            href="/expositions"
+            className="logo"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "15px 0px",
+              gap: "7px",
+              textTransform: "uppercase",
+              fontSize: "14px",
+              fontWeight: "200",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-move-left"
+            >
+              <path d="M6 8L2 12L6 16" />
+              <path d="M2 12H22" />
+            </svg>
+            Retour
+          </Link>
+        ) : (
+          <Link href="/" className="logo">
+            <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
+          </Link>
+        )}
+
         <div className={styles.links_container}>
           <div className={styles.links}>
             {navLinks.map((link) => (
