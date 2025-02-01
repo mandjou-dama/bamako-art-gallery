@@ -24,10 +24,10 @@ export default defineConfig({
     structureTool({ structure }),
     internationalizedArray({
       languages: [
-        { id: "en", title: "English" },
         { id: "fr", title: "French" },
+        { id: "en", title: "English" },
       ],
-      defaultLanguages: ["fr"],
+      // defaultLanguages: ["fr"],
       fieldTypes: [
         defineField({
           name: "description",

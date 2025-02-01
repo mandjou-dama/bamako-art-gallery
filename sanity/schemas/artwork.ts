@@ -31,7 +31,6 @@ export default defineType({
       name: "description",
       title: "Description",
       type: "internationalizedArrayDescription",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "technique",
@@ -55,6 +54,11 @@ export default defineType({
       name: "price",
       title: "Prix",
       type: "number",
+    }),
+    defineField({
+      name: "serie",
+      title: "Série",
+      type: "string",
     }),
     defineField({
       name: "category",

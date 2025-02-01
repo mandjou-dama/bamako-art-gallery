@@ -1,22 +1,6 @@
 import { UserIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
-// export default defineType({
-//   title: "Artist",
-//   name: "artist",
-//   type: "document",
-//   fields: [
-//     defineField({
-//       name: "name",
-//       type: "string",
-//     }),
-//     defineField({
-//       name: "description",
-//       type: "internationalizedArrayDescription",
-//     }),
-//   ],
-// });
-
 export default defineType({
   name: "artist",
   title: "Artiste",
@@ -37,6 +21,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "image",
+      title: "Photo de l'artiste",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "internationalizedArrayDescription",
@@ -48,20 +38,15 @@ export default defineType({
       type: "internationalizedArrayDescription",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "image",
-      title: "Photo de l'artiste",
-      type: "image",
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: "category",
-      title: "Catégorie",
-      type: "string",
-      options: {
-        list: ["Photographie", "Peinture", "Sculpture", "Design"],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
+
+    // defineField({
+    //   name: "category",
+    //   title: "Catégorie",
+    //   type: "string",
+    //   options: {
+    //     list: ["Photographie", "Peinture", "Sculpture", "Design"],
+    //   },
+    //   validation: (Rule) => Rule.required(),
+    // }),
   ],
 });
