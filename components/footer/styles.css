@@ -4,7 +4,7 @@
 
 .footer_elements_wrapper {
   display: grid;
-  grid-template-columns: 0.75fr 2fr;
+  grid-template-columns: 1fr;
   padding: 50px 0px 30px 0px;
 }
 
@@ -16,13 +16,12 @@
 
 .footer_row.links {
   display: flex;
-  gap: 100px;
+  gap: 200px;
 }
 
 .footer_row_link_wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 50px;
+  gap: 200px;
 }
 
 .footer_row_link_container {
@@ -107,6 +106,10 @@
   .footer_elements_wrapper {
     padding: 4rem 0.8rem 2rem 0.8rem;
     display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  .footer_row_link_wrapper {
     flex-direction: column;
     gap: 50px;
   }

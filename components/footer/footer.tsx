@@ -21,11 +21,11 @@ const Footer = (props: Props) => {
     <div className="footer">
       <div className="separator"></div>
       <div className="footer_elements_wrapper">
-        <div className="footer_column logo">
+        {/* <div className="footer_column logo">
           <Link href={"/"} className="logo">
             <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
           </Link>
-        </div>
+        </div> */}
 
         <div className="footer_column infos">
           <div className="footer_row links">
