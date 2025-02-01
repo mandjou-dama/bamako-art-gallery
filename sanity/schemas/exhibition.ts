@@ -38,7 +38,12 @@ export default defineType({
       title: "Œuvres exposées",
       type: "array",
       of: [{ type: "reference", to: [{ type: "artwork" }] }],
-      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "series",
+      title: "Séries exposées",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "series" }] }],
     }),
   ],
 });
