@@ -31,6 +31,11 @@ export default defineConfig({
       fieldTypes: [
         defineField({
           name: "description",
+          type: "array",
+          of: [{ type: "block" }],
+        }),
+        defineField({
+          name: "string",
           type: "string",
         }),
       ],
