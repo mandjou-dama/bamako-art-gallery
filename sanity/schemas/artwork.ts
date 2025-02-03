@@ -21,6 +21,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "image",
+      title: "Photo de l'oeuvre",
+      type: "image",
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "artist",
       title: "Artiste",
       type: "reference",
@@ -31,6 +38,15 @@ export default defineType({
       name: "description",
       title: "Description",
       type: "internationalizedArrayDescription",
+    }),
+    defineField({
+      name: "category",
+      title: "Catégorie",
+      type: "string",
+      options: {
+        list: ["Photographie", "Peinture", "Sculpture", "Design"],
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "technique",
@@ -56,22 +72,8 @@ export default defineType({
       type: "number",
     }),
     defineField({
-      name: "serie",
-      title: "Série",
-      type: "string",
-    }),
-    defineField({
-      name: "category",
-      title: "Catégorie",
-      type: "string",
-      options: {
-        list: ["Photographie", "Peinture", "Sculpture", "Design"],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: "images",
-      title: "Photos de l'œuvre",
+      title: "Photos supplémentaires de l'œuvre",
       type: "array",
       of: [
         {

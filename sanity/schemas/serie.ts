@@ -42,9 +42,19 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
-              name: "technique",
-              title: "Technique utilisée",
+              name: "category",
+              title: "Catégorie",
               type: "string",
+              options: {
+                list: ["Photographie", "Peinture", "Sculpture", "Design"],
+              },
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "technique",
+              title: "Technique de fabrication",
+              type: "internationalizedArrayString",
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: "dimensions",
