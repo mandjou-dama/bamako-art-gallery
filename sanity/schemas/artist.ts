@@ -38,6 +38,12 @@ export default defineType({
       type: "internationalizedArrayDescription",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "featured",
+      title: "Sur la page des artistes",
+      type: "boolean",
+      validation: (Rule) => Rule.required(),
+    }),
 
     // defineField({
     //   name: "category",
