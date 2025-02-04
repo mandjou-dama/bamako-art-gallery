@@ -16,13 +16,13 @@ export default defineType({
     defineField({
       name: "tel",
       title: "Numéro de téléphone de la galerie",
-      type: "text",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "email",
-      title: "email",
-      type: "text",
+      title: "Email de la galerie",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -49,7 +49,6 @@ export default defineType({
               name: "bio",
               title: "Biographie",
               type: "internationalizedArrayDescription",
-              validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: "photo",
