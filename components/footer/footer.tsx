@@ -32,10 +32,10 @@ const Footer = (props: Props) => {
             <div className="footer_row_link_wrapper">
               <div className="footer_row_link_container">
                 <p className="footer_headline">{t("liensUtils.message")}</p>
-                <Link href="mailto:mandjoudama@gmail.com">
+                <Link href="mailto:contact@bamakoartgallery.com">
                   {t("liensUtils.contact")}
                 </Link>
-                <Link href="mailto:mandjoudama@gmail.com">
+                <Link href="mailto:contact@bamakoartgallery.com">
                   {t("liensUtils.inscription")}
                 </Link>
               </div>
