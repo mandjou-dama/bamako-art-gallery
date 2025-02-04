@@ -38,11 +38,11 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     <div className="countdown-container">
       <div className="countdown-item">
         <span className="countdown-value">{timeLeft.days}</span>
-        <span className="countdown-label">Days</span>
+        <span className="countdown-label">Jours</span>
       </div>
       <div className="countdown-item">
         <span className="countdown-value">{timeLeft.hours}</span>
-        <span className="countdown-label">Hours</span>
+        <span className="countdown-label">Heures</span>
       </div>
       <div className="countdown-item">
         <span className="countdown-value">{timeLeft.minutes}</span>
@@ -50,7 +50,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       </div>
       <div className="countdown-item">
         <span className="countdown-value">{timeLeft.seconds}</span>
-        <span className="countdown-label">Seconds</span>
+        <span className="countdown-label">Secondes</span>
       </div>
     </div>
   );
