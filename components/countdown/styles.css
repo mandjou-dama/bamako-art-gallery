@@ -1,0 +1,46 @@
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-family: "Arial", sans-serif;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-item {
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100px;
+  animation: pulse 1.5s infinite;
+}
+
+.countdown-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: block;
+}
+
+.countdown-label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 5px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

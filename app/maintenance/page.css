@@ -1,0 +1,28 @@
+.maintenance_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  color: black;
+  font-family: "Poppins";
+}
+
+.maintenance_page img {
+  width: 500px;
+  height: auto;
+  margin-bottom: 100px;
+}
+
+.maintenance_page h1 {
+  text-transform: uppercase;
+  font-family: Poppins;
+  font-size: 18px;
+}
+
+.maintenance_page p {
+  text-transform: uppercase;
+  font-family: Poppins;
+  font-size: 16px;
+}
