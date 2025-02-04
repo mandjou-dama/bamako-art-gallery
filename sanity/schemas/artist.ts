@@ -44,15 +44,5 @@ export default defineType({
       type: "boolean",
       validation: (Rule) => Rule.required(),
     }),
-
-    // defineField({
-    //   name: "category",
-    //   title: "Catégorie",
-    //   type: "string",
-    //   options: {
-    //     list: ["Photographie", "Peinture", "Sculpture", "Design"],
-    //   },
-    //   validation: (Rule) => Rule.required(),
-    // }),
   ],
 });
