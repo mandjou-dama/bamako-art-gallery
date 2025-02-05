@@ -6,18 +6,41 @@ import { Link } from "@/i18n/routing";
 
 import "./page.css";
 
-export default async function Page() {
+const categoryDesc = [
+  {
+    category: "photographie",
+    description: "photographie",
+  },
+  {
+    category: "design",
+    description: "design",
+  },
+  {
+    category: "sculpture",
+    description: "sculpture",
+  },
+  {
+    category: "peinture",
+    description: "peinture",
+  },
+];
+
+type Params = Promise<{ name: string }>;
+
+export default async function Page({ params }: { params: Params }) {
   const t = await getTranslations("artistes.hero");
+
+  const { name } = await params;
+  const categoryDescription = categoryDesc.find((el) => name === el.category);
+
+  console.log(name);
 
   return (
     <div className="works_page">
       <div className="works_hero">
         <div className="works_hero_infos">
-          <h4>Oeuvres peinture</h4>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe
-            culpa quis reiciendis. Cumque voluptas facilis sint.
-          </p>
+          <h4>Oeuvres en {name}</h4>
+          <p>{categoryDescription?.description}</p>
         </div>
         <div className="separator"></div>
       </div>

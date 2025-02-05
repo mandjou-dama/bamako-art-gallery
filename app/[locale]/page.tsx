@@ -1,15 +1,22 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
+import "./page.css";
 
+//import components
+import { SmallCard } from "@/components/cards/cards";
+import { EngagementCard } from "@/components/engagement/engagement";
+import ActuCard from "@/components/cards/actu";
+import SeeMore from "@/components/see_more/see_more";
+
+//import fetches
 import { fetchArtist } from "@/sanity/fetch";
 
-import { SmallCard } from "@/components/cards/cards";
-
-import "./page.css";
-import SeeMore from "@/components/see_more/see_more";
-import ActuCard from "@/components/cards/actu";
-import { EngagementCard } from "@/components/engagement/engagement";
+//import categories images
+import Photography from "@/public/assets/photography.jpeg";
+import Design from "@/public/assets/design.jpeg";
+import Sculpture from "@/public/assets/sculpture.jpeg";
+import Peinture from "@/public/assets/peinture.jpeg";
 
 // Define the types for the artist data
 type InternationalizedDescription = {
@@ -118,10 +125,26 @@ export default async function Home({
       <section className="section">
         <h4 className="section_title">{t("sections.coupDeCoeur.message")}</h4>
         <div className="section_elements_wrapper four_elements">
-          <SmallCard name="Peinture" link="/works" />
-          <SmallCard name="Photographie" link="/works" />
-          <SmallCard name="Sculpture" link="/works" />
-          <SmallCard name="Design" link="/works" />
+          <SmallCard
+            image={Peinture}
+            name="Peinture"
+            link={`/works/category/peinture`}
+          />
+          <SmallCard
+            image={Photography}
+            name="Photographie"
+            link={`/works/category/photographie`}
+          />
+          <SmallCard
+            image={Sculpture}
+            name="Sculpture"
+            link={`/works/category/sculpture`}
+          />
+          <SmallCard
+            image={Design}
+            name="Design"
+            link={`/works/category/design`}
+          />
         </div>
       </section>
 

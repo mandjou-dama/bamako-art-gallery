@@ -13,7 +13,7 @@ export const SmallCard = async ({
 }: {
   subline?: string;
   name?: string;
-  image?: string;
+  image?: any;
   link?: string;
 }) => {
   const local = await getLocale();
@@ -25,7 +25,10 @@ export const SmallCard = async ({
           <Image
             width={1260}
             height={750}
-            src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            src={
+              image ||
+              "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
             alt=""
           />
         </div>
