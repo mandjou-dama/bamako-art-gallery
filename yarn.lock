@@ -4585,6 +4585,11 @@ groq@3.71.2, groq@^3.71.1:
   resolved "https://registry.npmjs.org/groq/-/groq-3.71.2.tgz"
   integrity sha512-bQWS8jVYOyYvaYze35T7Jy25iY36Hx5L460F/bly4OVSyuZWu+AWuQPicRe7so9PX1tip0Kby2nX2tPELz3anw==
 
+groq@^3.74.1:
+  version "3.74.1"
+  resolved "https://registry.yarnpkg.com/groq/-/groq-3.74.1.tgz#2d7dbb49bd3ab75e436263d4df7b9ea314552ab8"
+  integrity sha512-nQq2qlCTFNhkBZJ4tHY1tXQHEZDlqg/iFOtQIF5PEJNqrTG7/GQrHKwKlTjfcbq+qnJys2t45qVn10uLZAteZA==
+
 gsap@^3.12.7:
   version "3.12.7"
   resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.12.7.tgz#1b690def901ac9b21d4909f39c2b52418154463d"
