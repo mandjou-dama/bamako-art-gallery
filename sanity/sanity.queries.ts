@@ -17,8 +17,8 @@ export const getArtworksByCategory = async (category: string) => {
     *[_type == "artwork" && category == $category] {
       title,
       slug,
-      image,
-      artist->{ name },
+      "image": image.asset->url,
+      artist->{ fullName },
       description,
       technique,
       dimensions,
