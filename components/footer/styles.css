@@ -58,6 +58,7 @@
 
 .footer_icons {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 

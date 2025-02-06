@@ -18,6 +18,9 @@ export default function CustomPortableText({
       normal: ({ children }) => (
         <span className="portable_text_span">{children}</span>
       ),
+      h4: ({ children }) => (
+        <span className="portable_text_h4">{children}</span>
+      ),
     },
     marks: {
       link: ({ children, value }) => {

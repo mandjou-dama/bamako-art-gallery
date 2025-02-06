@@ -1,7 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
 
+import { getBagDetails } from "@/sanity/sanity.queries";
+
+import PortableText from "@/components/portable_text/portable_text";
+
 import "./page.css";
+import { PortableTextBlock } from "next-sanity";
 
 const team = [
   {
@@ -26,6 +31,12 @@ const team = [
 
 export default async function Page() {
   const t = await getTranslations("about");
+  const locale = await getLocale();
+  const bag = await getBagDetails();
+
+  const getDirectrice = bag.team.find((i: any) => i.role === "Directrice");
+
+  console.log(getDirectrice);
   return (
     <div className="about_page">
       <div className="about_hero">
@@ -45,32 +56,20 @@ export default async function Page() {
             <Image
               width={1260}
               height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={
+                bag.image ||
+                "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
               alt=""
             />
           </div>
 
-          <p className="about_hero_description">
-            La Galerie Bamako Art Gallery est ravie de présenter Goumbé, la
-            première exposition personnelle de l’artiste Carl-Edouard Keita à
-            Abidjan, du 13 février au 12 avril 2025.    Associations culturelles
-            fondées par les migrants venus des régions intérieures et de la
-            sous-région ivoirienne durant les années post-indépendance, les
-            goumbés étaient autrefois très présentes dans les quartiers
-            populaires d’Abidjan. Aujourd’hui, les goumbés ont quasiment
-            disparu, laissant subsister principalement la danse qui en est issue
-            et pratiquée au sein de la communauté malinké dans le nord de la
-            Côte d’Ivoire.   S’inspirant de l’effervescence créative de ce
-            mouvement, Carl-Edouard Keita explore à travers cette exposition les
-            dynamiques sociales, culturelles et spirituelles d’une période clé
-            dans la construction d’une identité nationale post-coloniale.
-          </p>
+          <PortableText
+            className="portable_text"
+            value={
+              locale === "fr" ? bag.bio_fr : (bag.bio_en as PortableTextBlock[])
+            }
+          />
         </section>
 
         <section className="section">
@@ -79,27 +78,28 @@ export default async function Page() {
           </div>
 
           <div className="about_section">
-            <p className="about_hero_description">
-              La Galerie Bamako Art Gallery est ravie de présenter Goumbé, la
-              première exposition personnelle de l’artiste Carl-Edouard Keita à
-              Abidjan, du 13 février au 12 avril 2025.    Associations
-              culturelles fondées par les migrants venus des régions intérieures
-              et de la sous-région ivoirienne durant les années
-              post-indépendance, les goumbés étaient autrefois très présentes
-              dans les quartiers populaires d’Abidjan. Aujourd’hui, les goumbés
-              ont quasiment disparu, laissant subsister principalement la danse
-              qui en est issue et pratiquée au sein de la communauté malinké
-              dans le nord de la Côte d’Ivoire.   S’inspirant de l’effervescence
-              créative de ce mouvement, Carl-Edouard Keita explore à travers
-              cette exposition les dynamiques sociales, culturelles et
-              spirituelles d’une période clé dans la construction d’une identité
-              nationale post-coloniale.
-            </p>
+            {getDirectrice.bio_fr ? (
+              <PortableText
+                className="portable_text"
+                value={
+                  locale === "fr"
+                    ? getDirectrice.bio_fr
+                    : (getDirectrice.bio_en as PortableTextBlock[])
+                }
+              />
+            ) : (
+              <p className="about_hero_description">
+                Biographie de la directrice
+              </p>
+            )}
 
             <Image
               width={1260}
               height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={
+                getDirectrice.image ||
+                "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
               alt=""
             />
           </div>
@@ -111,12 +111,20 @@ export default async function Page() {
           </div>
 
           <div className="team_container">
-            {team.map(({ name, role, image }) => (
-              <div key={name} className="team_card">
-                <Image width={1260} height={750} src={image} alt="" />
+            {bag.team.map(({ nom, role, image }: any) => (
+              <div key={nom} className="team_card">
+                <Image
+                  width={1260}
+                  height={750}
+                  src={
+                    image ||
+                    "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  alt={nom}
+                />
 
                 <p className="member_role">{role}</p>
-                <h2 className="member_name">{name}</h2>
+                <h2 className="member_name">{nom}</h2>
               </div>
             ))}
           </div>

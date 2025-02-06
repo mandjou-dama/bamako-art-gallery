@@ -149,6 +149,23 @@ export async function fetchLatestNews() {
   }
 }
 
+export async function getAllNews() {
+  const query = groq`*[_type == "news"] | order(_createdAt desc) {
+    title,
+    journal,
+    link,
+    "photo": photo.asset->url
+  }`;
+
+  try {
+    const news = await client.fetch(query);
+    return news;
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    return [];
+  }
+}
+
 export async function fetchHomeExhibitions() {
   const query = groq`*[_type == "exhibition" && home == true] | order(_createdAt desc) [0...2] {
     title,
@@ -288,6 +305,33 @@ export const getSeriesArtworkBySlug = async (
     return data || null; // Retourne null si l'œuvre n'est pas trouvée
   } catch (error) {
     console.error("Error fetching series artwork:", error);
+    return null;
+  }
+};
+
+export const getBagDetails = async () => {
+  const query = groq`
+    *[_type == "bag"][0] {
+      "bio_fr": bio[_key == "fr"][0].value,
+      "bio_en": bio[_key == "en"][0].value,
+      "image": image.asset->url,
+      tel,
+      email,
+      team[]{
+        nom,
+        role,
+        "bio_fr": bio[_key == "fr"][0].value,
+        "bio_en": bio[_key == "en"][0].value,
+        "image": image.asset->url
+      }
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
     return null;
   }
 };

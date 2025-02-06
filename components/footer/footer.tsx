@@ -127,21 +127,25 @@ const Footer = (props: Props) => {
 
                   <Link
                     target="_blank"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                     href={
                       "https://x.com/ArtBamako?t=OwuHjyTuEF0eSe_dbo_ruQ&s=08"
                     }
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
                       fill="none"
                       stroke="#202217"
-                      strokeWidth="2"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M4 4l11.733 16h4.267l-11.733 -16z" />

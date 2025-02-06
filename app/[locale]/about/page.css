@@ -27,14 +27,14 @@
 
 .about_hero_images {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
 .about_hero_images img {
   width: 100%;
-  aspect-ratio: 1/1;
+  height: auto;
 }
 
 .about_hero_description {
@@ -56,8 +56,8 @@
 
 .team_container {
   margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
@@ -107,9 +107,6 @@
 }
 
 @media screen and (max-width: 480px) {
-  .about_hero_images {
-    grid-template-columns: repeat(1, 1fr);
-  }
   .about_section img {
     height: auto;
   }
