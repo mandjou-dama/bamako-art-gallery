@@ -11,25 +11,6 @@ import {
 
 import "./page.css";
 
-const categoryDesc = [
-  {
-    category: "photography",
-    description: "photographie",
-  },
-  {
-    category: "design",
-    description: "design",
-  },
-  {
-    category: "sculpture",
-    description: "sculpture",
-  },
-  {
-    category: "painting",
-    description: "peinture",
-  },
-];
-
 type Params = Promise<{ name: string }>;
 
 function capitalizeFirstLetter(str: string) {
@@ -47,8 +28,6 @@ export default async function Page({ params }: { params: Params }) {
   const series = await getSeriesWithArtworksByCategory(
     capitalizeFirstLetter(name)
   );
-
-  const categoryDescription = categoryDesc.find((el) => name === el.category);
 
   const getTitle = () => {
     if (name === "photographie") return t("photography.title");
@@ -75,37 +54,15 @@ export default async function Page({ params }: { params: Params }) {
       </div>
 
       <div className="works_wrapper">
-        {artworks.map((artwork: any) => (
-          <div key={`${artwork.slug}+${artwork.title}`}>
-            <Link href={"/works/erer"}>
-              <img src={artwork.image} alt="" />
-              <div className="artwork_infos_1">
-                <p className="artwork_infos_artist">
-                  {artwork.artist.fullName}
-                </p>
-                <p className="artwork_infos_title">{artwork.title}</p>
-              </div>
-              <div className="artwork_infos_2">
-                <p>
-                  {artwork.price > 0
-                    ? `${formatCurrency(artwork.price)} FCFA`
-                    : null}
-                </p>
-                <p>{artwork.year !== 0 ? artwork.year : ""}</p>
-              </div>
-            </Link>
-          </div>
-        ))}
-
-        {series.map((serie: any, index: number) => {
-          const artist = serie.artists.map((i: any) => i.fullName);
-
-          return serie.artworks.map((artwork: any, index: number) => (
-            <div key={`${artwork.price}+${artwork.title}+${index}`}>
-              <Link href={"/works/erer"}>
-                <img src={artwork.images} alt="" />
+        {artworks.map((artwork: any) => {
+          return (
+            <div key={`${artwork.slug.current}+${artwork.title}`}>
+              <Link href={`/works/${artwork.slug.current}`}>
+                <img src={artwork.image} alt="" />
                 <div className="artwork_infos_1">
-                  <p className="artwork_infos_artist">{artist[0]}</p>
+                  <p className="artwork_infos_artist">
+                    {artwork.artist.fullName}
+                  </p>
                   <p className="artwork_infos_title">{artwork.title}</p>
                 </div>
                 <div className="artwork_infos_2">
@@ -118,7 +75,33 @@ export default async function Page({ params }: { params: Params }) {
                 </div>
               </Link>
             </div>
-          ));
+          );
+        })}
+
+        {series.map((serie: any, index: number) => {
+          const artist = serie.artists.map((i: any) => i.fullName);
+
+          return serie.artworks.map((artwork: any, index: number) => {
+            return (
+              <div key={`${artwork.price}+${artwork.title}+${index}`}>
+                <Link href={`/works/${artwork.slug}`}>
+                  <img src={artwork.images} alt="" />
+                  <div className="artwork_infos_1">
+                    <p className="artwork_infos_artist">{artist[0]}</p>
+                    <p className="artwork_infos_title">{artwork.title}</p>
+                  </div>
+                  <div className="artwork_infos_2">
+                    <p>
+                      {artwork.price > 0
+                        ? `${formatCurrency(artwork.price)} FCFA`
+                        : null}
+                    </p>
+                    <p>{artwork.year !== 0 ? artwork.year : ""}</p>
+                  </div>
+                </Link>
+              </div>
+            );
+          });
         })}
       </div>
     </div>

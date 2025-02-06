@@ -42,6 +42,23 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
+              name: "slug",
+              title: "Slug",
+              type: "slug",
+              options: {
+                source: (doc, context) => {
+                  // @ts-ignore
+                  const seriesTitle = context.parent.title || "untitled-series";
+                  const artworkTitle = doc.title || "untitled-artwork";
+                  return `${seriesTitle}-${artworkTitle}`
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+                },
+                maxLength: 96,
+              },
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
               name: "category",
               title: "Catégorie",
               type: "string",
