@@ -369,3 +369,35 @@ export const getBagContact = async () => {
     return null;
   }
 };
+
+export const getExhibitionsByTimeline = async (timeline: string) => {
+  const query = groq`
+    *[_type == "exhibition" && timeline == $timeline] {
+      title,
+      "slug": slug.current,
+      "cover": cover.asset->url,
+      "description_fr": description[_key == "fr"][0].value,
+      "description_en": description[_key == "en"][0].value,
+      artists[]->{ fullName },
+      artworks[]->{
+        title,
+        "image": image.asset->url,
+        artist->{ fullName }
+      },
+      series[]->{
+        title,
+        artists[]->{ fullName }
+      }
+    }
+  `;
+
+  const params = { timeline };
+
+  try {
+    const exhibitions = await client.fetch(query, params);
+    return exhibitions;
+  } catch (error) {
+    console.error("Error fetching exhibitions by timeline:", error);
+    return [];
+  }
+};

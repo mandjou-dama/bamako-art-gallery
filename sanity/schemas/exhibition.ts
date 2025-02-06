@@ -53,6 +53,14 @@ export default defineType({
       of: [{ type: "reference", to: [{ type: "series" }] }],
     }),
     defineField({
+      name: "timeline",
+      title: "Chronologie",
+      type: "string",
+      options: {
+        list: ["En cours", "À venir", "Passées"],
+      },
+    }),
+    defineField({
       name: "home",
       title: "Sur la page d'accueil",
       type: "boolean",
