@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { getArtistBySlug } from "@/sanity/sanity.queries";
+
 import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
@@ -24,14 +26,25 @@ const presses = [
   },
 ];
 
-export default function ArtistPage() {
+type Params = Promise<{ name: string }>;
+
+export default async function ArtistPage({ params }: { params: Params }) {
+  const { name } = await params;
+  console.log(name);
+
+  const artist = await getArtistBySlug(name);
+
+  console.log(artist.fullName);
+
   return (
     <div className="artist_page">
       <section className="section artist_page_hero">
         <div className="artist_page_hero_left">
           <div>
             <div className="section_header">
-              <h4 className="section_title">Kankou Fofana</h4>
+              <h4 className="section_title">
+                {artist.fullName || "Kankou Fofana"}
+              </h4>
             </div>
             <p>
               <span>
@@ -85,7 +98,10 @@ export default function ArtistPage() {
         <Image
           width={1260}
           height={750}
-          src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src={
+            artist.image ||
+            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
           alt=""
         />
       </section>

@@ -4,21 +4,28 @@ import { Link } from "@/i18n/routing";
 
 import "./styles.css";
 
-type Props = {};
+type Props = {
+  image: string;
+  name: string;
+  slug: string;
+};
 
-const ArtistCard = (props: Props) => {
+const ArtistCard = ({ image, name, slug }: Props) => {
   return (
     <div className="artist_wrapper">
-      <Link href={"/artists/artist/gdjs"}>
+      <Link href={`/artists/artist/${slug}`}>
         <Image
           width={1260}
           height={750}
-          src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
+          src={
+            image ||
+            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+          alt={`${name} cover image`}
         />
       </Link>
 
-      <button>Kankou fofana</button>
+      <button>{name || "Kankou fofana"}</button>
     </div>
   );
 };

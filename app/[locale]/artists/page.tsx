@@ -1,10 +1,13 @@
 import { getTranslations } from "next-intl/server";
+import ArtistCard from "@/components/cards/artist";
+
+import { getArtistsForArtistsPage } from "@/sanity/sanity.queries";
 
 import "./page.css";
-import ArtistCard from "@/components/cards/artist";
 
 export default async function Page() {
   const t = await getTranslations("artistes.hero");
+  const artists = await getArtistsForArtistsPage();
 
   return (
     <div className="artists_page">
@@ -17,14 +20,14 @@ export default async function Page() {
       </div>
 
       <div className="artists_wrapper">
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
+        {artists.map((artist: any) => (
+          <ArtistCard
+            key={artist.name}
+            image={artist.image}
+            name={artist.fullName}
+            slug={artist.slug.current}
+          />
+        ))}
       </div>
     </div>
   );

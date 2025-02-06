@@ -71,6 +71,36 @@ export const getArtistsForHome = async () => {
   return data;
 };
 
+export const getArtistsForArtistsPage = async () => {
+  const query = groq`
+    *[_type == "artist" && featured == true] {
+      fullName,
+      slug,
+      "image": image.asset->url,
+    }
+  `;
+
+  const data = await client.fetch(query);
+  return data;
+};
+
+export async function getArtistBySlug(slug: string) {
+  const query = groq`*[_type == "artist" && slug.current == $slug][0] {
+    fullName,
+    description,
+    bio,
+    "image": image.asset->url,
+  }`;
+
+  try {
+    const artist = await client.fetch(query, { slug });
+    return artist || null; // Return null if no artist found
+  } catch (error) {
+    console.error("Error fetching artist:", error);
+    return null;
+  }
+}
+
 export async function fetchLatestNews() {
   const query = groq`*[_type == "news"] | order(_createdAt desc) [0...6] {
     title,
@@ -84,6 +114,23 @@ export async function fetchLatestNews() {
     return news;
   } catch (error) {
     console.error("Error fetching news:", error);
+    return [];
+  }
+}
+
+export async function fetchHomeExhibitions() {
+  const query = groq`*[_type == "exhibition" && home == true] | order(_createdAt desc) [0...2] {
+    title,
+    "slug": slug.current,
+    "cover": cover.asset->url,
+    artists[]->{ fullName },
+  }`;
+
+  try {
+    const exhibitions = await client.fetch(query);
+    return exhibitions;
+  } catch (error) {
+    console.error("Error fetching exhibitions:", error);
     return [];
   }
 }

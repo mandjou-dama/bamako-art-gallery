@@ -10,7 +10,11 @@ import ActuCard from "@/components/cards/actu";
 import SeeMore from "@/components/see_more/see_more";
 
 //import fetches
-import { getArtistsForHome, fetchLatestNews } from "@/sanity/sanity.queries";
+import {
+  getArtistsForHome,
+  fetchLatestNews,
+  fetchHomeExhibitions,
+} from "@/sanity/sanity.queries";
 
 //import categories images
 import Photography from "@/public/assets/photography.jpeg";
@@ -50,6 +54,7 @@ export default async function Home({
   const t = await getTranslations("home");
   const artists = await getArtistsForHome();
   const news = await fetchLatestNews();
+  const exhibitions = await fetchHomeExhibitions();
 
   return (
     <div className="home_page">
@@ -154,16 +159,19 @@ export default async function Home({
         </div>
 
         <div className="section_elements_wrapper two_elements">
-          <SmallCard
-            name="Les vestiges de l'ancien monde"
-            subline="exposition collective"
-            link="/expositions/dhd"
-          />
-          <SmallCard
-            name="Devenir un bout d'homme"
-            subline="Moussa Diallo"
-            link="/expositions/lkl"
-          />
+          {exhibitions.map((exhibition: any) => (
+            <SmallCard
+              key={exhibition.title}
+              name={exhibition.title}
+              subline={
+                exhibition.artists.length > 2
+                  ? "exposition collective"
+                  : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+              }
+              link={`/expositions/${exhibition.slug}`}
+              image={exhibition.cover}
+            />
+          ))}
         </div>
       </section>
 
