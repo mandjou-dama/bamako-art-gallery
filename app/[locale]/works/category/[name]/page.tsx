@@ -8,7 +8,6 @@ import {
   getArtworksByCategory,
   getSeriesWithArtworksByCategory,
 } from "@/sanity/sanity.queries";
-import { Artwork } from "@/sanity/sanity.types";
 
 import "./page.css";
 

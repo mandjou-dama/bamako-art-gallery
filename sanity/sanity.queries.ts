@@ -57,3 +57,33 @@ export const getSeriesWithArtworksByCategory = async (category: string) => {
 
   return data;
 };
+
+export const getArtistsForHome = async () => {
+  const query = groq`
+    *[_type == "artist" && home == true] {
+      fullName,
+      slug,
+      "image": image.asset->url,
+    }
+  `;
+
+  const data = await client.fetch(query);
+  return data;
+};
+
+export async function fetchLatestNews() {
+  const query = groq`*[_type == "news"] | order(_createdAt desc) [0...6] {
+    title,
+    journal,
+    link,
+    "photo": photo.asset->url
+  }`;
+
+  try {
+    const news = await client.fetch(query);
+    return news;
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    return [];
+  }
+}
