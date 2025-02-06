@@ -130,7 +130,7 @@ export default async function Home({
         <div className="section_header">
           <h4 className="section_title">{t("sections.expositions.message")}</h4>
           <SeeMore
-            link="/expositions"
+            link="/viewing-room"
             message={t("sections.expositions.link")}
           />
         </div>
@@ -145,7 +145,7 @@ export default async function Home({
                   ? "exposition collective"
                   : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
               }
-              link={`/expositions/${exhibition.slug}`}
+              link={`/viewing-room/${exhibition.slug}`}
               image={exhibition.cover}
             />
           ))}
@@ -161,6 +161,7 @@ export default async function Home({
         <div className="section_elements_wrapper rounded_four_elements">
           {artists.map((artist: any) => (
             <SmallCard
+              hideCategory
               key={artist.fullName}
               name={artist.fullName}
               image={artist.image}
@@ -185,7 +186,7 @@ export default async function Home({
           ))}
         </div>
 
-        <Link href={"/art-actu"} className="see_more_actu">
+        <Link scroll={true} href={"/art-actu"} className="see_more_actu">
           {t("sections.artActu.link")}
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -10,17 +10,19 @@ export const SmallCard = async ({
   image,
   name,
   link,
+  hideCategory = false,
 }: {
   subline?: string;
   name?: string;
   image?: any;
   link?: string;
+  hideCategory?: boolean;
 }) => {
   const local = await getLocale();
 
   return (
     <div className="small_card">
-      <Link href={link ? link : ""}>
+      <Link scroll={true} href={link ? link : ""}>
         <div className="small_card_image_container">
           <Image
             width={1260}
@@ -34,9 +36,11 @@ export const SmallCard = async ({
         </div>
 
         <div className="small_card_footer">
-          <p className="small_card_footer_headline">
-            {subline ? subline : "Catégorie"}
-          </p>
+          {!hideCategory && (
+            <p className="small_card_footer_headline">
+              {subline ? subline : "Catégorie"}
+            </p>
+          )}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

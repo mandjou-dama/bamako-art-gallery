@@ -222,7 +222,6 @@ const Footer = (props: Props) => {
                   suppressHydrationWarning
                   placeholder={t("newsletter.placeholder")}
                   autoFocus={false}
-                  onFocus={() => ""}
                 />
                 <button type="submit">
                   {t("newsletter.button")}
