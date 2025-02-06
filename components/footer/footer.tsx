@@ -43,7 +43,12 @@ const Footer = (props: Props) => {
               <div>
                 <p className="footer_headline">{t("reseaux.message")}</p>
                 <div className="footer_icons">
-                  <Link href={"instagram"}>
+                  <Link
+                    target="_blank"
+                    href={
+                      "https://www.instagram.com/bamakoart?igsh=MWV5MXVyOHVkcGtoNw=="
+                    }
+                  >
                     <svg
                       width="30"
                       height="30"
@@ -87,37 +92,10 @@ const Footer = (props: Props) => {
                     </svg>
                   </Link>
 
-                  <Link href={"tiktok"}>
-                    <svg
-                      width="30"
-                      height="30"
-                      viewBox="0 0 30 30"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g clipPath="url(#clip0_25_509)">
-                        <path
-                          d="M26.2232 9.80563V14.6801C24.0314 14.4626 21.9414 13.6471 20.1815 12.3226V17.7601C20.1812 19.2356 19.7652 20.6812 18.9813 21.9313C18.1973 23.1813 17.0771 24.1852 15.749 24.828C14.4208 25.4708 12.9384 25.7265 11.4717 25.5658C10.0049 25.405 8.61314 24.8343 7.45574 23.9191C6.29834 23.0039 5.42216 21.7812 4.92757 20.391C4.43299 19.0008 4.34 17.4994 4.65928 16.0589C4.97855 14.6183 5.69716 13.2968 6.73279 12.2458C7.76842 11.1947 9.07917 10.4567 10.5149 10.1162V15.3434C10.1029 15.6524 9.77681 16.0615 9.56747 16.5319C9.35812 17.0024 9.2725 17.5185 9.31875 18.0314C9.36499 18.5442 9.54156 19.0367 9.83168 19.4621C10.1218 19.8875 10.5159 20.2317 10.9764 20.462C11.437 20.6923 11.9488 20.801 12.4632 20.7779C12.9776 20.7547 13.4775 20.6005 13.9155 20.3298C14.3535 20.0591 14.7151 19.6809 14.9658 19.2311C15.2166 18.7814 15.3482 18.275 15.3482 17.7601V3.86426H20.2818C20.5334 5.34858 21.2405 6.71789 22.305 7.78243C23.3696 8.84698 24.7389 9.55404 26.2232 9.80563Z"
-                          stroke="#202217"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_25_509">
-                          <rect
-                            width="29"
-                            height="29"
-                            fill="white"
-                            transform="translate(0.848206 0.239258)"
-                          />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </Link>
-
-                  <Link href={"facebook"}>
+                  <Link
+                    target="_blank"
+                    href={"https://www.facebook.com/share/1BKiE6QFT4/"}
+                  >
                     <svg
                       width="30"
                       height="30"
@@ -147,37 +125,36 @@ const Footer = (props: Props) => {
                     </svg>
                   </Link>
 
-                  <Link href={"snapchat"}>
+                  <Link
+                    target="_blank"
+                    href={
+                      "https://x.com/ArtBamako?t=OwuHjyTuEF0eSe_dbo_ruQ&s=08"
+                    }
+                  >
                     <svg
-                      width="30"
-                      height="30"
-                      viewBox="0 0 30 30"
-                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#202217"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"
                     >
-                      <g clipPath="url(#clip0_25_513)">
-                        <path
-                          d="M4.47321 19.5255C9.30654 16.9662 9.30654 14.5495 5.68154 10.9245M26.2232 19.5255C21.3899 16.9662 21.3899 14.5495 25.0149 10.9245M21.2473 9.715C21.2473 8.15047 20.6258 6.65001 19.5195 5.54372C18.4132 4.43743 16.9127 3.81592 15.3482 3.81592C13.7837 3.81592 12.2832 4.43743 11.1769 5.54372C10.0706 6.65001 9.44912 8.15047 9.44912 9.715C9.44912 14.8782 9.19175 17.4592 4.47321 19.5243C6.88987 20.59 6.88987 20.59 8.09821 23.1493C11.7232 23.1493 12.9315 25.5659 15.3482 25.5659C17.7649 25.5659 18.9732 23.1493 22.5982 23.1493C23.8065 20.59 23.8065 20.59 26.2232 19.5243C21.5035 17.4592 21.2473 14.8782 21.2473 9.715Z"
-                          stroke="#202217"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_25_513">
-                          <rect
-                            width="29"
-                            height="29"
-                            fill="white"
-                            transform="translate(0.848206 0.239258)"
-                          />
-                        </clipPath>
-                      </defs>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                      <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
                     </svg>
                   </Link>
 
-                  <Link href={"linkedin"}>
+                  <Link
+                    target="_blank"
+                    href={
+                      "https://www.linkedin.com/company/bamako-art-gallery/"
+                    }
+                  >
                     <svg
                       width="30"
                       height="30"
