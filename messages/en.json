@@ -49,6 +49,12 @@
       "description": "Explore the works and universe of our artists, unique talents who push the boundaries of creativity."
     }
   },
+  "artiste": {
+    "bio": "Biography",
+    "expo": "Exhibitions",
+    "work": "Artworks",
+    "news": "News"
+  },
   "expositions": {
     "hero": {
       "headline": "Exhibitions",

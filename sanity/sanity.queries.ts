@@ -137,3 +137,52 @@ export async function fetchHomeExhibitions() {
     return [];
   }
 }
+
+export const getExhibitionsByArtist = async (artistSlug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && references(*[_type == "artist" && slug.current == $artistSlug]._id)] {
+      title,
+      slug,
+      "cover": cover.asset->url,
+      artists[]->{ fullName, slug },
+    }
+  `;
+
+  const params = { artistSlug }; // Pass the artist slug as a parameter
+  const data = await client.fetch(query, params);
+  return data;
+};
+
+export const getArtworkByArtist = async (artistSlug: string) => {
+  const query = groq`
+    *[_type == "artwork" && references(*[_type == "artist" && slug.current == $artistSlug]._id)] {
+      title,
+      slug,
+      "image": image.asset->url,
+      artist->{ fullName },
+    }
+  `;
+
+  const params = { artistSlug }; // Pass the artist slug as a parameter
+  const data = await client.fetch(query, params);
+  return data;
+};
+
+export const getSeriesByArtist = async (artistSlug: string) => {
+  const query = groq`
+    *[_type == "series" && references(*[_type == "artist" && slug.current == $artistSlug]._id)] {
+      title,
+      slug,
+      artworks[]{
+        title,
+        "image": images.asset->url,
+        price,
+      },
+      artists[]->{ fullName },
+    }
+  `;
+
+  const params = { artistSlug }; // Pass the artist slug as a parameter
+  const data = await client.fetch(query, params);
+  return data;
+};
