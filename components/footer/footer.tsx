@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 
-import Logo from "@/public/logo.png";
 import "./styles.css";
 
 type Props = {};
@@ -21,20 +20,15 @@ const Footer = (props: Props) => {
     <div className="footer">
       <div className="separator"></div>
       <div className="footer_elements_wrapper">
-        {/* <div className="footer_column logo">
-          <Link href={"/"} className="logo">
-            <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
-          </Link>
-        </div> */}
-
         <div className="footer_column infos">
           <div className="footer_row links">
             <div className="footer_row_link_wrapper">
               <div className="footer_row_link_container">
                 <p className="footer_headline">{t("liensUtils.message")}</p>
                 <Link href="mailto:contact@bamakoartgallery.com">
-                  {t("liensUtils.contact")}
+                  contact@bamakoartgallery.com
                 </Link>
+                <Link href={"tel:+22366667932"}>+223 66667932</Link>
                 <Link href="mailto:contact@bamakoartgallery.com">
                   {t("liensUtils.inscription")}
                 </Link>

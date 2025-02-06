@@ -22,29 +22,6 @@ import Design from "@/public/assets/design.jpeg";
 import Sculpture from "@/public/assets/sculpture.jpeg";
 import Peinture from "@/public/assets/peinture.jpeg";
 
-// Define the types for the artist data
-type InternationalizedDescription = {
-  _type: string;
-  _key: string;
-  value: string;
-};
-
-type Artist = {
-  name: string;
-  description: InternationalizedDescription[];
-};
-
-// Helper function to get description by locale
-const getDescriptionByLocale = (
-  descriptions: InternationalizedDescription[],
-  locale: string
-): string => {
-  const description = descriptions.find((desc) => desc._key === locale);
-  return description
-    ? description.value
-    : "Description not available in this language.";
-};
-
 export default async function Home({
   params,
 }: {
