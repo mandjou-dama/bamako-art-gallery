@@ -1,0 +1,110 @@
+/* General Styling */
+.newsletterPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  text-transform: uppercase;
+}
+
+.newsletterContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.5s ease-in-out;
+}
+
+.newsletterContent h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: black;
+}
+
+.newsletterContent p {
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.newsletterForm input {
+  padding: 20px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.newsletterForm input:focus {
+  border-color: black;
+}
+
+.newsletterForm button {
+  padding: 0.75rem;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-transform: uppercase;
+}
+
+.newsletterForm button:hover {
+  background: #333;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.closeBtn:hover {
+  color: #555;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
