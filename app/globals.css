@@ -188,6 +188,8 @@ button {
   aspect-ratio: 1/1;
 }
 
+/* PORTABLE TEXT ELEMENTS */
+
 @media screen and (max-width: 859px) {
   .section h4 {
     width: auto;

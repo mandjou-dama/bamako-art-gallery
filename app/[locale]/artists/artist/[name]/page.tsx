@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import PortableText from "@/components/portable_text/portable_text";
+import { type PortableTextBlock } from "next-sanity";
 
 import { getArtistBySlug } from "@/sanity/sanity.queries";
 
@@ -34,8 +36,6 @@ export default async function ArtistPage({ params }: { params: Params }) {
 
   const artist = await getArtistBySlug(name);
 
-  console.log(artist.fullName);
-
   return (
     <div className="artist_page">
       <section className="section artist_page_hero">
@@ -46,53 +46,20 @@ export default async function ArtistPage({ params }: { params: Params }) {
                 {artist.fullName || "Kankou Fofana"}
               </h4>
             </div>
-            <p>
-              <span>
-                Kankou Fofana est une artiste peintre et sculptrice reconnue
-                pour ses œuvres captivantes qui célèbrent les traditions
-                maliennes tout en leur apportant une touche contemporaine.
-              </span>
-              <span>
-                Inspirée par la richesse culturelle de son pays, ses créations
-                mêlent harmonieusement couleurs vives, symbolisme ancestral et
-                modernité, traduisant une quête perpétuelle d'équilibre entre le
-                passé et le présent.
-              </span>
-            </p>
+            <PortableText
+              className="portable_text"
+              value={artist.description_fr as PortableTextBlock[]}
+            />
           </div>
 
           <div>
             <div className="section_header">
               <h4 className="section_title">Biographie</h4>
             </div>
-            <p>
-              <span>
-                Née à Bamako, Mali, Kankou Fofana a grandi dans un environnement
-                où l'art et la culture occupaient une place centrale. Dès son
-                plus jeune âge, elle s'est passionnée pour le dessin et la
-                peinture, s'inspirant des paysages vibrants et des motifs
-                traditionnels qui l'entouraient. Après des études aux Beaux-Arts
-                de Bamako, Kankou a poursuivi sa formation en arts plastiques à
-                Paris, où elle a perfectionné ses techniques tout en explorant
-                de nouvelles perspectives artistiques.
-              </span>
-              <span>
-                Au fil des années, Kankou a développé un style unique qui
-                combine peinture, sculpture et installations artistiques. Ses
-                œuvres ont été exposées dans des galeries et des musées
-                prestigieux à travers l'Afrique et l'Europe, attirant
-                l'attention pour leur profondeur émotionnelle et leur esthétique
-                singulière.
-              </span>
-              <span>
-                Engagée dans la préservation de l'héritage culturel malien,
-                Kankou Fofana anime également des ateliers pour initier les
-                jeunes à l'art et pour promouvoir l'importance de la créativité
-                dans l'éducation. Aujourd'hui, elle continue d'innover et de
-                raconter des histoires à travers ses œuvres, faisant de l'art un
-                pont entre les générations et les cultures.
-              </span>
-            </p>
+            <PortableText
+              className="portable_text"
+              value={artist.bio_fr as PortableTextBlock[]}
+            />
           </div>
         </div>
         <Image

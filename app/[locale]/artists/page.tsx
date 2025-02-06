@@ -19,10 +19,10 @@ export default async function Page() {
         <div className="separator"></div>
       </div>
 
-      <div className="artists_wrapper">
+      <div key={"o"} className="artists_wrapper">
         {artists.map((artist: any) => (
           <ArtistCard
-            key={artist.name}
+            key={artist.fullName}
             image={artist.image}
             name={artist.fullName}
             slug={artist.slug.current}

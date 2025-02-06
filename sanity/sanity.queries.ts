@@ -87,7 +87,10 @@ export const getArtistsForArtistsPage = async () => {
 export async function getArtistBySlug(slug: string) {
   const query = groq`*[_type == "artist" && slug.current == $slug][0] {
     fullName,
-    description,
+    "description_fr": description[_key == "fr"][0].value,
+    "description_en": description[_key == "en"][0].value,
+    "bio_fr": bio[_key == "fr"][0].value,
+    "bio_en": bio[_key == "en"][0].value,
     bio,
     "image": image.asset->url,
   }`;

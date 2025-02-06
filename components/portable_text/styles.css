@@ -1,0 +1,17 @@
+.portable_text_span {
+  display: inline-block;
+  font-weight: 200;
+  line-height: 1.6;
+}
+
+.portable_text_strong {
+  font-weight: 400;
+}
+
+.portable_text_bullet_list,
+.portable_text_numbered_list {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  line-height: 1.8;
+}
