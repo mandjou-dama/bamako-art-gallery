@@ -183,6 +183,23 @@ export async function fetchHomeExhibitions() {
   }
 }
 
+export async function getViewingRoomExhibitions() {
+  const query = groq`*[_type == "exhibition" && viewingRoom == true] | order(_createdAt desc) {
+    title,
+    "slug": slug.current,
+    "cover": cover.asset->url,
+    artists[]->{ fullName },
+  }`;
+
+  try {
+    const exhibitions = await client.fetch(query);
+    return exhibitions;
+  } catch (error) {
+    console.error("Error fetching exhibitions:", error);
+    return [];
+  }
+}
+
 export const getExhibitionsByArtist = async (artistSlug: string) => {
   const query = groq`
     *[_type == "exhibition" && references(*[_type == "artist" && slug.current == $artistSlug]._id)] {

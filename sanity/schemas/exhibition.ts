@@ -57,5 +57,10 @@ export default defineType({
       title: "Sur la page d'accueil",
       type: "boolean",
     }),
+    defineField({
+      name: "viewingRoom",
+      title: "Dans la viewing Room",
+      type: "boolean",
+    }),
   ],
 });

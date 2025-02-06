@@ -1,0 +1,127 @@
+.section.exposition_page {
+}
+
+.exposition_page_hero {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.exposition_page_hero img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.section.exposition_right {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exposition_date {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.exposition_date span {
+  font-weight: 600;
+}
+
+.exposition_description {
+  font-weight: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exposition_images {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.exposition_images img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.artwork_infos_1 {
+  margin-top: 5px;
+}
+
+.artwork_infos_1 {
+  margin-top: 5px;
+}
+
+.artwork_infos_artist {
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.artwork_infos_title {
+  font-size: 18px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis at the end */
+}
+
+.artwork_infos_2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.artwork_infos_2 p {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.exposition_artists {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.expo_artist_name {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 859px) {
+  .exposition_page_hero {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .exposition_page_hero img {
+    width: 100%;
+    height: 500px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+  .exposition_images {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 859px) {
+  .exposition_images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .exposition_artists {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 50px;
+  }
+}
