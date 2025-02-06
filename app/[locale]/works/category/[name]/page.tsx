@@ -13,7 +13,7 @@ import "./page.css";
 
 const categoryDesc = [
   {
-    category: "photographie",
+    category: "photography",
     description: "photographie",
   },
   {
@@ -25,7 +25,7 @@ const categoryDesc = [
     description: "sculpture",
   },
   {
-    category: "peinture",
+    category: "painting",
     description: "peinture",
   },
 ];
@@ -41,7 +41,7 @@ function formatCurrency(amount: number, locale: string = "en-US"): string {
 }
 
 export default async function Page({ params }: { params: Params }) {
-  const t = await getTranslations("artistes.hero");
+  const t = await getTranslations("work");
   const { name } = await params;
   const artworks = await getArtworksByCategory(capitalizeFirstLetter(name));
   const series = await getSeriesWithArtworksByCategory(
@@ -50,12 +50,26 @@ export default async function Page({ params }: { params: Params }) {
 
   const categoryDescription = categoryDesc.find((el) => name === el.category);
 
+  const getTitle = () => {
+    if (name === "photographie") return t("photography.title");
+    if (name === "peinture") return t("painting.title");
+    if (name === "sculpture") return t("sculpture.title");
+    if (name === "design") return t("design.title");
+  };
+
+  const getDescription = () => {
+    if (name === "photographie") return t("photography.description");
+    if (name === "peinture") return t("painting.description");
+    if (name === "sculpture") return t("sculpture.description");
+    if (name === "design") return t("design.description");
+  };
+
   return (
     <div className="works_page">
       <div className="works_hero">
         <div className="works_hero_infos">
-          <h4>Oeuvres en {name}</h4>
-          <p>{categoryDescription?.description}</p>
+          <h4>Oeuvres en {getTitle()}</h4>
+          <p>{getDescription()}</p>
         </div>
         <div className="separator"></div>
       </div>

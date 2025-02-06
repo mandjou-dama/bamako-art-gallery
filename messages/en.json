@@ -66,6 +66,10 @@
       "passer": "Past Exhibitions"
     }
   },
+  "exposition": {
+    "expoImages": "View of the exhibition",
+    "expoArtistes": "Artists of the exhibition"
+  },
   "viewingRoom": {
     "hero": {
       "headline": "Viewing Room",
@@ -104,6 +108,24 @@
       "message": "Copyright © 2025, Bamako Art Gallery, all rights reserved",
       "mention": "Legal Notices",
       "cookies": "Cookie Policy"
+    }
+  },
+  "work": {
+    "photography": {
+      "title": "Photography",
+      "description": "Photography at Bamako Art Gallery captures the essence of Malian life, its landscapes, traditions, and emotions. This category features works that tell visual stories, highlighting Mali's natural beauty, cultural diversity, and social realities through the lens of talented artists."
+    },
+    "design": {
+      "title": "Design",
+      "description": "Design at Bamako Art Gallery embodies innovation and cultural heritage. This category showcases contemporary and artisanal creations that blend aesthetics and functionality while celebrating the traditional craftsmanship of West Africa. Each piece tells a story, reflecting Mali's cultural richness and modernity."
+    },
+    "sculpture": {
+      "title": "Sculpture",
+      "description": "Sculpture at Bamako Art Gallery celebrates the transformation of material into art. This category features works in wood, metal, stone, and other materials, reflecting Mali's artistic heritage and the ingenuity of its artisans. Each sculpture invites viewers to explore the shapes, textures, and symbols of Malian culture."
+    },
+    "painting": {
+      "title": "Painting",
+      "description": "Painting at Bamako Art Gallery is an explosion of colors, emotions, and narratives. This category brings together contemporary and traditional works that explore themes of Malian identity, history, and spirituality. Each canvas is a window into the soul and creativity of Malian artists."
     }
   }
 }

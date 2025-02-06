@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { type PortableTextBlock } from "next-sanity";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { getExhibition } from "@/sanity/sanity.queries";
 
@@ -19,6 +19,8 @@ function formatCurrency(amount: number, locale: string = "en-US"): string {
 export default async function ExpositionPage({ params }: { params: Params }) {
   const { name } = await params;
   const locale = await getLocale();
+  const t = await getTranslations("exposition");
+
   const exhibition = await getExhibition(name);
 
   return (
@@ -63,7 +65,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
 
       <section className="section exposition_images_section">
         <div className="section_header">
-          <h4 className="section_title">Vues de l'exposition</h4>
+          <h4 className="section_title">{t("expoImages")}</h4>
         </div>
 
         <div className="exposition_images">
@@ -122,9 +124,8 @@ export default async function ExpositionPage({ params }: { params: Params }) {
 
       <section className="section exposition_artists_section">
         <div className="section_header">
-          <h4 className="section_title">Artistes de l'exposition</h4>
+          <h4 className="section_title">{t("expoArtistes")}</h4>
         </div>
-
         <div className="exposition_artists">
           {exhibition.artists.map((artist: any) => (
             <div key={artist.fullName}>

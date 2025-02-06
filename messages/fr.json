@@ -66,6 +66,10 @@
       "passer": "Expositions passées"
     }
   },
+  "exposition": {
+    "expoImages": "Vues de l'exposition",
+    "expoArtistes": "Artistes de l'exposition"
+  },
   "viewingRoom": {
     "hero": {
       "headline": "Viewing Room",
@@ -104,6 +108,24 @@
       "message": "Copyright © 2025, bamako art gallery, tous droits réservés",
       "mention": "mentions légales",
       "cookies": "politique des cookies"
+    }
+  },
+  "work": {
+    "photography": {
+      "title": "Photographie",
+      "description": "La photographie à la Bamako Art Gallery capture l'essence de la vie malienne, ses paysages, ses traditions et ses émotions. Cette catégorie présente des œuvres qui racontent des histoires visuelles, mettant en lumière la beauté naturelle, la diversité culturelle et les réalités sociales du Mali à travers l'objectif d'artistes talentueux."
+    },
+    "design": {
+      "title": "Design",
+      "description": "Le design à la Bamako Art Gallery incarne l'innovation et l'héritage culturel. Cette catégorie met en avant des créations contemporaines et artisanales qui fusionnent esthétique et fonctionnalité, tout en célébrant les savoir-faire traditionnels de l'Afrique de l'Ouest. Chaque pièce raconte une histoire, reflétant la richesse culturelle et la modernité du Mali."
+    },
+    "sculpture": {
+      "title": "Sculpture",
+      "description": "La sculpture à la Bamako Art Gallery célèbre la transformation de la matière en art. Cette catégorie présente des œuvres en bois, en métal, en pierre et en d'autres matériaux, reflétant l'héritage artistique du Mali et l'ingéniosité de ses artisans. Chaque sculpture est une invitation à explorer les formes, les textures et les symboles de la culture malienne."
+    },
+    "painting": {
+      "title": "Peinture",
+      "description": "La peinture à la Bamako Art Gallery est une explosion de couleurs, d'émotions et de récits. Cette catégorie rassemble des œuvres contemporaines et traditionnelles qui explorent les thèmes de l'identité, de l'histoire et de la spiritualité maliennes. Chaque toile est une fenêtre ouverte sur l'âme et la créativité des artistes maliens."
     }
   }
 }
