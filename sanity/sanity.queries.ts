@@ -19,9 +19,6 @@ export const getArtworksByCategory = async (category: string) => {
       slug,
       "image": image.asset->url,
       artist->{ fullName },
-      description,
-      technique,
-      dimensions,
       year,
       price,
       images
@@ -185,4 +182,44 @@ export const getSeriesByArtist = async (artistSlug: string) => {
   const params = { artistSlug }; // Pass the artist slug as a parameter
   const data = await client.fetch(query, params);
   return data;
+};
+
+export const getExhibition = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      title,
+      "cover": cover.asset->url,
+      "description_fr": description[_key == "fr"][0].value,
+      "description_en": description[_key == "en"][0].value,
+      artists[]->{ 
+        fullName,
+        "description_fr": description[_key == "fr"][0].value,
+        "description_en": description[_key == "en"][0].value,
+        "bio_fr": bio[_key == "fr"][0].value,
+        "bio_en": bio[_key == "en"][0].value,
+       },
+      artworks[]->{
+        title,
+        slug,
+        "image": image.asset->url,
+        artist->{ fullName },
+        year,
+        price,
+        images
+      },
+      series[]->{
+        title,
+        artists[]->{ fullName },
+        artworks[]{
+          title,
+          year,
+          price,
+          "images": images.asset->url
+        }
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
 };
