@@ -1,29 +1,20 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-interface NewsletterState {
-  isVisible: boolean;
-  dismissNewsletter: () => void;
+interface NewsletterStore {
+  hasShown: boolean;
+  setHasShown: (hasShown: boolean) => void;
 }
 
-const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
-
-export const useNewsletterStore = create<NewsletterState>((set) => {
-  let isVisible = false;
-
-  if (typeof window !== "undefined") {
-    const lastShown = localStorage.getItem("newsletter_last_shown");
-    const now = Date.now();
-
-    if (!lastShown || now - parseInt(lastShown, 10) > THREE_DAYS) {
-      isVisible = true;
+export const useNewsletterStore = create<NewsletterStore>()(
+  persist(
+    (set) => ({
+      hasShown: false,
+      setHasShown: (hasShown) => set({ hasShown }),
+    }),
+    {
+      name: "newsletter-storage", // unique name for the storage
+      storage: createJSONStorage(() => localStorage), // or sessionStorage
     }
-  }
-
-  return {
-    isVisible,
-    dismissNewsletter: () => {
-      localStorage.setItem("newsletter_last_shown", Date.now().toString());
-      set({ isVisible: false });
-    },
-  };
-});
+  )
+);

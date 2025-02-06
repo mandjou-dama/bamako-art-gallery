@@ -1,24 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./NewsletterPopup.module.css"; // Import CSS module
+import { useNewsletterStore } from "@/store/useNewsletter";
 
 const NewsletterPopup = () => {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const { hasShown, setHasShown } = useNewsletterStore();
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (hasMounted) {
+      setIsVisible(!hasShown);
+    }
+  }, [hasMounted, hasShown]);
 
   const handleClose = () => {
-    setIsVisible(false); // Hide the popup
-    console.log("Popup closed");
+    setIsVisible(false);
+    setHasShown(true);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add logic to handle form submission
-    console.log("Form submitted");
-    setIsVisible(false); // Hide the popup
+    setIsVisible(false);
+    setHasShown(true);
   };
 
-  // If the popup is not visible, return null (don't render anything)
   if (!isVisible) {
     return null;
   }

@@ -108,3 +108,12 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .newsletterPopup {
+    padding: 20px;
+  }
+  .newsletterContent {
+    padding: 1rem;
+  }
+}
