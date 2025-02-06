@@ -58,7 +58,7 @@
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 50px;
 }
 
 .team_card {
@@ -70,7 +70,7 @@
 }
 
 .team_card img {
-  width: 380px;
+  width: 100%;
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
@@ -102,7 +102,8 @@
   }
 
   .team_container {
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }
 
@@ -118,5 +119,13 @@
   .team_card img {
     width: 100%;
     height: auto;
+  }
+
+  .member_role {
+    font-size: 12px;
+  }
+
+  .member_name {
+    font-size: 14px;
   }
 }

@@ -335,3 +335,20 @@ export const getBagDetails = async () => {
     return null;
   }
 };
+
+export const getBagContact = async () => {
+  const query = groq`
+    *[_type == "bag"][0] {
+      tel,
+      email,
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
+  }
+};
