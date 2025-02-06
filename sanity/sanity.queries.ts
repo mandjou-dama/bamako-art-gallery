@@ -65,7 +65,7 @@ export const getSeriesWithArtworksByCategory = async (category: string) => {
   const query = groq`
     *[_type == "series" && count(artworks[category == $category]) > 0] {
       title,
-      slug,
+      "slug": slug.current,
       artists[]->{ fullName },
       "artworks": artworks[category == $category] {
         title,
@@ -253,4 +253,38 @@ export const getExhibition = async (slug: string) => {
 
   const params = { slug };
   return await client.fetch(query, params);
+};
+
+export const getSeriesArtworkBySlug = async (
+  seriesSlug: string,
+  artworkSlug: string
+) => {
+  const query = groq`
+    *[_type == "series" && slug.current == $seriesSlug][0] {
+      title,
+      slug,
+      artists[]->{ fullName },
+      "artwork": artworks[slug.current == $artworkSlug][0] {
+        title,
+        "slug": slug.current,
+        category,
+        "technique_fr": technique[_key == "fr"][0].value,
+        "technique_en": technique[_key == "en"][0].value,
+        dimensions,
+        year,
+        price,
+        "image": images.asset->url
+      }
+    }
+  `;
+
+  const params = { seriesSlug, artworkSlug };
+
+  try {
+    const data = await client.fetch(query, params);
+    return data || null; // Retourne null si l'œuvre n'est pas trouvée
+  } catch (error) {
+    console.error("Error fetching series artwork:", error);
+    return null;
+  }
 };

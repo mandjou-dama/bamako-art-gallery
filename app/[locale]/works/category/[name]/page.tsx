@@ -84,7 +84,7 @@ export default async function Page({ params }: { params: Params }) {
           return serie.artworks.map((artwork: any, index: number) => {
             return (
               <div key={`${artwork.price}+${artwork.title}+${index}`}>
-                <Link href={`/works/${artwork.slug}`}>
+                <Link href={`/works/serie/${artwork.slug}?serie=${serie.slug}`}>
                   <img src={artwork.images} alt="" />
                   <div className="artwork_infos_1">
                     <p className="artwork_infos_artist">{artist[0]}</p>
