@@ -72,7 +72,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
           {exhibition.artworks?.map((artwork: any, index: number) => {
             return (
               <div key={`${artwork.slug}+${artwork.title}`}>
-                <Link href={"/works/erer"}>
+                <Link href={`/works/${artwork.slug}`}>
                   <img src={artwork.image} alt="" />
                   <div className="artwork_infos_1">
                     <p className="artwork_infos_artist">
@@ -97,27 +97,32 @@ export default async function ExpositionPage({ params }: { params: Params }) {
             const serieTitle = serie.title;
             const serieArtist = serie.artists.map((i: any) => i.fullName);
 
-            return serie.artworks.map((artwork: any, index: number) => (
-              <div key={`${artwork.price}+${artwork.title}+${index}`}>
-                <Link href={"/works/erer"}>
-                  <img src={artwork.images} alt="" />
-                  <div className="artwork_infos_1">
-                    <p className="artwork_infos_artist">{serieArtist[0]}</p>
-                    <p className="artwork_infos_title">
-                      {artwork.title} - {serieTitle}
-                    </p>
-                  </div>
-                  <div className="artwork_infos_2">
-                    <p>
-                      {artwork.price > 0
-                        ? `${formatCurrency(artwork.price)} FCFA`
-                        : null}
-                    </p>
-                    <p>{artwork.year !== 0 ? artwork.year : ""}</p>
-                  </div>
-                </Link>
-              </div>
-            ));
+            return serie.artworks.map((artwork: any, index: number) => {
+              console.log(artwork);
+              return (
+                <div key={`${artwork.price}+${artwork.title}+${index}`}>
+                  <Link
+                    href={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                  >
+                    <img src={artwork.images} alt="" />
+                    <div className="artwork_infos_1">
+                      <p className="artwork_infos_artist">{serieArtist[0]}</p>
+                      <p className="artwork_infos_title">
+                        {artwork.title} - {serieTitle}
+                      </p>
+                    </div>
+                    <div className="artwork_infos_2">
+                      <p>
+                        {artwork.price > 0
+                          ? `${formatCurrency(artwork.price)} FCFA`
+                          : null}
+                      </p>
+                      <p>{artwork.year !== 0 ? artwork.year : ""}</p>
+                    </div>
+                  </Link>
+                </div>
+              );
+            });
           })}
         </div>
       </section>

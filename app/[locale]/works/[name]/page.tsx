@@ -14,6 +14,7 @@ type Params = Promise<{ name: string }>;
 export default async function WorkPage({ params }: { params: Params }) {
   const { name } = await params;
   const locale = await getLocale();
+  const t = await getTranslations("artwork");
 
   const artwork = await getArtworkBySlug(name);
 
@@ -54,24 +55,25 @@ export default async function WorkPage({ params }: { params: Params }) {
 
           <div className="work_detail_wrapper">
             <p className="work_detail">
-              Année : <span className="work_detail_span">{artwork.year}</span>
+              {t("year")} :{" "}
+              <span className="work_detail_span">{artwork.year}</span>
             </p>
             <p className="work_detail">
-              Technique :{" "}
+              {t("technique")} :{" "}
               <span>
                 {locale === "fr" ? artwork.technique_fr : artwork.technique_en}
               </span>
             </p>
             <p className="work_detail">
-              taille :{" "}
+              {t("taille")} :{" "}
               <span className="work_detail_span">{artwork.dimensions}</span>
             </p>
             <p className="work_detail">
-              prix :{" "}
+              {t("price")} :{" "}
               <span className="work_detail_span">{artwork.price} FCFA</span>
             </p>
             <p className="work_detail">
-              category :{" "}
+              {t("category")} :{" "}
               <span className="work_detail_span">{artwork.category}</span>
             </p>
             <p className="work_detail">

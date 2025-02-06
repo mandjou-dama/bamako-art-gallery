@@ -22,6 +22,7 @@ export default async function SeriePage({
   const { name } = await params;
   const { serie } = await searchParams;
   const locale = await getLocale();
+  const t = await getTranslations("artwork");
 
   //@ts-ignore
   const artwork = await getSeriesArtworkBySlug(serie, name);
@@ -61,11 +62,11 @@ export default async function SeriePage({
 
           <div className="work_detail_wrapper">
             <p className="work_detail">
-              Année :{" "}
+              {t("year")} :{" "}
               <span className="work_detail_span">{artwork.artwork.year}</span>
             </p>
             <p className="work_detail">
-              Technique :{" "}
+              {t("technique")} :{" "}
               <span>
                 {locale === "fr"
                   ? artwork.artwork.technique_fr
@@ -73,19 +74,19 @@ export default async function SeriePage({
               </span>
             </p>
             <p className="work_detail">
-              taille :{" "}
+              {t("taille")} :{" "}
               <span className="work_detail_span">
                 {artwork.artwork.dimensions}
               </span>
             </p>
             <p className="work_detail">
-              prix :{" "}
+              {t("price")} :{" "}
               <span className="work_detail_span">
                 {artwork.artwork.price} FCFA
               </span>
             </p>
             <p className="work_detail">
-              category :{" "}
+              {t("category")} :{" "}
               <span className="work_detail_span">
                 {artwork.artwork.category}
               </span>

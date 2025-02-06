@@ -127,5 +127,12 @@
       "title": "Painting",
       "description": "Painting at Bamako Art Gallery is an explosion of colors, emotions, and narratives. This category brings together contemporary and traditional works that explore themes of Malian identity, history, and spirituality. Each canvas is a window into the soul and creativity of Malian artists."
     }
+  },
+  "artwork": {
+    "year": "year",
+    "technique": "Method",
+    "taille": "Dimensions",
+    "price": "Price",
+    "category": "Category"
   }
 }

@@ -127,5 +127,12 @@
       "title": "Peinture",
       "description": "La peinture à la Bamako Art Gallery est une explosion de couleurs, d'émotions et de récits. Cette catégorie rassemble des œuvres contemporaines et traditionnelles qui explorent les thèmes de l'identité, de l'histoire et de la spiritualité maliennes. Chaque toile est une fenêtre ouverte sur l'âme et la créativité des artistes maliens."
     }
+  },
+  "artwork": {
+    "year": "Année",
+    "technique": "Technique",
+    "taille": "Dimensions",
+    "price": "Prix",
+    "category": "Catégorie"
   }
 }

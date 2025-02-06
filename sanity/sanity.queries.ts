@@ -219,6 +219,7 @@ export const getExhibition = async (slug: string) => {
   const query = groq`
     *[_type == "exhibition" && slug.current == $slug][0] {
       title,
+      "slug": slug.current,
       "cover": cover.asset->url,
       "description_fr": description[_key == "fr"][0].value,
       "description_en": description[_key == "en"][0].value,
@@ -231,7 +232,7 @@ export const getExhibition = async (slug: string) => {
        },
       artworks[]->{
         title,
-        slug,
+        "slug": slug.current,
         "image": image.asset->url,
         artist->{ fullName },
         year,
@@ -241,7 +242,9 @@ export const getExhibition = async (slug: string) => {
       series[]->{
         title,
         artists[]->{ fullName },
+        "slug": slug.current,
         artworks[]{
+          "slug": slug.current,
           title,
           year,
           price,
