@@ -33,3 +33,27 @@ export const getArtworksByCategory = async (category: string) => {
 
   return data;
 };
+
+export const getSeriesWithArtworksByCategory = async (category: string) => {
+  const query = groq`
+    *[_type == "series" && count(artworks[category == $category]) > 0] {
+      title,
+      slug,
+      artists[]->{ fullName },
+      "artworks": artworks[category == $category] {
+        title,
+        category,
+        technique,
+        dimensions,
+        year,
+        price,
+        "images": images.asset->url
+      }
+    }
+  `;
+
+  const params = { category }; // Pass the category as a parameter
+  const data = await client.fetch(query, params);
+
+  return data;
+};

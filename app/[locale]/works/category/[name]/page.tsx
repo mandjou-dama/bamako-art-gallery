@@ -4,7 +4,10 @@ import React from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 
-import { getArtworksByCategory } from "@/sanity/sanity.queries";
+import {
+  getArtworksByCategory,
+  getSeriesWithArtworksByCategory,
+} from "@/sanity/sanity.queries";
 import { Artwork } from "@/sanity/sanity.types";
 
 import "./page.css";
@@ -37,14 +40,16 @@ function capitalizeFirstLetter(str: string) {
 function formatCurrency(amount: number, locale: string = "en-US"): string {
   return new Intl.NumberFormat(locale, {}).format(amount);
 }
+
 export default async function Page({ params }: { params: Params }) {
   const t = await getTranslations("artistes.hero");
   const { name } = await params;
   const artworks = await getArtworksByCategory(capitalizeFirstLetter(name));
+  const series = await getSeriesWithArtworksByCategory(
+    capitalizeFirstLetter(name)
+  );
 
   const categoryDescription = categoryDesc.find((el) => name === el.category);
-
-  console.log(artworks[0].artist.fullName);
 
   return (
     <div className="works_page">
@@ -68,12 +73,40 @@ export default async function Page({ params }: { params: Params }) {
                 <p className="artwork_infos_title">{artwork.title}</p>
               </div>
               <div className="artwork_infos_2">
-                <p>{formatCurrency(artwork.price)} FCFA</p>
+                <p>
+                  {artwork.price > 0
+                    ? `${formatCurrency(artwork.price)} FCFA`
+                    : null}
+                </p>
                 <p>{artwork.year !== 0 ? artwork.year : ""}</p>
               </div>
             </Link>
           </div>
         ))}
+
+        {series.map((serie: any, index: number) => {
+          const artist = serie.artists.map((i: any) => i.fullName);
+
+          return serie.artworks.map((artwork: any, index: number) => (
+            <div key={`${artwork.price}+${artwork.title}+${index}`}>
+              <Link href={"/works/erer"}>
+                <img src={artwork.images} alt="" />
+                <div className="artwork_infos_1">
+                  <p className="artwork_infos_artist">{artist[0]}</p>
+                  <p className="artwork_infos_title">{artwork.title}</p>
+                </div>
+                <div className="artwork_infos_2">
+                  <p>
+                    {artwork.price > 0
+                      ? `${formatCurrency(artwork.price)} FCFA`
+                      : null}
+                  </p>
+                  <p>{artwork.year !== 0 ? artwork.year : ""}</p>
+                </div>
+              </Link>
+            </div>
+          ));
+        })}
       </div>
     </div>
   );
