@@ -9,6 +9,8 @@ import {
   getSeriesWithArtworksByCategory,
 } from "@/sanity/sanity.queries";
 
+import { ArtworkCard } from "@/components/cards/artwork_card";
+
 import "./page.css";
 
 type Params = Promise<{ name: string }>;

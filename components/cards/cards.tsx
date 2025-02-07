@@ -1,11 +1,17 @@
-import React from "react";
+"use client"; // Ensure this is a client component
+
+import React, { useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { getLocale } from "next-intl/server";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
 
 import "./styles.css";
 
-export const SmallCard = async ({
+gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger plugin
+
+export const SmallCard = ({
   subline,
   image,
   name,
@@ -18,10 +24,27 @@ export const SmallCard = async ({
   link?: string;
   hideCategory?: boolean;
 }) => {
-  const local = await getLocale();
+  const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
+
+  // GSAP animation
+  useGSAP(() => {
+    if (cardRef.current) {
+      gsap.from(cardRef.current, {
+        opacity: 0,
+        y: 50, // Start slightly below
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardRef.current, // Trigger animation when the card enters the viewport
+          start: "top 80%", // Start animation when the top of the card is 80% in view
+          toggleActions: "play none none reverse", // Play animation on enter, reverse on leave
+        },
+      });
+    }
+  }, []); // Empty dependency array ensures this runs once
 
   return (
-    <div className="small_card">
+    <div className="small_card" ref={cardRef}>
       <Link scroll={true} href={link ? link : ""}>
         <div className="small_card_image_container">
           <Image
