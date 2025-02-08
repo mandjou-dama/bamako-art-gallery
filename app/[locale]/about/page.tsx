@@ -1,6 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
 
+import { urlFor } from "@/sanity/lib/image";
+
 import { getBagDetails } from "@/sanity/sanity.queries";
 
 import PortableText from "@/components/portable_text/portable_text";
@@ -52,12 +54,11 @@ export default async function Page() {
             <h4 className="section_title">Bamako Art Gallery</h4>
           </div>
           <div className="about_hero_images">
-            <Image
-              width={1260}
-              height={750}
+            <img
               src={
-                bag.image ||
-                "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                bag.image
+                  ? urlFor(bag.image).auto("format").quality(80).url()
+                  : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt=""
             />
@@ -96,8 +97,9 @@ export default async function Page() {
               width={1260}
               height={750}
               src={
-                getDirectrice.image ||
-                "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                getDirectrice.image
+                  ? urlFor(getDirectrice.image).auto("format").quality(80).url()
+                  : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt=""
             />
@@ -116,8 +118,9 @@ export default async function Page() {
                   width={1260}
                   height={750}
                   src={
-                    image ||
-                    "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    image
+                      ? urlFor(image).auto("format").quality(70).url()
+                      : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   }
                   alt={nom}
                 />

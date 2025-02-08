@@ -19,6 +19,13 @@ export default async function WorkPage({ params }: { params: Params }) {
 
   const artwork = await getArtworkBySlug(name);
 
+  const mailContent = (artwork: any) => {
+    if (locale === "fr")
+      return `mailto:contact@bamakoartgallery.com?subject=Demande d'information sur ${encodeURIComponent(artwork.title)} de ${encodeURIComponent(artwork.artist.fullName)}&body=Bonjour,%0D%0A%0D%0AJe suis intéressé par '${encodeURIComponent(artwork.title)}' de '${encodeURIComponent(artwork.artist.fullName)}'.%0D%0A%0D%0AMerci !`;
+    if (locale === "en")
+      return `mailto:contact@bamakoartgallery.com?subject=Inquiry about ${encodeURIComponent(artwork.title)} by ${encodeURIComponent(artwork.artist.fullName)}&body=Hello,%0D%0A%0D%0AI am interested in '${encodeURIComponent(artwork.title)}' by '${encodeURIComponent(artwork.artist.fullName)}'.%0D%0A%0D%0AThanks!`;
+  };
+
   return (
     <div className="work_page">
       <div className="work_page_hero">
@@ -77,6 +84,25 @@ export default async function WorkPage({ params }: { params: Params }) {
               </span>
             </p>
           </div>
+
+          <a href={mailContent(artwork)} className="inquire">
+            {locale === "fr" ? "Acquérir" : "Inquire"}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-move-up-right"
+            >
+              <path d="M13 5H19V11" />
+              <path d="M19 5L5 19" />
+            </svg>
+          </a>
         </section>
       </div>
 
