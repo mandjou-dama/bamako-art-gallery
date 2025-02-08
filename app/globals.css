@@ -3,6 +3,8 @@
   --black: #000;
   --black-20: rgba(32, 34, 23, 0.2);
   --black-50: rgba(32, 34, 23, 0.5);
+
+  --toastify-color-progress-dark: #fff;
 }
 
 html,

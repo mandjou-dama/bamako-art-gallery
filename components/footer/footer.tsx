@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
+import { ToastContainer, toast } from "react-toastify";
 
 import "./styles.css";
 
@@ -12,6 +13,7 @@ type Props = {};
 const Footer = (props: Props) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("footer");
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -32,15 +34,15 @@ const Footer = (props: Props) => {
 
       const result = await response.json();
       setLoading(false);
+      toast(t("newsletter.message"));
       setEmail("");
       console.log("Contact created successfully:", result.data);
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast.error(t("newsletter.error"));
       setEmail("");
     }
   };
-
-  const t = useTranslations("footer");
 
   return (
     <div className="footer">
@@ -246,7 +248,6 @@ const Footer = (props: Props) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                   suppressHydrationWarning
                   placeholder={t("newsletter.placeholder")}
                   autoFocus={false}
@@ -313,6 +314,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-left" theme="dark" />
     </div>
   );
 };

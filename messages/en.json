@@ -103,7 +103,9 @@
     "newsletter": {
       "placeholder": "Your email address",
       "loading": "Loading",
-      "button": "Sign Up"
+      "button": "Sign Up",
+      "message": "Thank you for subscribing! Stay tuned for our latest updates.",
+      "error": "An error occurred. Please try again later."
     },
     "copyright": {
       "message": "Copyright © 2025, Bamako Art Gallery, all rights reserved",
