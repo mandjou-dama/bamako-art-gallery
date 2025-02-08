@@ -27,8 +27,8 @@ export default function Cursor() {
     const { x, y } = delayedMouse.current;
 
     delayedMouse.current = {
-      x: lerp(x, mouse.current.x, 0.075),
-      y: lerp(y, mouse.current.y, 0.075),
+      x: lerp(x, mouse.current.x, 0.095),
+      y: lerp(y, mouse.current.y, 0.095),
     };
 
     moveCircle(delayedMouse.current.x, delayedMouse.current.y);

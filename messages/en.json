@@ -102,6 +102,7 @@
     },
     "newsletter": {
       "placeholder": "Your email address",
+      "loading": "Loading",
       "button": "Sign Up"
     },
     "copyright": {

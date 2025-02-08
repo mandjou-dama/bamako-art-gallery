@@ -6,7 +6,7 @@ export default async function Loading() {
   const locale = await getLocale();
   return (
     <div className="loader_wrapper">
-      <div className="loader loader--style3" title="2">
+      <div className="loader" title="2">
         <svg
           version="1.1"
           id="loader-1"

@@ -220,6 +220,23 @@ button {
   fill: rgba(32, 34, 23, 0.8);
 }
 
+.loader.loader--style3 svg path,
+.loader.loader--style3 svg rect {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+.loader.loader--style3 {
+  width: fit-content;
+  display: flex;
+  position: relative;
+  margin: 0px;
+}
+
+.loader.loader--style3 svg {
+  width: 20px;
+  height: 20px;
+}
+
 .inquire {
   background-color: #000;
   color: #fff;
