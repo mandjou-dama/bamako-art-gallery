@@ -4,7 +4,9 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { urlFor } from "@/sanity/lib/image";
+
 import "./styles.css"; // Import your CSS file
 
 gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger plugin
@@ -37,7 +39,7 @@ export const ArtworkCard = ({
         scrollTrigger: {
           trigger: cardRef.current, // Trigger animation when the card enters the viewport
           start: "top 80%", // Start animation when the top of the card is 80% in view
-          toggleActions: "play none none", // Play animation on enter, reverse on leave
+          toggleActions: "play none none none", // Play animation on enter, reverse on leave
           // toggleActions: "play none none reverse", // Play animation on enter, reverse on leave
         },
       });
@@ -47,7 +49,11 @@ export const ArtworkCard = ({
   return (
     <div className="artwork_card" ref={cardRef}>
       <Link href={link}>
-        <img src={image} alt={title} className="artwork_image" />
+        <img
+          src={urlFor(image).auto("format").width(720).url()}
+          alt={title}
+          className="artwork_image"
+        />
         <div className="artwork_infos_1">
           <p className="artwork_infos_artist">{artist}</p>
           <p className="artwork_infos_title">{title}</p>

@@ -2,10 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { urlFor } from "@/sanity/lib/image";
 
 type Props = {
   link?: string;
-  image?: string;
+  image?: any;
   journal?: string;
   title?: string;
 };
@@ -20,10 +21,7 @@ const ActuCard = async ({ link, image, journal, title }: Props) => {
       <Image
         width={1260}
         height={750}
-        src={
-          image ||
-          "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        }
+        src={urlFor(image).auto("format").width(300).url()}
         alt=""
       />
 

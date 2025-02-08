@@ -89,7 +89,6 @@ export default async function ExpositionPage({ params }: { params: Params }) {
               const serieArtist = serie.artists.map((i: any) => i.fullName);
 
               return serie.artworks.map((artwork: any, index: number) => {
-                console.log(artwork);
                 return (
                   <ArtworkCard
                     key={`${artwork.slug}+${artwork.title}+${index}`}

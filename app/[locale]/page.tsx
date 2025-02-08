@@ -107,21 +107,25 @@ export default async function Home({
             image={Peinture}
             name="Peinture"
             link={`/works/category/peinture`}
+            fromSanity={false}
           />
           <SmallCard
             image={Photography}
             name="Photographie"
             link={`/works/category/photographie`}
+            fromSanity={false}
           />
           <SmallCard
             image={Sculpture}
             name="Sculpture"
             link={`/works/category/sculpture`}
+            fromSanity={false}
           />
           <SmallCard
             image={Design}
             name="Design"
             link={`/works/category/design`}
+            fromSanity={false}
           />
         </div>
       </section>
@@ -146,6 +150,7 @@ export default async function Home({
                   : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
               }
               link={`/viewing-room/${exhibition.slug}`}
+              fromSanity={true}
               image={exhibition.cover}
             />
           ))}
@@ -166,6 +171,7 @@ export default async function Home({
               name={artist.fullName}
               image={artist.image}
               link={`/artists/artist/${artist.slug.current}`}
+              fromSanity={true}
             />
           ))}
         </div>

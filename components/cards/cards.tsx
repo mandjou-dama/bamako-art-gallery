@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
+import { urlFor } from "@/sanity/lib/image";
 
 import "./styles.css";
 
@@ -17,12 +18,14 @@ export const SmallCard = ({
   name,
   link,
   hideCategory = false,
+  fromSanity = false,
 }: {
   subline?: string;
   name?: string;
   image?: any;
   link?: string;
   hideCategory?: boolean;
+  fromSanity?: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
 
@@ -43,19 +46,19 @@ export const SmallCard = ({
     }
   }, []); // Empty dependency array ensures this runs once
 
+  const getImage = (image: any) => {
+    if (image && fromSanity) return;
+    if (image && fromSanity === false) return image;
+  };
+
   return (
     <div className="small_card" ref={cardRef}>
       <Link scroll={true} href={link ? link : ""}>
         <div className="small_card_image_container">
-          <Image
-            width={1260}
-            height={750}
-            src={
-              image ||
-              "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            alt=""
-          />
+          {fromSanity && (
+            <img src={urlFor(image).auto("format").width(720).url()} alt="" />
+          )}
+          {!fromSanity && <Image width={600} height={750} src={image} alt="" />}
         </div>
 
         <div className="small_card_footer">

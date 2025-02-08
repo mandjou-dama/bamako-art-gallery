@@ -36,7 +36,6 @@ export default async function Page() {
 
   const getDirectrice = bag.team.find((i: any) => i.role === "Directrice");
 
-  console.log(getDirectrice);
   return (
     <div className="about_page">
       <div className="about_hero">

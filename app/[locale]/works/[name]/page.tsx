@@ -3,6 +3,7 @@ import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { getArtworkBySlug } from "@/sanity/sanity.queries";
+import { urlFor } from "@/sanity/lib/image";
 
 import PortableText from "@/components/portable_text/portable_text";
 
@@ -18,17 +19,14 @@ export default async function WorkPage({ params }: { params: Params }) {
 
   const artwork = await getArtworkBySlug(name);
 
-  console.log(artwork.image);
-
   return (
     <div className="work_page">
       <div className="work_page_hero">
-        <Image
-          width={1260}
-          height={750}
+        <img
           src={
-            artwork.image ||
-            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            artwork.image
+              ? urlFor(artwork.image).auto("format").quality(100).url()
+              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt=""
         />
@@ -67,10 +65,6 @@ export default async function WorkPage({ params }: { params: Params }) {
             <p className="work_detail">
               {t("taille")} :{" "}
               <span className="work_detail_span">{artwork.dimensions}</span>
-            </p>
-            <p className="work_detail">
-              {t("price")} :{" "}
-              <span className="work_detail_span">{artwork.price} FCFA</span>
             </p>
             <p className="work_detail">
               {t("category")} :{" "}

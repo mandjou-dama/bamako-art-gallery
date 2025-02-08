@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
+import { urlFor } from "@/sanity/lib/image";
 
 import { getSeriesArtworkBySlug } from "@/sanity/sanity.queries";
 
@@ -30,12 +31,11 @@ export default async function SeriePage({
   return (
     <div className="work_page">
       <div className="work_page_hero">
-        <Image
-          width={1260}
-          height={750}
+        <img
           src={
-            artwork.artwork.image ||
-            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            artwork.artwork.image
+              ? urlFor(artwork.artwork.image).auto("format").quality(100).url()
+              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt=""
         />
@@ -80,12 +80,6 @@ export default async function SeriePage({
               </span>
             </p>
             <p className="work_detail">
-              {t("price")} :{" "}
-              <span className="work_detail_span">
-                {artwork.artwork.price} FCFA
-              </span>
-            </p>
-            <p className="work_detail">
               {t("category")} :{" "}
               <span className="work_detail_span">
                 {artwork.artwork.category}
@@ -107,42 +101,6 @@ export default async function SeriePage({
           </div>
   
           <div className="work_images">
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/30426268/pexels-photo-30426268/free-photo-of-paysage-majestueux-de-montagnes-enneigees-en-hiver.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/30426849/pexels-photo-30426849/free-photo-of-scene-urbaine-a-velo-en-noir-et-blanc.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
-            <Image
-              width={1260}
-              height={750}
-              src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
-            />
           </div>
         </section> */}
     </div>

@@ -65,37 +65,40 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
         </div>
 
         <div className="exposition_images">
-          {exhibition.artworks?.map((artwork: any, index: number) => {
-            return (
-              <ArtworkCard
-                key={`${artwork.slug}+${artwork.title}`}
-                image={artwork.image}
-                title={artwork.title}
-                artist={artwork.artist.fullName}
-                link={`/works/${artwork.slug}`}
-                year={artwork.year}
-              />
-            );
-          })}
+          {exhibition
+            ? exhibition.artworks?.map((artwork: any, index: number) => {
+                return (
+                  <ArtworkCard
+                    key={`${artwork.slug}+${artwork.title}`}
+                    image={artwork.image}
+                    title={artwork.title}
+                    artist={artwork.artist.fullName}
+                    link={`/works/${artwork.slug}`}
+                    year={artwork.year}
+                  />
+                );
+              })
+            : null}
 
-          {exhibition.series.map((serie: any) => {
-            const serieTitle = serie.title;
-            const serieArtist = serie.artists.map((i: any) => i.fullName);
+          {exhibition.series
+            ? exhibition.series.map((serie: any) => {
+                const serieTitle = serie.title;
+                const serieArtist = serie.artists.map((i: any) => i.fullName);
 
-            return serie.artworks.map((artwork: any, index: number) => {
-              console.log(artwork);
-              return (
-                <ArtworkCard
-                  key={`${artwork.slug}+${artwork.title}+${index}`}
-                  image={artwork.images}
-                  title={`${artwork.title} - ${serieTitle}`}
-                  link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
-                  artist={serieArtist[0]}
-                  year={artwork.year}
-                />
-              );
-            });
-          })}
+                return serie.artworks.map((artwork: any, index: number) => {
+                  return (
+                    <ArtworkCard
+                      key={`${artwork.slug}+${artwork.title}+${index}`}
+                      image={artwork.images}
+                      title={`${artwork.title} - ${serieTitle}`}
+                      link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                      artist={serieArtist[0]}
+                      year={artwork.year}
+                    />
+                  );
+                });
+              })
+            : null}
         </div>
       </section>
 
