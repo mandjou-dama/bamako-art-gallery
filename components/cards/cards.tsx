@@ -37,7 +37,7 @@ export const SmallCard = ({
         scrollTrigger: {
           trigger: cardRef.current, // Trigger animation when the card enters the viewport
           start: "top 80%", // Start animation when the top of the card is 80% in view
-          toggleActions: "play none none reverse", // Play animation on enter, reverse on leave
+          toggleActions: "play none none", // Play animation on enter, reverse on leave
         },
       });
     }

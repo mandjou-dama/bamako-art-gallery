@@ -4,6 +4,7 @@ import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { getExhibition } from "@/sanity/sanity.queries";
+import { ArtworkCard } from "@/components/cards/artwork_card";
 
 import PortableText from "@/components/portable_text/portable_text";
 
@@ -72,25 +73,14 @@ export default async function ExpositionPage({ params }: { params: Params }) {
           <div className="exposition_images">
             {exhibition.artworks?.map((artwork: any, index: number) => {
               return (
-                <div key={`${artwork.slug}+${artwork.title}`}>
-                  <Link href={`/works/${artwork.slug}`}>
-                    <img src={artwork.image} alt="" />
-                    <div className="artwork_infos_1">
-                      <p className="artwork_infos_artist">
-                        {artwork.artist.fullName}
-                      </p>
-                      <p className="artwork_infos_title">{artwork.title}</p>
-                    </div>
-                    <div className="artwork_infos_2">
-                      <p>
-                        {artwork.price > 0
-                          ? `${formatCurrency(artwork.price)} FCFA`
-                          : null}
-                      </p>
-                      <p>{artwork.year !== 0 ? artwork.year : ""}</p>
-                    </div>
-                  </Link>
-                </div>
+                <ArtworkCard
+                  key={`${artwork.slug}+${artwork.title}`}
+                  image={artwork.image}
+                  title={artwork.title}
+                  artist={artwork.artist.fullName}
+                  link={`/works/${artwork.slug}`}
+                  year={artwork.year}
+                />
               );
             })}
 
@@ -101,27 +91,14 @@ export default async function ExpositionPage({ params }: { params: Params }) {
               return serie.artworks.map((artwork: any, index: number) => {
                 console.log(artwork);
                 return (
-                  <div key={`${artwork.price}+${artwork.title}+${index}`}>
-                    <Link
-                      href={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
-                    >
-                      <img src={artwork.images} alt="" />
-                      <div className="artwork_infos_1">
-                        <p className="artwork_infos_artist">{serieArtist[0]}</p>
-                        <p className="artwork_infos_title">
-                          {artwork.title} - {serieTitle}
-                        </p>
-                      </div>
-                      <div className="artwork_infos_2">
-                        <p>
-                          {artwork.price > 0
-                            ? `${formatCurrency(artwork.price)} FCFA`
-                            : null}
-                        </p>
-                        <p>{artwork.year !== 0 ? artwork.year : ""}</p>
-                      </div>
-                    </Link>
-                  </div>
+                  <ArtworkCard
+                    key={`${artwork.slug}+${artwork.title}+${index}`}
+                    image={artwork.images}
+                    title={`${artwork.title} - ${serieTitle}`}
+                    link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                    artist={serieArtist[0]}
+                    year={artwork.year}
+                  />
                 );
               });
             })}

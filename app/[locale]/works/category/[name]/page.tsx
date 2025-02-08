@@ -58,25 +58,14 @@ export default async function Page({ params }: { params: Params }) {
       <div className="works_wrapper">
         {artworks.map((artwork: any) => {
           return (
-            <div key={`${artwork.slug.current}+${artwork.title}`}>
-              <Link href={`/works/${artwork.slug.current}`}>
-                <img src={artwork.image} alt="" />
-                <div className="artwork_infos_1">
-                  <p className="artwork_infos_artist">
-                    {artwork.artist.fullName}
-                  </p>
-                  <p className="artwork_infos_title">{artwork.title}</p>
-                </div>
-                <div className="artwork_infos_2">
-                  <p>
-                    {artwork.price > 0
-                      ? `${formatCurrency(artwork.price)} FCFA`
-                      : null}
-                  </p>
-                  <p>{artwork.year !== 0 ? artwork.year : ""}</p>
-                </div>
-              </Link>
-            </div>
+            <ArtworkCard
+              image={artwork.image}
+              link={`/works/${artwork.slug.current}`}
+              title={artwork.title}
+              artist={artwork.artist.fullName}
+              year={artwork.year}
+              key={`${artwork.slug.current}+${artwork.title}`}
+            />
           );
         })}
 
@@ -85,23 +74,14 @@ export default async function Page({ params }: { params: Params }) {
 
           return serie.artworks.map((artwork: any, index: number) => {
             return (
-              <div key={`${artwork.price}+${artwork.title}+${index}`}>
-                <Link href={`/works/serie/${artwork.slug}?serie=${serie.slug}`}>
-                  <img src={artwork.images} alt="" />
-                  <div className="artwork_infos_1">
-                    <p className="artwork_infos_artist">{artist[0]}</p>
-                    <p className="artwork_infos_title">{artwork.title}</p>
-                  </div>
-                  <div className="artwork_infos_2">
-                    <p>
-                      {artwork.price > 0
-                        ? `${formatCurrency(artwork.price)} FCFA`
-                        : null}
-                    </p>
-                    <p>{artwork.year !== 0 ? artwork.year : ""}</p>
-                  </div>
-                </Link>
-              </div>
+              <ArtworkCard
+                key={`${artwork.price}+${artwork.title}+${index}`}
+                image={artwork.images}
+                link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                title={artwork.title}
+                artist={artist[0]}
+                year={artwork.year}
+              />
             );
           });
         })}

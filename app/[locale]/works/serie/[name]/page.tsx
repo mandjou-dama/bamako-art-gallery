@@ -5,9 +5,9 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { getSeriesArtworkBySlug } from "@/sanity/sanity.queries";
 
 import PortableText from "@/components/portable_text/portable_text";
+import { PortableTextBlock } from "next-sanity";
 
 import "./page.css";
-import { PortableTextBlock } from "next-sanity";
 
 type Params = Promise<{ name: string }>;
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
