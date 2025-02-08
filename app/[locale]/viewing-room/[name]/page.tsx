@@ -5,6 +5,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { getExhibition } from "@/sanity/sanity.queries";
 
+import { urlFor } from "@/sanity/lib/image";
+
 import PortableText from "@/components/portable_text/portable_text";
 import { ArtworkCard } from "@/components/cards/artwork_card";
 
@@ -22,12 +24,11 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
   return (
     <div className="exposition_page">
       <div className="exposition_page_hero">
-        <Image
-          width={1260}
-          height={750}
+        <img
           src={
-            exhibition.cover ||
-            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            exhibition.cover
+              ? urlFor(exhibition.cover).auto("format").quality(80).url()
+              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt={`${exhibition.title} cover image`}
         />

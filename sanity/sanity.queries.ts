@@ -237,6 +237,7 @@ export const getSeriesByArtist = async (artistSlug: string) => {
       slug,
       artworks[]{
         title,
+        "slug": slug.current,
         "image": images.asset->url,
         price,
       },

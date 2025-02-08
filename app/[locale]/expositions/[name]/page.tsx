@@ -5,17 +5,13 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { getExhibition } from "@/sanity/sanity.queries";
 import { ArtworkCard } from "@/components/cards/artwork_card";
+import { urlFor } from "@/sanity/lib/image";
 
 import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
-import { Link } from "@/i18n/routing";
 
 type Params = Promise<{ name: string }>;
-
-function formatCurrency(amount: number, locale: string = "en-US"): string {
-  return new Intl.NumberFormat(locale, {}).format(amount);
-}
 
 export default async function ExpositionPage({ params }: { params: Params }) {
   const { name } = await params;
@@ -27,12 +23,11 @@ export default async function ExpositionPage({ params }: { params: Params }) {
   return (
     <div className="exposition_page">
       <div className="exposition_page_hero">
-        <Image
-          width={1260}
-          height={750}
+        <img
           src={
-            exhibition.cover ||
-            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            exhibition.cover
+              ? urlFor(exhibition.cover).auto("format").quality(80).url()
+              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt={`${exhibition.title} cover image`}
         />
@@ -64,7 +59,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
         </section>
       </div>
 
-      {exhibition.artworks && (
+      {exhibition.artworks?.length > 0 || exhibition.series?.length > 0 ? (
         <section className="section exposition_images_section">
           <div className="section_header">
             <h4 className="section_title">{t("expoImages")}</h4>
@@ -84,26 +79,27 @@ export default async function ExpositionPage({ params }: { params: Params }) {
               );
             })}
 
-            {exhibition.series.map((serie: any) => {
-              const serieTitle = serie.title;
-              const serieArtist = serie.artists.map((i: any) => i.fullName);
+            {exhibition.series &&
+              exhibition.series.map((serie: any) => {
+                const serieTitle = serie.title;
+                const serieArtist = serie.artists.map((i: any) => i.fullName);
 
-              return serie.artworks.map((artwork: any, index: number) => {
-                return (
-                  <ArtworkCard
-                    key={`${artwork.slug}+${artwork.title}+${index}`}
-                    image={artwork.images}
-                    title={`${artwork.title} - ${serieTitle}`}
-                    link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
-                    artist={serieArtist[0]}
-                    year={artwork.year}
-                  />
-                );
-              });
-            })}
+                return serie.artworks.map((artwork: any, index: number) => {
+                  return (
+                    <ArtworkCard
+                      key={`${artwork.slug}+${artwork.title}+${index}`}
+                      image={artwork.images}
+                      title={`${artwork.title} - ${serieTitle}`}
+                      link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                      artist={serieArtist[0]}
+                      year={artwork.year}
+                    />
+                  );
+                });
+              })}
           </div>
         </section>
-      )}
+      ) : null}
 
       <section className="section exposition_artists_section">
         <div className="section_header">

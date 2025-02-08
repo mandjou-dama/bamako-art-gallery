@@ -5,6 +5,8 @@ import PortableText from "@/components/portable_text/portable_text";
 import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
 
+import { urlFor } from "@/sanity/lib/image";
+
 import {
   getArtistBySlug,
   getExhibitionsByArtist,
@@ -80,67 +82,74 @@ export default async function ArtistPage({ params }: { params: Params }) {
             />
           </div>
         </div>
-        <Image
-          width={1260}
-          height={750}
+        <img
           src={
-            artist.image ||
-            "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            artist.image
+              ? urlFor(artist.image).auto("format").quality(80).url()
+              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt=""
         />
       </section>
 
-      <div className="separator section"></div>
+      {exhibitions.length > 0 || artworks.length > 0 ? (
+        <div className="separator section"></div>
+      ) : null}
 
-      <section className="section">
-        <div className="section_header">
-          <h4 className="section_title">{t("expo")}</h4>
-        </div>
+      {exhibitions.length > 0 ? (
+        <section className="section">
+          <div className="section_header">
+            <h4 className="section_title">{t("expo")}</h4>
+          </div>
 
-        <div className="section_elements_wrapper two_elements">
-          {exhibitions.map((exhibition: any) => (
-            <SmallCard
-              key={exhibition.title}
-              name={exhibition.title}
-              subline={
-                exhibition.artists.length > 2
-                  ? "exposition collective"
-                  : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
-              }
-              link={`/expositions/${exhibition.slug.current}`}
-              image={exhibition.cover}
-            />
-          ))}
-        </div>
-      </section>
+          <div className="section_elements_wrapper two_elements">
+            {exhibitions.map((exhibition: any) => (
+              <SmallCard
+                key={exhibition.title}
+                name={exhibition.title}
+                subline={
+                  exhibition.artists.length > 2
+                    ? "exposition collective"
+                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                }
+                link={`/expositions/${exhibition.slug.current}`}
+                image={exhibition.cover}
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
-      <section className="section">
-        <h4 className="section_title">{t("work")}</h4>
-        <div className="section_elements_wrapper four_elements">
-          {artworks.map((artwork: any) => (
-            <SmallCard
-              key={artwork.title}
-              name={artwork.title}
-              link={`/works/${artwork.slug.current}`}
-              subline={artwork.artist.fullName}
-              image={artwork.image}
-            />
-          ))}
-
-          {series.map((serie: any) => {
-            return serie.artworks.map((artwork: any) => (
+      {artworks.length > 0 ? (
+        <section className="section">
+          <h4 className="section_title">{t("work")}</h4>
+          <div className="section_elements_wrapper four_elements">
+            {artworks.map((artwork: any) => (
               <SmallCard
                 key={artwork.title}
                 name={artwork.title}
-                link={`/works/${artwork.title}`}
-                subline={artist.fullName}
+                link={`/works/${artwork.slug.current}`}
+                subline={artwork.artist.fullName}
                 image={artwork.image}
+                fromSanity
               />
-            ));
-          })}
-        </div>
-      </section>
+            ))}
+
+            {series.map((serie: any) => {
+              return serie.artworks.map((artwork: any) => (
+                <SmallCard
+                  key={artwork.title}
+                  name={artwork.title}
+                  link={`/works/serie/${artwork.slug}?serie=${serie.slug.current}`}
+                  subline={artist.fullName}
+                  image={artwork.image}
+                  fromSanity
+                />
+              ));
+            })}
+          </div>
+        </section>
+      ) : null}
 
       {/* <section className="section">
         <h4 className="section_title">{t("news")}</h4>
