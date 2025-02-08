@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
@@ -10,8 +10,29 @@ import "./styles.css";
 type Props = {};
 
 const Footer = (props: Props) => {
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const [email, setEmail] = useState("");
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch("/api/brevo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Contact created successfully:", result.data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const t = useTranslations("footer");
@@ -215,9 +236,11 @@ const Footer = (props: Props) => {
 
             <div className="footer_newsletter_wrapper">
               <p className="footer_headline">Newsletter</p>
-              <form action="" onSubmit={onSubmit}>
+              <form method="POST" onSubmit={onSubmit}>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   suppressHydrationWarning
                   placeholder={t("newsletter.placeholder")}
