@@ -1,10 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import ActuCard from "@/components/cards/actu";
 
+import { getAllNews } from "@/sanity/sanity.queries";
+
 import "./page.css";
 
 export default async function Page() {
   const t = await getTranslations("artActu.hero");
+  const news = await getAllNews();
 
   return (
     <div className="art_actu_page">
@@ -19,21 +22,15 @@ export default async function Page() {
       <div className="art_actu_wrapper">
         <section className="section">
           <div className="section_elements_wrapper four_actu_elements">
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
-            <ActuCard link="https://google.com" />
+            {news.map((info: any) => (
+              <ActuCard
+                image={info.photo}
+                title={info.title}
+                journal={info.journal}
+                key={info.title}
+                link={info.link}
+              />
+            ))}
           </div>
         </section>
       </div>

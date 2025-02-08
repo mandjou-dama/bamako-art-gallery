@@ -44,5 +44,10 @@ export default defineType({
       type: "boolean",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "home",
+      title: "Sur la page d'accueil",
+      type: "boolean",
+    }),
   ],
 });

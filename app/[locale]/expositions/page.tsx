@@ -1,10 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import { SmallCard } from "@/components/cards/cards";
 
+import { getExhibitionsByTimeline } from "@/sanity/sanity.queries";
+
 import "./page.css";
 
 export default async function Page() {
   const t = await getTranslations("expositions");
+
+  const upComing = await getExhibitionsByTimeline("À venir");
 
   return (
     <div className="expositions_page">
@@ -17,7 +21,7 @@ export default async function Page() {
       </div>
 
       <div className="expositions_wrapper">
-        <section className="section">
+        {/* <section className="section">
           <div className="section_header">
             <h4 className="section_title">{t("sections.enCours")}</h4>
           </div>
@@ -26,7 +30,7 @@ export default async function Page() {
             <SmallCard link="/expositions/kjhj" />
             <SmallCard link="/expositions/kjhj" />
           </div>
-        </section>
+        </section> */}
 
         <section className="section">
           <div className="section_header">
@@ -34,12 +38,23 @@ export default async function Page() {
           </div>
 
           <div className="section_elements_wrapper two_elements">
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
+            {upComing.map((exhibition: any) => (
+              <SmallCard
+                key={exhibition.title}
+                name={exhibition.title}
+                subline={
+                  exhibition.artists.length > 2
+                    ? "exposition collective"
+                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                }
+                link={`/expositions/${exhibition.slug}`}
+                image={exhibition.cover}
+              />
+            ))}
           </div>
         </section>
 
-        <section className="section">
+        {/* <section className="section">
           <h4 className="section_title">{t("sections.passer")}</h4>
           <div className="section_elements_wrapper four_elements">
             <SmallCard link="/expositions/kjhj" />
@@ -47,7 +62,7 @@ export default async function Page() {
             <SmallCard link="/expositions/kjhj" />
             <SmallCard link="/expositions/kjhj" />
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );

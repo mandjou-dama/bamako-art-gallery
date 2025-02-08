@@ -1,44 +1,26 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-
-import { fetchArtist } from "@/sanity/fetch";
-
-import { SmallCard } from "@/components/cards/cards";
-
 import "./page.css";
-import SeeMore from "@/components/see_more/see_more";
-import ActuCard from "@/components/cards/actu";
+
+//import components
+import { SmallCard } from "@/components/cards/cards";
 import { EngagementCard } from "@/components/engagement/engagement";
+import ActuCard from "@/components/cards/actu";
+import SeeMore from "@/components/see_more/see_more";
 
-// Define the types for the artist data
-type InternationalizedDescription = {
-  _type: string;
-  _key: string;
-  value: string;
-};
+//import fetches
+import {
+  getArtistsForHome,
+  fetchLatestNews,
+  fetchHomeExhibitions,
+} from "@/sanity/sanity.queries";
 
-type Artist = {
-  name: string;
-  description: InternationalizedDescription[];
-};
-
-// Helper function to get description by locale
-const getDescriptionByLocale = (
-  descriptions: InternationalizedDescription[],
-  locale: string
-): string => {
-  const description = descriptions.find((desc) => desc._key === locale);
-  return description
-    ? description.value
-    : "Description not available in this language.";
-};
-
-// Fetch artist data
-const getArtist = async (): Promise<Artist[]> => {
-  const artists = await fetchArtist();
-  return artists;
-};
+//import categories images
+import Photography from "@/public/assets/photography.jpeg";
+import Design from "@/public/assets/design.jpeg";
+import Sculpture from "@/public/assets/sculpture.jpeg";
+import Peinture from "@/public/assets/peinture.jpeg";
 
 export default async function Home({
   params,
@@ -47,6 +29,9 @@ export default async function Home({
 }) {
   const slug = (await params).locale;
   const t = await getTranslations("home");
+  const artists = await getArtistsForHome();
+  const news = await fetchLatestNews();
+  const exhibitions = await fetchHomeExhibitions();
 
   return (
     <div className="home_page">
@@ -118,10 +103,30 @@ export default async function Home({
       <section className="section">
         <h4 className="section_title">{t("sections.coupDeCoeur.message")}</h4>
         <div className="section_elements_wrapper four_elements">
-          <SmallCard name="Peinture" link="/works" />
-          <SmallCard name="Photographie" link="/works" />
-          <SmallCard name="Sculpture" link="/works" />
-          <SmallCard name="Design" link="/works" />
+          <SmallCard
+            image={Peinture}
+            name="Peinture"
+            link={`/works/category/peinture`}
+            fromSanity={false}
+          />
+          <SmallCard
+            image={Photography}
+            name="Photographie"
+            link={`/works/category/photographie`}
+            fromSanity={false}
+          />
+          <SmallCard
+            image={Sculpture}
+            name="Sculpture"
+            link={`/works/category/sculpture`}
+            fromSanity={false}
+          />
+          <SmallCard
+            image={Design}
+            name="Design"
+            link={`/works/category/design`}
+            fromSanity={false}
+          />
         </div>
       </section>
 
@@ -129,22 +134,26 @@ export default async function Home({
         <div className="section_header">
           <h4 className="section_title">{t("sections.expositions.message")}</h4>
           <SeeMore
-            link="/expositions"
+            link="/viewing-room"
             message={t("sections.expositions.link")}
           />
         </div>
 
         <div className="section_elements_wrapper two_elements">
-          <SmallCard
-            name="Les vestiges de l'ancien monde"
-            subline="exposition collective"
-            link="/expositions/dhd"
-          />
-          <SmallCard
-            name="Devenir un bout d'homme"
-            subline="Moussa Diallo"
-            link="/expositions/lkl"
-          />
+          {exhibitions.map((exhibition: any) => (
+            <SmallCard
+              key={exhibition.title}
+              name={exhibition.title}
+              subline={
+                exhibition.artists.length > 2
+                  ? "exposition collective"
+                  : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+              }
+              link={`/viewing-room/${exhibition.slug}`}
+              fromSanity={true}
+              image={exhibition.cover}
+            />
+          ))}
         </div>
       </section>
 
@@ -155,26 +164,16 @@ export default async function Home({
         </div>
 
         <div className="section_elements_wrapper rounded_four_elements">
-          <SmallCard
-            subline="Peinture"
-            name="Kankou Fofana"
-            link="/artists/artist/dsds"
-          />
-          <SmallCard
-            subline="Photographie"
-            name="Alfousseiny Coulibaly"
-            link="/artists/artist/dsds"
-          />
-          <SmallCard
-            subline="Design"
-            name="Boubacar Berthé"
-            link="/artists/artist/dsds"
-          />
-          <SmallCard
-            subline="Sculpture"
-            name="Fanta Mady Doucouré"
-            link="/artists/artist/dsds"
-          />
+          {artists.map((artist: any) => (
+            <SmallCard
+              hideCategory
+              key={artist.fullName}
+              name={artist.fullName}
+              image={artist.image}
+              link={`/artists/artist/${artist.slug.current}`}
+              fromSanity={true}
+            />
+          ))}
         </div>
       </section>
 
@@ -182,15 +181,18 @@ export default async function Home({
         <h4 className="section_title">{t("sections.artActu.message")}</h4>
 
         <div className="section_elements_wrapper four_actu_elements">
-          <ActuCard link="https://google.com" />
-          <ActuCard link="https://google.com" />
-          <ActuCard link="https://google.com" />
-          <ActuCard link="https://google.com" />
-          <ActuCard link="https://google.com" />
-          <ActuCard link="https://google.com" />
+          {news.map((info: any) => (
+            <ActuCard
+              image={info.photo}
+              title={info.title}
+              journal={info.journal}
+              key={info.title}
+              link={info.link}
+            />
+          ))}
         </div>
 
-        <Link href={"/art-actu"} className="see_more_actu">
+        <Link scroll={true} href={"/art-actu"} className="see_more_actu">
           {t("sections.artActu.link")}
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -27,14 +27,14 @@
 
 .about_hero_images {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
 .about_hero_images img {
   width: 100%;
-  aspect-ratio: 1/1;
+  height: auto;
 }
 
 .about_hero_description {
@@ -56,9 +56,9 @@
 
 .team_container {
   margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
 }
 
 .team_card {
@@ -70,7 +70,7 @@
 }
 
 .team_card img {
-  width: 380px;
+  width: 100%;
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
@@ -102,14 +102,12 @@
   }
 
   .team_container {
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .about_hero_images {
-    grid-template-columns: repeat(1, 1fr);
-  }
   .about_section img {
     height: auto;
   }
@@ -121,5 +119,13 @@
   .team_card img {
     width: 100%;
     height: auto;
+  }
+
+  .member_role {
+    font-size: 12px;
+  }
+
+  .member_name {
+    font-size: 14px;
   }
 }

@@ -50,38 +50,6 @@
   object-fit: cover;
 }
 
-.artwork_infos_1 {
-  margin-top: 5px;
-}
-
-.artwork_infos_1 {
-  margin-top: 5px;
-}
-
-.artwork_infos_artist {
-  font-weight: 200;
-  font-size: 14px;
-}
-
-.artwork_infos_title {
-  font-size: 18px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1; /* Limit to 2 lines */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis at the end */
-}
-
-.artwork_infos_2 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.artwork_infos_2 p {
-  font-size: 14px;
-  font-weight: 200;
-}
-
 .exposition_artists {
   margin-top: 30px;
   display: grid;

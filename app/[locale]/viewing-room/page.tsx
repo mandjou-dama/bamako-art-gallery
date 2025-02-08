@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { getViewingRoomExhibitions } from "@/sanity/sanity.queries";
 
 import { SmallCard } from "@/components/cards/cards";
 
@@ -6,6 +7,8 @@ import "./page.css";
 
 export default async function Page() {
   const t = await getTranslations("viewingRoom.hero");
+  const exhibitions = await getViewingRoomExhibitions();
+
   return (
     <div className="viewing_room_page">
       <div className="viewing_room_hero">
@@ -19,12 +22,19 @@ export default async function Page() {
       <div className="viewing_room_wrapper">
         <section className="section">
           <div className="section_elements_wrapper three_elements">
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
+            {exhibitions.map((exhibition: any) => (
+              <SmallCard
+                key={exhibition.title}
+                name={exhibition.title}
+                subline={
+                  exhibition.artists.length > 2
+                    ? "exposition collective"
+                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                }
+                link={`/viewing-room/${exhibition.slug}`}
+                image={exhibition.cover}
+              />
+            ))}
           </div>
         </section>
       </div>

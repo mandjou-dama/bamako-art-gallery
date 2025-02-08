@@ -1,39 +1,72 @@
-import React from "react";
+"use client"; // Ensure this is a client component
+
+import React, { useRef } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { getLocale } from "next-intl/server";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
+import { urlFor } from "@/sanity/lib/image";
 
 import "./styles.css";
 
-export const SmallCard = async ({
+gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger plugin
+
+export const SmallCard = ({
   subline,
   image,
   name,
   link,
+  hideCategory = false,
+  fromSanity = false,
 }: {
   subline?: string;
   name?: string;
-  image?: string;
+  image?: any;
   link?: string;
+  hideCategory?: boolean;
+  fromSanity?: boolean;
 }) => {
-  const local = await getLocale();
+  const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
+
+  // GSAP animation
+  useGSAP(() => {
+    if (cardRef.current) {
+      gsap.from(cardRef.current, {
+        opacity: 0,
+        y: 50, // Start slightly below
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardRef.current, // Trigger animation when the card enters the viewport
+          start: "top 80%", // Start animation when the top of the card is 80% in view
+          toggleActions: "play none none", // Play animation on enter, reverse on leave
+        },
+      });
+    }
+  }, []); // Empty dependency array ensures this runs once
+
+  const getImage = (image: any) => {
+    if (image && fromSanity) return;
+    if (image && fromSanity === false) return image;
+  };
 
   return (
-    <div className="small_card">
-      <Link href={link ? link : ""}>
+    <div className="small_card" ref={cardRef}>
+      <Link scroll={true} href={link ? link : ""}>
         <div className="small_card_image_container">
-          <Image
-            width={1260}
-            height={750}
-            src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-          />
+          {fromSanity && (
+            <img src={urlFor(image).auto("format").width(720).url()} alt="" />
+          )}
+          {!fromSanity && <Image width={600} height={750} src={image} alt="" />}
         </div>
 
         <div className="small_card_footer">
-          <p className="small_card_footer_headline">
-            {subline ? subline : "Catégorie"}
-          </p>
+          {!hideCategory && (
+            <p className="small_card_footer_headline">
+              {subline ? subline : "Catégorie"}
+            </p>
+          )}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

@@ -2,32 +2,33 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { urlFor } from "@/sanity/lib/image";
 
 type Props = {
   link?: string;
+  image?: any;
+  journal?: string;
+  title?: string;
 };
 
 import "./styles.css";
 
-const ActuCard = async ({ link }: Props) => {
+const ActuCard = async ({ link, image, journal, title }: Props) => {
   const t = await getTranslations("components");
 
   return (
-    <Link href={link ? link : ""} className="actu_card">
+    <Link target="_blank" href={link ? link : ""} className="actu_card">
       <Image
         width={1260}
         height={750}
-        src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        src={urlFor(image).auto("format").width(300).url()}
         alt=""
       />
 
       <div className="actu_card_infos">
         <div>
-          <p className="actu_card_info_subline">Jeune Afrique</p>
-          <p className="actu_card_info_title">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatem, earum.
-          </p>
+          <p className="actu_card_info_subline">{journal || "Jeune Afrique"}</p>
+          <p className="actu_card_info_title">{title || "Titre"}</p>
         </div>
 
         <div className="actu_card_link_wrapper">

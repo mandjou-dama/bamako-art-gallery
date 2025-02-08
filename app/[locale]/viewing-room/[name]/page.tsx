@@ -4,16 +4,17 @@ import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { getExhibition } from "@/sanity/sanity.queries";
-import { ArtworkCard } from "@/components/cards/artwork_card";
+
 import { urlFor } from "@/sanity/lib/image";
 
 import PortableText from "@/components/portable_text/portable_text";
+import { ArtworkCard } from "@/components/cards/artwork_card";
 
 import "./page.css";
 
 type Params = Promise<{ name: string }>;
 
-export default async function ExpositionPage({ params }: { params: Params }) {
+export default async function ViewingRoomPage({ params }: { params: Params }) {
   const { name } = await params;
   const locale = await getLocale();
   const t = await getTranslations("exposition");
@@ -59,28 +60,29 @@ export default async function ExpositionPage({ params }: { params: Params }) {
         </section>
       </div>
 
-      {exhibition.artworks?.length > 0 || exhibition.series?.length > 0 ? (
-        <section className="section exposition_images_section">
-          <div className="section_header">
-            <h4 className="section_title">{t("expoImages")}</h4>
-          </div>
+      <section className="section exposition_images_section">
+        <div className="section_header">
+          <h4 className="section_title">{t("expoImages")}</h4>
+        </div>
 
-          <div className="exposition_images">
-            {exhibition.artworks?.map((artwork: any, index: number) => {
-              return (
-                <ArtworkCard
-                  key={`${artwork.slug}+${artwork.title}`}
-                  image={artwork.image}
-                  title={artwork.title}
-                  artist={artwork.artist.fullName}
-                  link={`/works/${artwork.slug}`}
-                  year={artwork.year}
-                />
-              );
-            })}
+        <div className="exposition_images">
+          {exhibition
+            ? exhibition.artworks?.map((artwork: any, index: number) => {
+                return (
+                  <ArtworkCard
+                    key={`${artwork.slug}+${artwork.title}`}
+                    image={artwork.image}
+                    title={artwork.title}
+                    artist={artwork.artist.fullName}
+                    link={`/works/${artwork.slug}`}
+                    year={artwork.year}
+                  />
+                );
+              })
+            : null}
 
-            {exhibition.series &&
-              exhibition.series.map((serie: any) => {
+          {exhibition.series
+            ? exhibition.series.map((serie: any) => {
                 const serieTitle = serie.title;
                 const serieArtist = serie.artists.map((i: any) => i.fullName);
 
@@ -96,10 +98,10 @@ export default async function ExpositionPage({ params }: { params: Params }) {
                     />
                   );
                 });
-              })}
-          </div>
-        </section>
-      ) : null}
+              })
+            : null}
+        </div>
+      </section>
 
       <section className="section exposition_artists_section">
         <div className="section_header">

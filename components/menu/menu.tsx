@@ -89,7 +89,7 @@ const Menu = (props: Props) => {
       }, 2500);
     }
 
-    console.log(`/${newLocale}${pathname.replace(`/${locale}`, "")}`);
+    // console.log(`/${newLocale}${pathname.replace(`/${locale}`, "")}`);
   };
 
   return (

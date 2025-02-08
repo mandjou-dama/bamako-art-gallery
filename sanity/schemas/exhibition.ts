@@ -21,6 +21,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "cover",
+      title: "Photo de couverture de l'exposition",
+      type: "image",
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "internationalizedArrayDescription",
@@ -44,6 +51,24 @@ export default defineType({
       title: "Séries exposées",
       type: "array",
       of: [{ type: "reference", to: [{ type: "series" }] }],
+    }),
+    defineField({
+      name: "timeline",
+      title: "Chronologie",
+      type: "string",
+      options: {
+        list: ["En cours", "À venir", "Passées"],
+      },
+    }),
+    defineField({
+      name: "home",
+      title: "Sur la page d'accueil",
+      type: "boolean",
+    }),
+    defineField({
+      name: "viewingRoom",
+      title: "Dans la viewing Room",
+      type: "boolean",
     }),
   ],
 });

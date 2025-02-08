@@ -29,7 +29,7 @@
 }
 
 .artists_wrapper img {
-  width: 282px;
+  width: 100%;
   aspect-ratio: 1/1;
 }
 
@@ -55,7 +55,7 @@
 
 @media screen and (max-width: 480px) {
   .artists_wrapper {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 30px;
   }
   .artists_hero_infos p {

@@ -188,6 +188,58 @@ button {
   aspect-ratio: 1/1;
 }
 
+/* PORTABLE TEXT ELEMENTS */
+
+.loader_wrapper {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader_wrapper p {
+  text-transform: uppercase;
+}
+
+.loader {
+  margin: 0 0 15px;
+  height: auto;
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*
+  Set the color of the icon
+*/
+.loader_wrapper svg path,
+.loader_wrapper svg rect {
+  fill: rgba(32, 34, 23, 0.8);
+}
+
+.inquire {
+  background-color: #000;
+  color: #fff;
+  width: fit-content;
+  padding: 15px 50px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.inquire svg {
+  width: 15px;
+  height: 15px;
+}
+
 @media screen and (max-width: 859px) {
   .section h4 {
     width: auto;
@@ -274,6 +326,9 @@ button {
   .section_elements_wrapper.four_actu_elements {
     grid-template-columns: repeat(1, 1fr);
     gap: 30px;
+  }
+  .inquire {
+    width: 100%;
   }
 }
 

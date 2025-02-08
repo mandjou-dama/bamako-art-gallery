@@ -1,6 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import PortableText from "@/components/portable_text/portable_text";
+import { type PortableTextBlock } from "next-sanity";
+import { getLocale, getTranslations } from "next-intl/server";
+
+import { urlFor } from "@/sanity/lib/image";
+
+import {
+  getArtistBySlug,
+  getExhibitionsByArtist,
+  getArtworkByArtist,
+  getSeriesByArtist,
+} from "@/sanity/sanity.queries";
 
 import { SmallCard } from "@/components/cards/cards";
 
@@ -24,97 +36,123 @@ const presses = [
   },
 ];
 
-export default function ArtistPage() {
+type Params = Promise<{ name: string }>;
+
+export default async function ArtistPage({ params }: { params: Params }) {
+  const { name } = await params;
+  const locale = await getLocale();
+  const t = await getTranslations("artiste");
+
+  const artist = await getArtistBySlug(name);
+  const exhibitions = await getExhibitionsByArtist(name);
+  const artworks = await getArtworkByArtist(name);
+  const series = await getSeriesByArtist(name);
+
   return (
     <div className="artist_page">
       <section className="section artist_page_hero">
         <div className="artist_page_hero_left">
           <div>
             <div className="section_header">
-              <h4 className="section_title">Kankou Fofana</h4>
+              <h4 className="section_title">
+                {artist.fullName || "Kankou Fofana"}
+              </h4>
             </div>
-            <p>
-              <span>
-                Kankou Fofana est une artiste peintre et sculptrice reconnue
-                pour ses œuvres captivantes qui célèbrent les traditions
-                maliennes tout en leur apportant une touche contemporaine.
-              </span>
-              <span>
-                Inspirée par la richesse culturelle de son pays, ses créations
-                mêlent harmonieusement couleurs vives, symbolisme ancestral et
-                modernité, traduisant une quête perpétuelle d'équilibre entre le
-                passé et le présent.
-              </span>
-            </p>
+            <PortableText
+              className="portable_text"
+              value={
+                locale === "fr"
+                  ? artist.description_fr
+                  : (artist.description_en as PortableTextBlock[])
+              }
+            />
           </div>
 
           <div>
             <div className="section_header">
-              <h4 className="section_title">Biographie</h4>
+              <h4 className="section_title">{t("bio")}</h4>
             </div>
-            <p>
-              <span>
-                Née à Bamako, Mali, Kankou Fofana a grandi dans un environnement
-                où l'art et la culture occupaient une place centrale. Dès son
-                plus jeune âge, elle s'est passionnée pour le dessin et la
-                peinture, s'inspirant des paysages vibrants et des motifs
-                traditionnels qui l'entouraient. Après des études aux Beaux-Arts
-                de Bamako, Kankou a poursuivi sa formation en arts plastiques à
-                Paris, où elle a perfectionné ses techniques tout en explorant
-                de nouvelles perspectives artistiques.
-              </span>
-              <span>
-                Au fil des années, Kankou a développé un style unique qui
-                combine peinture, sculpture et installations artistiques. Ses
-                œuvres ont été exposées dans des galeries et des musées
-                prestigieux à travers l'Afrique et l'Europe, attirant
-                l'attention pour leur profondeur émotionnelle et leur esthétique
-                singulière.
-              </span>
-              <span>
-                Engagée dans la préservation de l'héritage culturel malien,
-                Kankou Fofana anime également des ateliers pour initier les
-                jeunes à l'art et pour promouvoir l'importance de la créativité
-                dans l'éducation. Aujourd'hui, elle continue d'innover et de
-                raconter des histoires à travers ses œuvres, faisant de l'art un
-                pont entre les générations et les cultures.
-              </span>
-            </p>
+            <PortableText
+              className="portable_text"
+              value={
+                locale === "fr"
+                  ? artist.bio_fr
+                  : (artist.bio_en as PortableTextBlock[])
+              }
+            />
           </div>
         </div>
-        <Image
-          width={1260}
-          height={750}
-          src="https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        <img
+          src={
+            artist.image
+              ? urlFor(artist.image).auto("format").quality(80).url()
+              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
           alt=""
         />
       </section>
 
-      <div className="separator section"></div>
+      {exhibitions.length > 0 || artworks.length > 0 ? (
+        <div className="separator section"></div>
+      ) : null}
 
-      <section className="section">
-        <div className="section_header">
-          <h4 className="section_title">Expositions</h4>
-        </div>
+      {exhibitions.length > 0 ? (
+        <section className="section">
+          <div className="section_header">
+            <h4 className="section_title">{t("expo")}</h4>
+          </div>
 
-        <div className="section_elements_wrapper two_elements">
-          <SmallCard link="/expositions/dfdf" />
-          <SmallCard link="/expositions/dfdf" />
-        </div>
-      </section>
+          <div className="section_elements_wrapper two_elements">
+            {exhibitions.map((exhibition: any) => (
+              <SmallCard
+                key={exhibition.title}
+                name={exhibition.title}
+                subline={
+                  exhibition.artists.length > 2
+                    ? "exposition collective"
+                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                }
+                link={`/expositions/${exhibition.slug.current}`}
+                image={exhibition.cover}
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
-      <section className="section">
-        <h4 className="section_title">Oeuvres</h4>
-        <div className="section_elements_wrapper four_elements">
-          <SmallCard link="/works/sder" />
-          <SmallCard link="/works/sder" />
-          <SmallCard link="/works/sder" />
-          <SmallCard link="/works/sder" />
-        </div>
-      </section>
+      {artworks.length > 0 ? (
+        <section className="section">
+          <h4 className="section_title">{t("work")}</h4>
+          <div className="section_elements_wrapper four_elements">
+            {artworks.map((artwork: any) => (
+              <SmallCard
+                key={artwork.title}
+                name={artwork.title}
+                link={`/works/${artwork.slug.current}`}
+                subline={artwork.artist.fullName}
+                image={artwork.image}
+                fromSanity
+              />
+            ))}
 
-      <section className="section">
-        <h4 className="section_title">Presses</h4>
+            {series.map((serie: any) => {
+              return serie.artworks.map((artwork: any) => (
+                <SmallCard
+                  key={artwork.title}
+                  name={artwork.title}
+                  link={`/works/serie/${artwork.slug}?serie=${serie.slug.current}`}
+                  subline={artist.fullName}
+                  image={artwork.image}
+                  fromSanity
+                />
+              ));
+            })}
+          </div>
+        </section>
+      ) : null}
+
+      {/* <section className="section">
+        <h4 className="section_title">{t("news")}</h4>
         <div className="section_elements_wrapper presse">
           {presses.map((presse) => (
             <Link target="_blank" key={presse.title} href={presse.link}>
@@ -131,7 +169,7 @@ export default function ArtistPage() {
             </Link>
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
