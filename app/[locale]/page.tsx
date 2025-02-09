@@ -21,6 +21,31 @@ import Photography from "@/public/assets/photography.jpeg";
 import Design from "@/public/assets/design.jpeg";
 import Sculpture from "@/public/assets/sculpture.jpeg";
 import Peinture from "@/public/assets/peinture.jpeg";
+import Slider from "@/components/slider/slider";
+
+const slides = [
+  {
+    link: "/works/serie/serie-1",
+    image:
+      "https://images.pexels.com/photos/30472381/pexels-photo-30472381/free-photo-of-portrait-de-mode-masculin-elegant-avec-un-eclairage-tamise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "Exhibition 1",
+    year: 2023,
+  },
+  {
+    link: "/works/serie/serie-2",
+    image:
+      "https://images.pexels.com/photos/27067424/pexels-photo-27067424/free-photo-of-mur-gris-d-un-immeuble-de-bureaux.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "Exhibition 2",
+    year: 2022,
+  },
+  {
+    link: "/works/serie/serie-3",
+    image:
+      "https://images.pexels.com/photos/30582649/pexels-photo-30582649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "Exhibition 3",
+    year: 2021,
+  },
+];
 
 export default async function Home({
   params,
@@ -43,59 +68,7 @@ export default async function Home({
 
         <div className="separator"></div>
 
-        <div className="home_hero_slider">
-          <Image
-            width={1260}
-            height={750}
-            src="https://images.pexels.com/photos/1183992/pexels-photo-1183992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-          />
-          <div className="home_hero_slider_overlay"></div>
-
-          <div className="hero_slider_footer">
-            <h3 className="hero_slider_expo_name">
-              CE QUI NOUS UNIT : exposition collective - Bamako
-            </h3>
-
-            <div className="hero_slider_footer_infos">
-              <p className="hero_slider_expo_date">22 septembre 2023</p>
-
-              <div className="hero_slider_footer_arrows">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-move-left"
-                >
-                  <path d="M6 8L2 12L6 16" />
-                  <path d="M2 12H22" />
-                </svg>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-move-right"
-                >
-                  <path d="M18 8L22 12L18 16" />
-                  <path d="M2 12H22" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Slider slides={slides} />
 
         <div className="separator"></div>
       </div>

@@ -36,6 +36,7 @@
     "sanity": "^3.71.2",
     "sanity-plugin-internationalized-array": "^3.1.1",
     "styled-components": "^6.1.14",
+    "swiper": "^11.2.2",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
