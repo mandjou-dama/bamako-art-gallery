@@ -94,7 +94,7 @@ const Navbar = () => {
           </button>
         ) : (
           <Link href="/" className="logo">
-            <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
+            <Image width={175} src={Logo} alt="Bamako Art Gallery Logo" />
           </Link>
         )}
 
