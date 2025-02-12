@@ -9,6 +9,8 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 import "./styles.css";
 
 type Props = {
@@ -49,9 +51,8 @@ const ArtistCard = ({ image, name, slug }: Props) => {
           }
           alt={`${name} cover image`}
         />
+        <button>{name || "Kankou fofana"}</button>
       </Link>
-
-      <button>{name || "Kankou fofana"}</button>
     </div>
   );
 };

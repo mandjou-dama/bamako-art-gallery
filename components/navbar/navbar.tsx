@@ -93,8 +93,13 @@ const Navbar = () => {
             Retour
           </button>
         ) : (
-          <Link href="/" className="logo">
-            <Image width={175} src={Logo} alt="Bamako Art Gallery Logo" />
+          <Link href="/" className="logo_wrapper">
+            <Image
+              className={styles.bag_logo}
+              width={175}
+              src={Logo}
+              alt="Bamako Art Gallery Logo"
+            />
           </Link>
         )}
 
