@@ -10,27 +10,6 @@ import PortableText from "@/components/portable_text/portable_text";
 import "./page.css";
 import { PortableTextBlock } from "next-sanity";
 
-const team = [
-  {
-    name: "Kadiatou Sylla",
-    role: "Directrice",
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    name: "Madina Bah",
-    role: "Art Advisor",
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    name: "Kadi Maïga",
-    role: "Financière",
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-];
-
 export default async function Page() {
   const t = await getTranslations("about");
   const locale = await getLocale();
@@ -72,7 +51,7 @@ export default async function Page() {
           />
         </section>
 
-        <section className="section">
+        {/* <section className="section">
           <div className="section_header">
             <h4 className="section_title">Kadiatou Sylla</h4>
           </div>
@@ -104,7 +83,7 @@ export default async function Page() {
               alt=""
             />
           </div>
-        </section>
+        </section> */}
 
         <section className="section">
           <div className="section_header">
