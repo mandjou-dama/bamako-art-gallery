@@ -9,6 +9,7 @@ import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
 import { PortableTextBlock } from "next-sanity";
+import Slider from "@/components/slider/slider";
 
 export default async function Page() {
   const t = await getTranslations("about");
@@ -16,6 +17,21 @@ export default async function Page() {
   const bag = await getBagDetails();
 
   const getDirectrice = bag.team.find((i: any) => i.role === "Directrice");
+
+  const slides = [
+    {
+      image:
+        "https://images.pexels.com/photos/30472381/pexels-photo-30472381/free-photo-of-portrait-de-mode-masculin-elegant-avec-un-eclairage-tamise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      image:
+        "https://images.pexels.com/photos/27067424/pexels-photo-27067424/free-photo-of-mur-gris-d-un-immeuble-de-bureaux.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      image:
+        "https://images.pexels.com/photos/30582649/pexels-photo-30582649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+  ];
 
   return (
     <div className="about_page">
@@ -32,23 +48,28 @@ export default async function Page() {
           <div className="section_header">
             <h4 className="section_title">Bamako Art Gallery</h4>
           </div>
-          <div className="about_hero_images">
-            <img
+          <div className="home_hero">
+            <Slider slides={slides} />
+            {/* <img
               src={
                 bag.image
                   ? urlFor(bag.image).auto("format").quality(80).url()
                   : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               }
               alt=""
-            />
+            /> */}
           </div>
 
-          <PortableText
-            className="portable_text"
-            value={
-              locale === "fr" ? bag.bio_fr : (bag.bio_en as PortableTextBlock[])
-            }
-          />
+          <div className="bag_description_container">
+            <PortableText
+              className="portable_text"
+              value={
+                locale === "fr"
+                  ? bag.bio_fr
+                  : (bag.bio_en as PortableTextBlock[])
+              }
+            />
+          </div>
         </section>
 
         {/* <section className="section">

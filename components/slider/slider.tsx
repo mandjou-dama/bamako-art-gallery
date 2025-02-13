@@ -8,10 +8,10 @@ import { Link } from "@/i18n/routing";
 
 type Props = {
   slides: {
-    link: string;
+    link?: string;
     image: string;
-    name: string;
-    year: number;
+    name?: string;
+    year?: number;
   }[];
 };
 
@@ -88,7 +88,7 @@ const Slider = ({ slides }: Props) => {
   return (
     <div className="home_hero_slider_container" ref={sliderRef}>
       {slides.map((slide, index) => (
-        <Link key={index} href={slide.link}>
+        <Link key={index} href={slide.link || ""}>
           <div
             className="home_hero_slider"
             style={{ display: index === currentSlide ? "flex" : "none" }}
