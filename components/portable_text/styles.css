@@ -5,7 +5,7 @@
 }
 
 .portable_text_strong {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .portable_text_bullet_list,
@@ -20,7 +20,8 @@
   display: block;
   margin-top: 20px;
   font-weight: bolder;
-  font-size: 18px;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 .portable_text_h4 strong {
