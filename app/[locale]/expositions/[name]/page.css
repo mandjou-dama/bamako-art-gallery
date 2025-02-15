@@ -154,4 +154,10 @@
   .exposition_images.views {
     grid-template-columns: repeat(1, 1fr);
   }
+  .exposition_artist_headline {
+    font-size: 16px;
+  }
+  .expo_artist_name {
+    font-size: 14px;
+  }
 }
