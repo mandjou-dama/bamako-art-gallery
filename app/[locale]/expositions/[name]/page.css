@@ -36,6 +36,24 @@
   gap: 10px;
 }
 
+.exposition_artists_wrapper {
+  margin-top: 20px;
+}
+
+.exposition_artists_wrapper > div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.exposition_artist_headline {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
 .exposition_images {
   margin-top: 30px;
   display: grid;
@@ -91,9 +109,10 @@
 
 .expo_artist_name {
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 16px;
   margin-bottom: 20px;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 859px) {

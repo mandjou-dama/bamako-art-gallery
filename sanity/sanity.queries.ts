@@ -260,10 +260,7 @@ export const getExhibition = async (slug: string) => {
       "description_en": description[_key == "en"][0].value,
       artists[]->{ 
         fullName,
-        "description_fr": description[_key == "fr"][0].value,
-        "description_en": description[_key == "en"][0].value,
-        "bio_fr": bio[_key == "fr"][0].value,
-        "bio_en": bio[_key == "en"][0].value,
+        "slug": slug.current,
        },
       artworks[]->{
         title,
@@ -271,7 +268,6 @@ export const getExhibition = async (slug: string) => {
         "image": image.asset->url,
         artist->{ fullName },
         year,
-        price,
         images
       },
       series[]->{
@@ -282,7 +278,54 @@ export const getExhibition = async (slug: string) => {
           "slug": slug.current,
           title,
           year,
-          price,
+          "images": images.asset->url
+        }
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getExhibitionInfos = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      title,
+      "slug": slug.current,
+      "cover": cover.asset->url,
+      "description_fr": description[_key == "fr"][0].value,
+      "description_en": description[_key == "en"][0].value,
+      artists[]->{ 
+        fullName,
+        "slug": slug.current,
+       },
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getExhibitionArtworks = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      artworks[]->{
+        title,
+        "slug": slug.current,
+        "image": image.asset->url,
+        artist->{ fullName },
+        year,
+        images
+      },
+      series[]->{
+        title,
+        artists[]->{ fullName },
+        "slug": slug.current,
+        artworks[]{
+          "slug": slug.current,
+          title,
+          year,
           "images": images.asset->url
         }
       }
