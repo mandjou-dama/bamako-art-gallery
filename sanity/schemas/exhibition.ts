@@ -28,6 +28,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "views",
+      title: "Vues de l'exposition",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
       name: "timeline",
       title: "Chronologie",
       type: "string",

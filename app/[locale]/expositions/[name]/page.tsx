@@ -3,7 +3,7 @@ import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import {
-  getExhibition,
+  getExhibitionViews,
   getExhibitionInfos,
   getExhibitionArtworks,
 } from "@/sanity/sanity.queries";
@@ -23,6 +23,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
   const t = await getTranslations("exposition");
 
   const exhibitionInfos = await getExhibitionInfos(name);
+  const exhibitionArtViews = await getExhibitionViews(name);
   const exhibitionArtworks = await getExhibitionArtworks(name);
 
   return (
@@ -80,11 +81,31 @@ export default async function ExpositionPage({ params }: { params: Params }) {
         </section>
       </div>
 
+      {exhibitionArtViews.views.length === 0 ? null : (
+        <section className="section exposition_images_section">
+          <div className="section_header">
+            <h4 className="section_title">{t("expoViews")}</h4>
+          </div>
+
+          <div className="exposition_images views">
+            {exhibitionArtViews.views.map((image: any, index: number) => {
+              return (
+                <img
+                  key={image.image}
+                  src={urlFor(image.image).auto("format").quality(80).url()}
+                  alt=""
+                />
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {exhibitionArtworks.artworks?.length > 0 ||
       exhibitionArtworks.series?.length > 0 ? (
         <section className="section exposition_images_section">
           <div className="section_header">
-            <h4 className="section_title">{t("expoImages")}</h4>
+            <h4 className="section_title">{t("expoArtworks")}</h4>
           </div>
 
           <div className="exposition_images">

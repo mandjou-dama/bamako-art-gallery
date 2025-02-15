@@ -61,11 +61,19 @@
   gap: 50px;
 }
 
+.exposition_images.views {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .exposition_images img {
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.exposition_images.views img {
+  aspect-ratio: 16/9;
 }
 
 .artwork_infos_1 {
@@ -142,5 +150,8 @@
   .exposition_artists {
     grid-template-columns: repeat(1, 1fr);
     gap: 50px;
+  }
+  .exposition_images.views {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

@@ -250,6 +250,7 @@ export const getSeriesByArtist = async (artistSlug: string) => {
   return data;
 };
 
+// TODO : DELETE THIS FETCH
 export const getExhibition = async (slug: string) => {
   const query = groq`
     *[_type == "exhibition" && slug.current == $slug][0] {
@@ -300,6 +301,19 @@ export const getExhibitionInfos = async (slug: string) => {
         fullName,
         "slug": slug.current,
        },
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getExhibitionViews = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      views[] {
+        "image" : asset->url
+      }
     }
   `;
 

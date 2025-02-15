@@ -67,7 +67,8 @@
     }
   },
   "exposition": {
-    "expoImages": "View of the exhibition",
+    "expoViews": "View of the exhibition",
+    "expoArtworks": "Artworks of the exhibition",
     "expoArtistes": "Artists of the exhibition"
   },
   "viewingRoom": {
