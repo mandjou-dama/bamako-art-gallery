@@ -14,7 +14,6 @@ import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
 import { Link } from "@/i18n/routing";
-import ActuCard from "@/components/cards/actu";
 
 type Params = Promise<{ name: string }>;
 

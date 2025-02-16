@@ -123,6 +123,60 @@
   text-decoration: underline;
 }
 
+/* PRESSE CONTAINER */
+.section_elements_wrapper.presse {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 50px;
+}
+
+.presse_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.image_container {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  background-color: #d0d0d052;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_container img {
+  width: 80%;
+  height: 80%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.presse_container .from {
+  font-weight: 200;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis at the end */
+}
+
+.presse_container .title {
+  font-weight: 300;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis at the end */
+}
+
 @media screen and (max-width: 859px) {
   .exposition_page_hero {
     display: flex;
@@ -159,5 +213,9 @@
   }
   .expo_artist_name {
     font-size: 14px;
+  }
+  .section_elements_wrapper.presse {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }

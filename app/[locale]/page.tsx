@@ -25,21 +25,21 @@ import Slider from "@/components/slider/slider";
 
 const slides = [
   {
-    link: "/works/serie/serie-1",
+    link: "/expositions/mana",
     image:
       "https://images.pexels.com/photos/30472381/pexels-photo-30472381/free-photo-of-portrait-de-mode-masculin-elegant-avec-un-eclairage-tamise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     name: "Exhibition 1",
     year: 2023,
   },
   {
-    link: "/works/serie/serie-2",
+    link: "/expositions/mana",
     image:
       "https://images.pexels.com/photos/27067424/pexels-photo-27067424/free-photo-of-mur-gris-d-un-immeuble-de-bureaux.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     name: "Exhibition 2",
     year: 2022,
   },
   {
-    link: "/works/serie/serie-3",
+    link: "/expositions/mana",
     image:
       "https://images.pexels.com/photos/30582649/pexels-photo-30582649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     name: "Exhibition 3",
