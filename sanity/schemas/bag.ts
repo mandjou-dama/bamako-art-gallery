@@ -8,10 +8,30 @@ export default defineType({
   icon: DashboardIcon,
   fields: [
     defineField({
+      name: "title",
+      title: "Titre",
+      type: "String",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "bio",
       title: "Bio de la galerie",
       type: "internationalizedArrayDescription",
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "home_slider",
+      title: "Slider de la page d'accueil",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
+      name: "about_slider",
+      title: "Slider de la page à propos",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.max(3),
     }),
     defineField({
       name: "image",

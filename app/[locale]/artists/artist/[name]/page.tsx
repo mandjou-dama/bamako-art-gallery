@@ -50,7 +50,9 @@ export default async function ArtistPage({ params }: { params: Params }) {
 
   return (
     <div className="artist_page">
-      <section className="section artist_page_hero">
+      <section
+        className={`section ${!artist.image ? "artist_page_hero no_image" : "artist_page_hero"} `}
+      >
         <div className="artist_page_hero_left">
           <div>
             <div className="section_header">
@@ -82,14 +84,16 @@ export default async function ArtistPage({ params }: { params: Params }) {
             />
           </div>
         </div>
-        <img
-          src={
-            artist.image
-              ? urlFor(artist.image).auto("format").quality(80).url()
-              : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
-          alt=""
-        />
+        {artist.image ? (
+          <img
+            src={
+              artist.image
+                ? urlFor(artist.image).auto("format").quality(80).url()
+                : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            }
+            alt=""
+          />
+        ) : null}
       </section>
 
       {exhibitions.length > 0 || artworks.length > 0 ? (

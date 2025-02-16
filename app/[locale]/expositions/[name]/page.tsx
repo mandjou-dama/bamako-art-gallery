@@ -22,6 +22,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
   const { name } = await params;
   const locale = await getLocale();
   const t = await getTranslations("exposition");
+  const t2 = await getTranslations("artiste");
 
   const exhibitionInfos = await getExhibitionInfos(name);
   const exhibitionArtViews = await getExhibitionViews(name);
@@ -82,7 +83,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
         </section>
       </div>
 
-      {exhibitionArtViews.views.length === 0 ? null : (
+      {exhibitionArtViews.views?.length > 0 ? (
         <section className="section exposition_images_section">
           <div className="section_header">
             <h4 className="section_title">{t("expoViews")}</h4>
@@ -100,7 +101,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
             })}
           </div>
         </section>
-      )}
+      ) : null}
 
       {exhibitionArtworks.artworks?.length > 0 ||
       exhibitionArtworks.series?.length > 0 ? (
@@ -145,24 +146,33 @@ export default async function ExpositionPage({ params }: { params: Params }) {
         </section>
       ) : null}
 
-      <div className="art_actu_wrapper">
+      {exhibitionInfos.presses?.length > 0 ? (
         <section className="section">
-          <div className="section_header">
-            <h4 className="section_title">Presse</h4>
-          </div>
-          <div className="section_elements_wrapper four_actu_elements">
-            {exhibitionInfos.presses.map((info: any) => (
-              <ActuCard
-                image={info.image}
-                title={info.title}
-                journal={info.journal}
-                key={info.title}
-                link={info.link}
-              />
+          <h4 className="section_title">{t2("news")}</h4>
+          <div className="section_elements_wrapper presse">
+            {exhibitionInfos.presses.map((presse: any) => (
+              <Link target="_blank" key={presse.title} href={presse.link}>
+                <div className="presse_container">
+                  <div className="image_container">
+                    <img
+                      src={urlFor(presse.image)
+                        .auto("format")
+                        .quality(80)
+                        .url()}
+                      alt=""
+                    />
+                  </div>
+
+                  <div>
+                    <p className="from">{presse.journal}</p>
+                    <p className="title">{presse.title}</p>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
-      </div>
+      ) : null}
 
       {/* <section className="section exposition_artists_section">
         <div className="section_header">
