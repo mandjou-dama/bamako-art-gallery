@@ -465,3 +465,70 @@ export const getExhibitionsByTimeline = async (timeline: string) => {
     return [];
   }
 };
+
+// FETCHES FOR VIEWING ROOM
+
+export const getViewingRoomItems = async () => {
+  const query = groq`
+     *[_type == "viewing"] {
+        title,
+        lieu,
+        "slug": slug.current,
+        "image": image.asset->url,
+    }
+  `;
+
+  try {
+    const roomItems = await client.fetch(query);
+    return roomItems || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching viewing room items:", error);
+    return null;
+  }
+};
+
+export const getViewingRoomItem = async (slug: string) => {
+  const query = groq`
+      *[_type == "viewing" && slug.current == $slug][0] {
+        title,
+        "image": image.asset->url,
+        "description_fr": description[_key == "fr"][0].value,
+        "description_en": description[_key == "en"][0].value,
+        images[] {
+          "image": asset->url
+        }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getViewingRoomItemArtwork = async (slug: string) => {
+  const query = groq`
+      *[_type == "viewing" && slug.current == $slug] {
+        artworks[]->{
+        title,
+        "slug": slug.current,
+        "image": image.asset->url,
+        artist->{ fullName },
+        year,
+        images
+      },
+      series[]->{
+        title,
+        artists[]->{ fullName },
+        "slug": slug.current,
+        artworks[]{
+          "slug": slug.current,
+          title,
+          year,
+          "images": images.asset->url
+        }
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};

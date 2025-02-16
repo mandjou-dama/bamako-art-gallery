@@ -75,6 +75,10 @@
     "hero": {
       "headline": "Viewing Room",
       "description": "The Viewing Room offers you an immersive experience in our most captivating collections. Whether you're at home or on the go, discover unique works, accompanied by exclusive stories and narratives."
+    },
+    "sections": {
+      "images": "Event Images",
+      "artworks": "Exhibited works"
     }
   },
   "artActu": {
