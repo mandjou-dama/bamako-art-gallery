@@ -301,6 +301,12 @@ export const getExhibitionInfos = async (slug: string) => {
         fullName,
         "slug": slug.current,
        },
+      presses[] {
+        "image" : photo.asset->url,
+        link,
+        title,
+        journal
+      }
     }
   `;
 

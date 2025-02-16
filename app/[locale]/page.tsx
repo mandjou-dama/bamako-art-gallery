@@ -107,7 +107,7 @@ export default async function Home({
         <div className="section_header">
           <h4 className="section_title">{t("sections.expositions.message")}</h4>
           <SeeMore
-            link="/viewing-room"
+            link="/expositions"
             message={t("sections.expositions.link")}
           />
         </div>
@@ -122,7 +122,7 @@ export default async function Home({
                   ? "exposition collective"
                   : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
               }
-              link={`/viewing-room/${exhibition.slug}`}
+              link={`/expositions/${exhibition.slug}`}
               fromSanity={true}
               image={exhibition.cover}
             />

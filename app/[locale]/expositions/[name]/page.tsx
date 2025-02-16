@@ -14,6 +14,7 @@ import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
 import { Link } from "@/i18n/routing";
+import ActuCard from "@/components/cards/actu";
 
 type Params = Promise<{ name: string }>;
 
@@ -143,6 +144,25 @@ export default async function ExpositionPage({ params }: { params: Params }) {
           </div>
         </section>
       ) : null}
+
+      <div className="art_actu_wrapper">
+        <section className="section">
+          <div className="section_header">
+            <h4 className="section_title">Presse</h4>
+          </div>
+          <div className="section_elements_wrapper four_actu_elements">
+            {exhibitionInfos.presses.map((info: any) => (
+              <ActuCard
+                image={info.image}
+                title={info.title}
+                journal={info.journal}
+                key={info.title}
+                link={info.link}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* <section className="section exposition_artists_section">
         <div className="section_header">

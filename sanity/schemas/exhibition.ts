@@ -69,6 +69,42 @@ export default defineType({
       of: [{ type: "reference", to: [{ type: "series" }] }],
     }),
     defineField({
+      name: "presses",
+      title: "Revues de presses",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Titre de l'article",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "journal",
+              title: "Nom du journal",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "link",
+              title: "Lien vers l'article",
+              type: "url",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "photo",
+              title: "Photo ou logo du journal ou de l'article",
+              type: "image",
+              options: { hotspot: true },
+            }),
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "home",
       title: "Sur la page d'accueil",
       type: "boolean",
