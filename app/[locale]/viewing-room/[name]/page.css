@@ -8,9 +8,14 @@
   margin-bottom: 20px;
 }
 
+.section.exposition_images_section.no_desc {
+  margin-top: 30px;
+}
+
 .section_title.viewing {
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .viewing_page_hero {
@@ -55,8 +60,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
-  background-color: red;
-  width: 100%;
 }
 
 .viewing_artworks img {
@@ -107,5 +110,21 @@
   .exposition_artists {
     grid-template-columns: repeat(1, 1fr);
     gap: 50px;
+  }
+  .section_header.viewing {
+    margin-top: 30px;
+  }
+  .section_title.viewing {
+    font-size: 18px;
+  }
+  .viewing_images {
+    gap: 30px;
+  }
+  .viewing_artworks {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .section.exposition_images_section.no_desc {
+    margin-top: 0px;
   }
 }

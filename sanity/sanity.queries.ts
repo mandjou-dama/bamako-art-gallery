@@ -506,7 +506,7 @@ export const getViewingRoomItem = async (slug: string) => {
 
 export const getViewingRoomItemArtwork = async (slug: string) => {
   const query = groq`
-      *[_type == "viewing" && slug.current == $slug] {
+      *[_type == "viewing" && slug.current == $slug][0] {
         artworks[]->{
         title,
         "slug": slug.current,
