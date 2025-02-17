@@ -2,7 +2,6 @@ import React from "react";
 import { getTranslations, getLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";
-import { urlFor } from "@/sanity/lib/image";
 import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
 
 import "./page.css";
@@ -23,16 +22,8 @@ export default async function Page() {
       </div>
 
       <div className="art_club_wrapper">
-        <section className="section">
+        {/* <section className="section">
           <div className="section_elements_wrapper two_club_elements">
-            <PortableText
-              className="portable_text"
-              value={
-                locale === "fr"
-                  ? artClub.art_club.description_fr
-                  : (artClub.art_club.description_en as PortableTextBlock[])
-              }
-            />
             <img
               src={urlFor(artClub.art_club.image)
                 .auto("format")
@@ -42,7 +33,7 @@ export default async function Page() {
               alt=""
             />
           </div>
-        </section>
+        </section> */}
         {/* <section className="section">
           <div className="section_elements_wrapper two_club_elements">
             <img
@@ -66,6 +57,36 @@ export default async function Page() {
             alt=""
           />
         </section> */}
+
+        <section className="section mali_art_image">
+          <div className="club_desc_container">
+            <PortableText
+              className="portable_text"
+              value={
+                locale === "fr"
+                  ? artClub.art_club.description_fr
+                  : (artClub.art_club.description_en as PortableTextBlock[])
+              }
+            />
+          </div>
+
+          <div className="iframe_container">
+            <iframe
+              style={{
+                border: "none",
+                width: "100%",
+                height: "100%",
+                left: 0,
+                top: 0,
+              }}
+              src="https://online.fliphtml5.com/cgphb/cyff/"
+              seamless
+              scrolling="no"
+              frameBorder={0}
+              allowFullScreen
+            ></iframe>
+          </div>
+        </section>
       </div>
     </div>
   );
