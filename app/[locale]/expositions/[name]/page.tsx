@@ -8,6 +8,7 @@ import {
   getExhibitionArtworks,
 } from "@/sanity/sanity.queries";
 import { ArtworkCard } from "@/components/cards/artwork_card";
+import { AnimatedImage } from "@/components/animated_image/animated_image";
 import { urlFor } from "@/sanity/lib/image";
 
 import PortableText from "@/components/portable_text/portable_text";
@@ -30,7 +31,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
   return (
     <div className="exposition_page">
       <div className="exposition_page_hero">
-        <img
+        <AnimatedImage
           src={
             exhibitionInfos.cover
               ? urlFor(exhibitionInfos.cover).auto("format").quality(80).url()
@@ -91,7 +92,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
           <div className="exposition_images views">
             {exhibitionArtViews.views.map((image: any, index: number) => {
               return (
-                <img
+                <AnimatedImage
                   key={image.image}
                   src={urlFor(image.image).auto("format").quality(80).url()}
                   alt=""

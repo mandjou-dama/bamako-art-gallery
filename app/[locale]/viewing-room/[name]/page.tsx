@@ -13,6 +13,7 @@ import { urlFor } from "@/sanity/lib/image";
 
 import PortableText from "@/components/portable_text/portable_text";
 import { ArtworkCard } from "@/components/cards/artwork_card";
+import { AnimatedImage } from "@/components/animated_image/animated_image";
 
 import "./page.css";
 
@@ -36,7 +37,7 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
           </h4>
         </div>
 
-        <img
+        <AnimatedImage
           src={
             room.image
               ? urlFor(room.image).auto("format").quality(80).url()
@@ -71,7 +72,7 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
         <div className="viewing_images">
           {room.images.map((image: any, index: number) => {
             return (
-              <img
+              <AnimatedImage
                 key={image.image}
                 src={urlFor(image.image).auto("format").quality(80).url()}
                 alt=""

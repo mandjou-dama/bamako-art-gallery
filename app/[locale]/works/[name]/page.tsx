@@ -9,6 +9,7 @@ import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
 import { PortableTextBlock } from "next-sanity";
+import { AnimatedImage } from "@/components/animated_image/animated_image";
 
 type Params = Promise<{ name: string }>;
 
@@ -29,7 +30,7 @@ export default async function WorkPage({ params }: { params: Params }) {
   return (
     <div className="work_page">
       <div className="work_page_hero">
-        <img
+        <AnimatedImage
           src={
             artwork.image
               ? urlFor(artwork.image).auto("format").quality(100).url()
