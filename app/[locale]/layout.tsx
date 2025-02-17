@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { ToastContainer } from "react-toastify";
 import { useNewsletterStore } from "@/store/useNewsletter";
 
 // components
@@ -52,6 +53,7 @@ export default async function LocaleLayout({
           <NewsletterPopup />
           <Navbar />
           <Cursor />
+          <ToastContainer position="top-left" theme="dark" />
           <div className="container">
             <Menu />
             {children}

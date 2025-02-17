@@ -25,7 +25,6 @@ async function Page({}: Props) {
       <div className="contact_hero">
         <div className="contact_hero_infos">
           <h4>Contact</h4>
-          <p>Blablabla</p>
         </div>
         <div className="separator"></div>
       </div>

@@ -41,6 +41,7 @@ const Footer = (props: Props) => {
       console.error("Error submitting form:", error);
       toast.error(t("newsletter.error"));
       setEmail("");
+      setLoading(false);
     }
   };
 
@@ -53,10 +54,7 @@ const Footer = (props: Props) => {
             <div className="footer_row_link_wrapper">
               <div className="footer_row_link_container">
                 <p className="footer_headline">{t("liensUtils.message")}</p>
-                <Link href="mailto:contact@bamakoartgallery.com">
-                  contact@bamakoartgallery.com
-                </Link>
-                <Link href={"tel:+22366667932"}>+223 66667932</Link>
+                <Link href="/contact">Contact</Link>
                 <Link href="mailto:contact@bamakoartgallery.com">
                   {t("liensUtils.inscription")}
                 </Link>
