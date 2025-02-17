@@ -39,6 +39,30 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "art_club",
+      title: "Mali Art Club",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "desc",
+              title: "Description",
+              type: "internationalizedArrayDescription",
+            }),
+            defineField({
+              name: "photo",
+              title: "Photo",
+              type: "image",
+              options: { hotspot: true },
+            }),
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.max(1).length(1),
+    }),
+    defineField({
       name: "team",
       title: "L'équipe",
       type: "array",

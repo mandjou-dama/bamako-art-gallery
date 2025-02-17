@@ -549,3 +549,23 @@ export const getBagSliderImages = async () => {
     return null;
   }
 };
+
+export const getMaliArtClubInfos = async () => {
+  const query = groq`
+     *[_type == "bag"][0] {
+      art_club[0] {
+        "image": photo.asset->url,
+        "description_fr": desc[_key == "fr"][0].value,
+        "description_en": desc[_key == "en"][0].value,
+      } 
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
+  }
+};

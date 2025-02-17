@@ -2,15 +2,15 @@ import React from "react";
 import { getTranslations, getLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";
+import { urlFor } from "@/sanity/lib/image";
+import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
 
 import "./page.css";
-
-import { getExhibition } from "@/sanity/sanity.queries";
 
 export default async function Page() {
   const locale = await getLocale();
   const t = await getTranslations("maliArt");
-  const exhibition = await getExhibition("entre-deux");
+  const artClub = await getMaliArtClubInfos();
 
   return (
     <div className="art_club_page">
@@ -29,17 +29,21 @@ export default async function Page() {
               className="portable_text"
               value={
                 locale === "fr"
-                  ? exhibition.description_fr
-                  : (exhibition.description_en as PortableTextBlock[])
+                  ? artClub.art_club.description_fr
+                  : (artClub.art_club.description_en as PortableTextBlock[])
               }
             />
             <img
-              src="https://images.pexels.com/photos/2911540/pexels-photo-2911540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src={urlFor(artClub.art_club.image)
+                .auto("format")
+                .format("webp")
+                .quality(80)
+                .url()}
               alt=""
             />
           </div>
         </section>
-        <section className="section">
+        {/* <section className="section">
           <div className="section_elements_wrapper two_club_elements">
             <img
               src="https://images.pexels.com/photos/30622575/pexels-photo-30622575/free-photo-of-couloir-de-galerie-artistique-avec-decor-encadre.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -54,14 +58,14 @@ export default async function Page() {
               }
             />
           </div>
-        </section>
+        </section> */}
 
-        <section className="section mali_art_image">
+        {/* <section className="section mali_art_image">
           <img
             src="https://images.pexels.com/photos/1321552/pexels-photo-1321552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt=""
           />
-        </section>
+        </section> */}
       </div>
     </div>
   );
