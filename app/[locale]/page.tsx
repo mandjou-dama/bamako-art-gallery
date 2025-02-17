@@ -25,25 +25,18 @@ import Slider from "@/components/slider/slider";
 
 const slides = [
   {
-    link: "/expositions/mana",
+    link: "/expositions/bolon",
     image:
-      "https://images.pexels.com/photos/30472381/pexels-photo-30472381/free-photo-of-portrait-de-mode-masculin-elegant-avec-un-eclairage-tamise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    name: "Exhibition 1",
-    year: 2023,
+      "https://scontent-lhr8-1.xx.fbcdn.net/v/t39.30808-6/475480776_977437894488353_6320175630276585998_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeH479MKMPmdXtft-peptQf8aqFeNBYwiKFqoV40FjCIoURVL_B8u13NnhEcCMM4yeeWGPXmwDhOkvJCkeOJnSaj&_nc_ohc=yBF0hFJDjC8Q7kNvgHbyQVg&_nc_oc=AdhUYGVznn-vUHFofrgLZKVMJICzblk4-ZIKs1-eLZ1_ziSuUmUyGWC6e91675HOUIrcxsLdFqYenR1PbeOTmPIF&_nc_zt=23&_nc_ht=scontent-lhr8-1.xx&_nc_gid=AaKEEPXmVgWgJ49wavFlrmm&oh=00_AYAyTXz6DePAmF7dnSQmyMuFWSYQnYEpBKsJOcZe04HrzA&oe=67B8BBD1",
+    name: "Bôlon",
+    year: "DU 15 MARS AU 14 JUIN 2025",
   },
   {
-    link: "/expositions/mana",
+    link: "/expositions/bolon",
     image:
-      "https://images.pexels.com/photos/27067424/pexels-photo-27067424/free-photo-of-mur-gris-d-un-immeuble-de-bureaux.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    name: "Exhibition 2",
-    year: 2022,
-  },
-  {
-    link: "/expositions/mana",
-    image:
-      "https://images.pexels.com/photos/30582649/pexels-photo-30582649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    name: "Exhibition 3",
-    year: 2021,
+      "https://cdn.sanity.io/images/o4huj4e2/production/d1132f330a8ad3526d325572b7062cdd1266281a-1080x1080.jpg",
+    name: "Bôlon",
+    year: "DU 15 MARS AU 14 JUIN 2025",
   },
 ];
 

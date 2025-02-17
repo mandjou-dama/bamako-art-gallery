@@ -20,25 +20,11 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "home_slider",
-      title: "Slider de la page d'accueil",
-      type: "array",
-      of: [{ type: "image", options: { hotspot: true } }],
-      validation: (Rule) => Rule.max(3),
-    }),
-    defineField({
       name: "about_slider",
-      title: "Slider de la page à propos",
+      title: "Images du slider sur la page À Propos",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
       validation: (Rule) => Rule.max(3),
-    }),
-    defineField({
-      name: "image",
-      title: "Photo de couverture",
-      type: "image",
-      options: { hotspot: true },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "tel",

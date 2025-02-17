@@ -395,7 +395,6 @@ export const getBagDetails = async () => {
     *[_type == "bag"][0] {
       "bio_fr": bio[_key == "fr"][0].value,
       "bio_en": bio[_key == "en"][0].value,
-      "image": image.asset->url,
       tel,
       email,
       team[]{
@@ -531,4 +530,22 @@ export const getViewingRoomItemArtwork = async (slug: string) => {
 
   const params = { slug };
   return await client.fetch(query, params);
+};
+
+export const getBagSliderImages = async () => {
+  const query = groq`
+    *[_type == "bag"][0] {
+      about_slider[] {
+          "image": asset->url
+        }
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
+  }
 };

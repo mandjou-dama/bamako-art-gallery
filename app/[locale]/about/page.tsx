@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { urlFor } from "@/sanity/lib/image";
 
-import { getBagDetails } from "@/sanity/sanity.queries";
+import { getBagDetails, getBagSliderImages } from "@/sanity/sanity.queries";
 
 import PortableText from "@/components/portable_text/portable_text";
 
@@ -15,23 +15,9 @@ export default async function Page() {
   const t = await getTranslations("about");
   const locale = await getLocale();
   const bag = await getBagDetails();
+  const images = await getBagSliderImages();
 
   const getDirectrice = bag.team.find((i: any) => i.role === "Directrice");
-
-  const slides = [
-    {
-      image:
-        "https://images.pexels.com/photos/30472381/pexels-photo-30472381/free-photo-of-portrait-de-mode-masculin-elegant-avec-un-eclairage-tamise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      image:
-        "https://images.pexels.com/photos/27067424/pexels-photo-27067424/free-photo-of-mur-gris-d-un-immeuble-de-bureaux.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      image:
-        "https://images.pexels.com/photos/30582649/pexels-photo-30582649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-  ];
 
   return (
     <div className="about_page">
@@ -49,15 +35,7 @@ export default async function Page() {
             <h4 className="section_title">Bamako Art Gallery</h4>
           </div>
           <div className="home_hero">
-            <Slider slides={slides} />
-            {/* <img
-              src={
-                bag.image
-                  ? urlFor(bag.image).auto("format").quality(80).url()
-                  : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              alt=""
-            /> */}
+            {images && <Slider slides={images.about_slider} />}
           </div>
 
           <div className="bag_description_container">
