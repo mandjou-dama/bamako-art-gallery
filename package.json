@@ -20,6 +20,7 @@
     "@sanity/preview-url-secret": "^2.0.0",
     "@sanity/vision": "^3.71.2",
     "@types/greensock": "^1.15.32",
+    "@vis.gl/react-google-maps": "^1.5.1",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.20",
     "date-fns": "^4.1.0",

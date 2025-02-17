@@ -12,6 +12,7 @@ import {
   LinkedIn,
 } from "@/icons";
 import { Link } from "@/i18n/routing";
+import CustomMap from "@/components/map/map";
 
 type Props = {};
 
@@ -110,17 +111,7 @@ function Page({}: Props) {
         </div>
 
         <div className="contact_container map_wrapper">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d124602.83320480409!2d-8.077256513259481!3d12.592890841970243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d12.597119399999999!2d-8.0336452!5e0!3m2!1sfr!2sml!4v1739753934147!5m2!1sfr!2sml"
-            width="100%"
-            height="100%"
-            style={{ border: 0, marginBottom: 30 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Google Map"
-            allow="geolocation"
-          ></iframe>
+          <CustomMap />
 
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=12.597119399999999,-8.0336452"

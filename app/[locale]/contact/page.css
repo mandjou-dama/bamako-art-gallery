@@ -56,6 +56,12 @@
   height: 600px;
 }
 
+.custom_map_wrapper {
+  height: 600px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
 .contact_element_wrapper p,
 .contact_element_wrapper a {
   text-transform: uppercase;
