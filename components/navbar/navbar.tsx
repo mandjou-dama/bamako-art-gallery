@@ -35,6 +35,7 @@ const Navbar = () => {
       { href: "/artists", key: "artistes", label: t("artistes") },
       { href: "/expositions", key: "expositions", label: t("expositions") },
       { href: "/viewing-room", key: "viewingRoom", label: t("viewingRoom") },
+      { href: "/mali-art", key: "mali-art", label: "Mali Art Club" },
       { href: "/art-actu", key: "artActu", label: t("artActu") },
       { href: "/about", key: "aPropos", label: t("aPropos") },
       { href: "/contact", key: "contact", label: "Contact" },

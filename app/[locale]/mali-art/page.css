@@ -1,0 +1,55 @@
+.art_club_page {
+  width: 100%;
+}
+
+.art_club_hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.art_club_hero_infos h4 {
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.art_club_hero_infos p {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 200;
+  width: 60%;
+}
+
+.art_club_wrapper .section:nth-child(1) {
+  margin-top: 40px;
+}
+
+.two_club_elements {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.two_club_elements img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.mali_art_image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 859px) {
+  .art_club_hero_infos p {
+    width: 100%;
+  }
+  .two_club_elements {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -42,8 +42,14 @@
 }
 
 .bag_description_container {
-  margin-top: 30px;
-  width: 50%;
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bag_description_container .prose.portable_text {
+  width: 65%;
 }
 
 .about_section {
@@ -178,6 +184,10 @@
     gap: 30px;
   }
 
+  .bag_description_container .prose.portable_text {
+    width: 95%;
+  }
+
   .team_container {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
@@ -201,6 +211,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+
+  .bag_description_container {
+    margin-top: 30px;
   }
 
   .team_card img {

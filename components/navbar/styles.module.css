@@ -69,7 +69,7 @@
   font-weight: 300;
 }
 
-@media screen and (max-width: 859px) {
+@media screen and (max-width: 1110px) {
   .links_container {
     display: none;
   }

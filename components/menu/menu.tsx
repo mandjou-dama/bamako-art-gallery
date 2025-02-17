@@ -30,6 +30,7 @@ const Menu = (props: Props) => {
     { path: "/artists", label: t("artistes") },
     { path: "/expositions", label: t("expositions") },
     { path: "/viewing-room", label: t("viewingRoom") },
+    { path: "/mali-art", label: "Mali Art Club" },
     { path: "/art-actu", label: t("artActu") },
     { path: "/about", label: t("aPropos") },
     { path: "/contact", label: "Contact" },
