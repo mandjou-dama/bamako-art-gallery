@@ -37,6 +37,7 @@ const Navbar = () => {
       { href: "/viewing-room", key: "viewingRoom", label: t("viewingRoom") },
       { href: "/art-actu", key: "artActu", label: t("artActu") },
       { href: "/about", key: "aPropos", label: t("aPropos") },
+      { href: "/contact", key: "contact", label: "Contact" },
     ],
     [t]
   );

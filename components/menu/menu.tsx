@@ -32,6 +32,7 @@ const Menu = (props: Props) => {
     { path: "/viewing-room", label: t("viewingRoom") },
     { path: "/art-actu", label: t("artActu") },
     { path: "/about", label: t("aPropos") },
+    { path: "/contact", label: "Contact" },
   ];
 
   // console.log(isOpen);
