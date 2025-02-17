@@ -11,7 +11,7 @@ type Props = {
     link?: string;
     image: string;
     name?: string;
-    year?: number;
+    year?: number | string;
   }[];
 };
 
