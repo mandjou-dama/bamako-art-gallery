@@ -142,5 +142,12 @@
     "taille": "Dimensions",
     "price": "Price",
     "category": "Category"
+  },
+  "contact": {
+    "social": "Social Networks",
+    "map": "Map",
+    "openMap": "Open in Google Map",
+    "hour": "Open from Monday to Saturday, from 10H to 18H",
+    "street": "Baco Djicoroni ACI, Street: 636, Door: 528 Near Sotelma Malitel, Bamako, Mali"
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { getTranslations } from "next-intl/server";
 
 import "./page.css";
 import {
@@ -16,7 +17,9 @@ import CustomMap from "@/components/map/map";
 
 type Props = {};
 
-function Page({}: Props) {
+async function Page({}: Props) {
+  const t = await getTranslations("contact");
+
   return (
     <div className="contact_page">
       <div className="contact_hero">
@@ -35,14 +38,11 @@ function Page({}: Props) {
         <div className="contact_container">
           <div className="contact_element_wrapper">
             <Clock />
-            <p>Du Lundi au Samedi, De 10H à 18H</p>
+            <p>{t("hour")}</p>
           </div>
           <div className="contact_element_wrapper">
             <Location />
-            <p>
-              Baco Djicoroni ACI, Rue: 636, Porte:528 Près de la sotelma
-              Malitel, Bamako, Mali
-            </p>
+            <p>{t("street")}</p>
           </div>
           <div className="contact_element_wrapper">
             <Phone />
@@ -59,7 +59,7 @@ function Page({}: Props) {
 
       <section className="section contact">
         <div className="section_header">
-          <h4 className="section_title">Réseaux</h4>
+          <h4 className="section_title">{t("social")}</h4>
         </div>
 
         <div className="contact_container">
@@ -107,7 +107,7 @@ function Page({}: Props) {
 
       <section className="section contact">
         <div className="section_header">
-          <h4 className="section_title">Carte</h4>
+          <h4 className="section_title">{t("map")}</h4>
         </div>
 
         <div className="contact_container map_wrapper">
@@ -119,7 +119,7 @@ function Page({}: Props) {
             rel="noopener noreferrer"
             className="maps_button"
           >
-            Open Google Maps
+            {t("openMap")}
           </a>
         </div>
       </section>
