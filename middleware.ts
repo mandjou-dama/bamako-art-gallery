@@ -4,7 +4,7 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
 // Activer/Désactiver le mode maintenance
-const isUnderMaintenance = false;
+const isUnderMaintenance = true;
 
 export default function middleware(request: NextRequest) {
   // Vérifier si le site est en maintenance
