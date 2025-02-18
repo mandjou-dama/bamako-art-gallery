@@ -555,9 +555,13 @@ export const getMaliArtClubInfos = async () => {
   const query = groq`
      *[_type == "bag"][0] {
       art_club[0] {
-        "image": photo.asset->url,
         "description_fr": desc[_key == "fr"][0].value,
         "description_en": desc[_key == "en"][0].value,
+        links[] {
+          link,
+          "image": photo.asset->url,
+          title
+        }
       } 
     }
   `;

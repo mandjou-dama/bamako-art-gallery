@@ -52,10 +52,35 @@ export default defineType({
               type: "internationalizedArrayDescription",
             }),
             defineField({
-              name: "photo",
-              title: "Photo",
-              type: "image",
-              options: { hotspot: true },
+              name: "links",
+              title: "Liens Externes",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "title",
+                      title: "Titre de la page",
+                      type: "string",
+                      validation: (Rule) => Rule.required(),
+                    }),
+                    defineField({
+                      name: "link",
+                      title: "Lien vers la page",
+                      type: "url",
+                      validation: (Rule) => Rule.required(),
+                    }),
+                    defineField({
+                      name: "photo",
+                      title: "Photo ou logo du journal ou de la page",
+                      type: "image",
+                      options: { hotspot: true },
+                      validation: (Rule) => Rule.required(),
+                    }),
+                  ],
+                },
+              ],
             }),
           ],
         },

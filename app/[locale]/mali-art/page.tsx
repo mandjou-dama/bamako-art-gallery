@@ -5,12 +5,14 @@ import PortableText from "@/components/portable_text/portable_text";
 import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
 
 import "./page.css";
+import ActuCard from "@/components/cards/actu";
 
 export default async function Page() {
   const locale = await getLocale();
   const t = await getTranslations("maliArt");
   const artClub = await getMaliArtClubInfos();
 
+  console.log(artClub);
   return (
     <div className="art_club_page">
       <div className="art_club_hero">
@@ -101,12 +103,23 @@ export default async function Page() {
           </a>
         </section>
 
-        <section className="section mali_art_image">
+        <section className="section club_links_container">
           <div className="section_header">
             <h4 className="section_title">Ressources externes</h4>
           </div>
 
-          <div className=""></div>
+          <div className="section_elements_wrapper four_actu_elements">
+            {artClub.art_club.links?.map((info: any) => (
+              <ActuCard
+                image={info.image}
+                title={info.title}
+                journal={info.journal}
+                key={info.title}
+                link={info.link}
+                notArticle={false}
+              />
+            ))}
+          </div>
         </section>
       </div>
     </div>

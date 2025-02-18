@@ -9,7 +9,8 @@
   },
   "components": {
     "actuCard": {
-      "link": "Lire l'article"
+      "link": "Lire l'article",
+      "link2": "En savoir plus"
     },
     "artworkCard": {
       "available": "Disponible"

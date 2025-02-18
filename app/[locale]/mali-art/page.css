@@ -39,7 +39,7 @@
 }
 
 .club_desc_container {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   width: 60%;
 }
 
@@ -73,6 +73,10 @@
   height: 15px;
 }
 
+.club_links_container {
+  margin-top: 100px;
+}
+
 @media screen and (max-width: 859px) {
   .art_club_hero_infos p {
     width: 100%;
@@ -82,5 +86,15 @@
   }
   .club_desc_container {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .join_club {
+    width: 100%;
+  }
+
+  .club_links_container {
+    margin-top: 70px;
   }
 }
