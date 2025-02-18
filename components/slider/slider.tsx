@@ -94,7 +94,12 @@ const Slider = ({ slides }: Props) => {
             style={{ display: index === currentSlide ? "flex" : "none" }}
           >
             {/* <img src={urlFor(slide.image).url()} alt={slide.name} /> */}
-            <img src={slide.image} alt={slide.name} />
+            <img
+              className="background_image"
+              src={slide.image}
+              alt={slide.name}
+            />
+            <img className="front_image" src={slide.image} alt={slide.name} />
             <div className="home_hero_slider_overlay"></div>
 
             <div className="hero_slider_footer">

@@ -194,6 +194,35 @@
   }
 }
 
+@media screen and (max-width: 712px) {
+  .home_hero_slider {
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+  }
+
+  .home_hero_slider_overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(30, 30, 30, 0.8) 0%,
+      rgba(30, 30, 30, 0.8) 100%
+    );
+  }
+
+  .home_hero_slider .background_image {
+    filter: blur(5px);
+  }
+
+  .home_hero_slider .front_image {
+    aspect-ratio: 16/9;
+    height: auto;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30px);
+    z-index: 4;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .about_section img {
     height: auto;
@@ -228,5 +257,12 @@
 
   .member_name {
     font-size: 14px;
+  }
+  .home_hero_slider {
+    height: 50vh;
+  }
+  .home_hero_slider .front_image {
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
