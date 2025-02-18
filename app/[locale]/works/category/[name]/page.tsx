@@ -64,6 +64,7 @@ export default async function Page({ params }: { params: Params }) {
               title={artwork.title}
               artist={artwork.artist.fullName}
               year={artwork.year}
+              isAvailable={artwork.vendu === "oui" ? false : true}
               key={`${artwork.slug.current}+${artwork.title}`}
             />
           );

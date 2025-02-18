@@ -84,9 +84,18 @@ export default defineType({
               type: "number",
             }),
             defineField({
-              name: "price",
-              title: "Prix de l'œuvre",
-              type: "number",
+              name: "vendu",
+              title: "Disponibilité",
+              description: "Est-ce que l'oeuvre à été vendu ?",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Oui", value: "oui" },
+                  { title: "Non", value: "non" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "non",
             }),
             defineField({
               name: "images",

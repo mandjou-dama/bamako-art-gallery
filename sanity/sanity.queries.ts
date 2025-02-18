@@ -17,10 +17,10 @@ export const getArtworksByCategory = async (category: string) => {
     *[_type == "artwork" && category == $category] {
       title,
       slug,
+      vendu,
       "image": image.asset->url,
       artist->{ fullName },
       year,
-      price,
       images
     }
   `;
@@ -41,6 +41,7 @@ export const getArtworkBySlug = async (slug: string) => {
       "description_en": description[_key == "en"][0].value,
       "technique_fr": technique[_key == "fr"][0].value,
       "technique_en": technique[_key == "en"][0].value,
+      vendu,
       artist->{ 
         fullName, 
       },

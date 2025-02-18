@@ -86,24 +86,26 @@ export default async function WorkPage({ params }: { params: Params }) {
             </p>
           </div>
 
-          <a href={mailContent(artwork)} className="inquire">
-            {locale === "fr" ? "Acquérir" : "Inquire"}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-move-up-right"
-            >
-              <path d="M13 5H19V11" />
-              <path d="M19 5L5 19" />
-            </svg>
-          </a>
+          {artwork.vendu && artwork.vendu === "non" ? (
+            <a href={mailContent(artwork)} className="inquire">
+              {locale === "fr" ? "Acquérir" : "Inquire"}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-move-up-right"
+              >
+                <path d="M13 5H19V11" />
+                <path d="M19 5L5 19" />
+              </svg>
+            </a>
+          ) : null}
         </section>
       </div>
 

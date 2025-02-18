@@ -172,7 +172,11 @@
 
 .artwork_infos_2 p {
   font-size: 14px;
-  font-weight: 200;
+  font-weight: 400 !important;
+}
+
+.artwork_available {
+  font-size: 8px;
 }
 
 /* MEDIA QUERIES */

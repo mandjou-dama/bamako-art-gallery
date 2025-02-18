@@ -17,6 +17,7 @@ type ArtworkType = {
   title: string;
   artist: string;
   year: number;
+  isAvailable?: boolean;
 };
 
 export const ArtworkCard = ({
@@ -25,6 +26,7 @@ export const ArtworkCard = ({
   title,
   artist,
   year,
+  isAvailable,
 }: ArtworkType) => {
   const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
 
@@ -60,6 +62,7 @@ export const ArtworkCard = ({
         </div>
         <div className="artwork_infos_2">
           <p>{year !== 0 ? year : ""}</p>
+          {isAvailable ? <p className="artwork_available">Disponible</p> : null}
         </div>
       </Link>
     </div>

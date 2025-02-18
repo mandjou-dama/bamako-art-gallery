@@ -67,9 +67,18 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "price",
-      title: "Prix",
-      type: "number",
+      name: "vendu",
+      title: "Disponibilité",
+      description: "Est-ce que l'oeuvre à été vendu ?",
+      type: "string",
+      options: {
+        list: [
+          { title: "Oui", value: "oui" },
+          { title: "Non", value: "non" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "non",
     }),
     defineField({
       name: "images",
