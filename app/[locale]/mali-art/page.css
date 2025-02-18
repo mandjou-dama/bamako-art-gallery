@@ -43,10 +43,6 @@
   width: 60%;
 }
 
-.iframe_container {
-  height: 700px;
-}
-
 .mali_art_image {
   width: 100%;
 }
@@ -67,11 +63,5 @@
   }
   .club_desc_container {
     width: 100%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .iframe_container {
-    height: 300px;
   }
 }

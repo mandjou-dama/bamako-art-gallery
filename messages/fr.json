@@ -10,6 +10,9 @@
   "components": {
     "actuCard": {
       "link": "Lire l'article"
+    },
+    "artworkCard": {
+      "available": "Disponible"
     }
   },
   "home": {
@@ -78,7 +81,8 @@
     },
     "sections": {
       "images": "Images de l'évènement",
-      "artworks": "Oeuvres exposées"
+      "artworks": "Oeuvres exposées",
+      "catalog": "Grand Catalogue"
     }
   },
   "artActu": {

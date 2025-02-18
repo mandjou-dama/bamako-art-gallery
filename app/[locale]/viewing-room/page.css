@@ -25,8 +25,19 @@
   margin-top: 40px;
 }
 
+.iframe_container {
+  height: 700px;
+  margin-top: 30px;
+}
+
 @media screen and (max-width: 859px) {
   .viewing_room_hero_infos p {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .iframe_container {
+    height: 300px;
   }
 }

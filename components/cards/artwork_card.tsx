@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
 import { Link } from "@/i18n/routing";
 import { urlFor } from "@/sanity/lib/image";
+import { useTranslations } from "next-intl";
 
 import "./styles.css"; // Import your CSS file
 
@@ -28,6 +29,7 @@ export const ArtworkCard = ({
   year,
   isAvailable,
 }: ArtworkType) => {
+  const t = useTranslations("components");
   const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
 
   // GSAP animation
@@ -62,7 +64,9 @@ export const ArtworkCard = ({
         </div>
         <div className="artwork_infos_2">
           <p>{year !== 0 ? year : ""}</p>
-          {isAvailable ? <p className="artwork_available">Disponible</p> : null}
+          {isAvailable ? (
+            <p className="artwork_available">{t("artworkCard.available")}</p>
+          ) : null}
         </div>
       </Link>
     </div>

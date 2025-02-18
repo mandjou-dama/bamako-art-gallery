@@ -133,7 +133,7 @@ button {
 
 .section_elements_wrapper.rounded_four_elements .small_card_image_container {
   aspect-ratio: 1/1;
-  border-radius: 100%;
+  margin-bottom: 10px;
 }
 
 .section_elements_wrapper.rounded_four_elements .small_card {
@@ -337,7 +337,7 @@ button {
   }
   .section_elements_wrapper.rounded_four_elements {
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 20px;
   }
   .section_elements_wrapper.three_elements .small_card_image_container {
     aspect-ratio: auto;

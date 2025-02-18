@@ -164,8 +164,8 @@
     height: 50vh;
   }
   .home_hero_slider .front_image {
-    top: 40%;
-    transform: translate(-50%, -40%);
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   .hero_slider_footer h3 {
     font-size: 14px;

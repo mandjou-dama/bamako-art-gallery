@@ -69,23 +69,6 @@ export default async function Page() {
               }
             />
           </div>
-
-          <div className="iframe_container">
-            <iframe
-              style={{
-                border: "none",
-                width: "100%",
-                height: "100%",
-                left: 0,
-                top: 0,
-              }}
-              src="https://online.fliphtml5.com/cgphb/cyff/"
-              seamless
-              scrolling="no"
-              frameBorder={0}
-              allowFullScreen
-            ></iframe>
-          </div>
         </section>
       </div>
     </div>
