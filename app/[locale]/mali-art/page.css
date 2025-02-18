@@ -54,6 +54,25 @@
   object-fit: cover;
 }
 
+.join_club {
+  background-color: black;
+  color: white;
+  padding: 10px 30px;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 5px;
+}
+
+.join_club svg {
+  width: 15px;
+  height: 15px;
+}
+
 @media screen and (max-width: 859px) {
   .art_club_hero_infos p {
     width: 100%;

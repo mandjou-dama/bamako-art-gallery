@@ -69,6 +69,44 @@ export default async function Page() {
               }
             />
           </div>
+
+          <a
+            href={`mailto:?subject=${encodeURIComponent(
+              locale === "fr"
+                ? "Demande d'inscription à Mali Art Club"
+                : "Request for Membership at Mali Art Club"
+            )}&body=${encodeURIComponent(
+              locale === "fr"
+                ? "Bonjour,\n\nJe souhaite m'inscrire au Mali Art Club. Pouvez-vous m'envoyer plus d'informations ?\n\nMerci."
+                : "Hello,\n\nI would like to join the Mali Art Club. Could you send me more information?\n\nThank you."
+            )}`}
+            className="join_club"
+          >
+            {t("join")}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-move-up-right"
+            >
+              <path d="M13 5H19V11" />
+              <path d="M19 5L5 19" />
+            </svg>
+          </a>
+        </section>
+
+        <section className="section mali_art_image">
+          <div className="section_header">
+            <h4 className="section_title">Ressources externes</h4>
+          </div>
+
+          <div className=""></div>
         </section>
       </div>
     </div>

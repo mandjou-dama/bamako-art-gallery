@@ -2,10 +2,11 @@
   display: inline-block;
   font-weight: 200;
   line-height: 1.6;
+  margin-bottom: 10px;
 }
 
 .portable_text_strong {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .portable_text_bullet_list,
