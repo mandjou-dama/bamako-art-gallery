@@ -11,7 +11,7 @@ import {
 type Props = {};
 
 function CustomMap({}: Props) {
-  const position = { lat: 12.602374534612647, lng: -8.032967880449931 };
+  const position = { lat: 12.599130487778556, lng: -8.031064066628629 };
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
   const mapID = process.env.NEXT_PUBLIC_GOOGLE_MAP_ID!;
