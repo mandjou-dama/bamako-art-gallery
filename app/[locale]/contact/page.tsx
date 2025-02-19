@@ -111,9 +111,8 @@ async function Page({}: Props) {
 
         <div className="contact_container map_wrapper">
           <CustomMap />
-
           <a
-            href="https://www.google.com/maps/dir/?api=1&destination=12.597119399999999,-8.0336452"
+            href="https://www.google.com/maps/dir/?api=1&destination=12.59914202526509,-8.031052244464721"
             target="_blank"
             rel="noopener noreferrer"
             className="maps_button"
