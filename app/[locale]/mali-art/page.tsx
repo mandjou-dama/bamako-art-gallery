@@ -73,7 +73,7 @@ export default async function Page() {
           </div>
 
           <a
-            href={`mailto:?subject=${encodeURIComponent(
+            href={`mailto:contact@bamakoartgallery.com?subject=${encodeURIComponent(
               locale === "fr"
                 ? "Demande d'inscription à Mali Art Club"
                 : "Request for Membership at Mali Art Club"
@@ -105,7 +105,7 @@ export default async function Page() {
 
         <section className="section club_links_container">
           <div className="section_header">
-            <h4 className="section_title">Ressources externes</h4>
+            <h4 className="section_title">{t("activity")}</h4>
           </div>
 
           <div className="section_elements_wrapper four_actu_elements">
