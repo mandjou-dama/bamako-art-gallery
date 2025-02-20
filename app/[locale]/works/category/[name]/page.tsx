@@ -13,6 +13,10 @@ import "./page.css";
 
 type Params = Promise<{ name: string }>;
 
+export const metadata = {
+  title: "Catégorie",
+};
+
 function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }

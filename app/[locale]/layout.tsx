@@ -22,10 +22,48 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
+// export const metadata: Metadata = {
+//   title: "Bamako Art Gallery",
+//   description:
+//     "Fondée en 2018 par Kadiatou Sylla, Bamako Art Gallery (BAG) est un lieu d’échanges artistiques dédié à l’art contemporain, antique, au design et à l’artisanat d’Afrique de l’Ouest. BAG valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
+// };
+
 export const metadata: Metadata = {
-  title: "Bamako Art Gallery",
+  metadataBase: new URL("https://bamakoartgallery.com"),
+  title: {
+    default: "Bamako Art Galley",
+    template: "%s | Bamako Art Galley",
+  },
   description:
     "Fondée en 2018 par Kadiatou Sylla, Bamako Art Gallery (BAG) est un lieu d’échanges artistiques dédié à l’art contemporain, antique, au design et à l’artisanat d’Afrique de l’Ouest. BAG valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
+  openGraph: {
+    title: "Bamako Art Galley",
+    description:
+      "Bamako Art Galley valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
+    url: "https://bamakoartgallery.com",
+    siteName: "Bamako Art Gallery",
+    images: [
+      {
+        url: "https://bamakoartgallery.com/opengraph-image.jpg",
+        width: 1200,
+        height: 600,
+      },
+    ],
+    locale: "fr-FR",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  referrer: "origin-when-cross-origin",
 };
 
 export default async function LocaleLayout({
