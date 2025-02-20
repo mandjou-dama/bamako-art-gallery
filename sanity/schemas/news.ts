@@ -30,6 +30,7 @@ export default defineType({
       title: "Photo ou logo du journal ou de l'article",
       type: "image",
       options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
     }),
   ],
 });

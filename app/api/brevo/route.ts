@@ -1,6 +1,6 @@
 // app/api/brevo/route.ts
 import { NextResponse } from "next/server";
-import brevo from "@getbrevo/brevo";
+import * as brevo from "@getbrevo/brevo";
 
 export async function POST(request: Request) {
   try {
@@ -9,9 +9,15 @@ export async function POST(request: Request) {
     // Initialize the Brevo API client
     let apiInstance = new brevo.ContactsApi();
 
+    const brevoKey = process.env.NEXT_PUBLIC_BREVO_API!;
+
+    if (!brevoKey) {
+      throw new Error("Brevo API key is not defined in environment variables");
+    }
+
     apiInstance.setApiKey(
       brevo.ContactsApiApiKeys.apiKey,
-      "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" // Use environment variable for security
+      brevoKey // Use environment variable for security
     );
 
     // Create a new contact

@@ -1,20 +1,20 @@
 import { getTranslations } from "next-intl/server";
-import { getViewingRoomExhibitions } from "@/sanity/sanity.queries";
+import { getViewingRoomItems } from "@/sanity/sanity.queries";
 
 import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
 
 export default async function Page() {
-  const t = await getTranslations("viewingRoom.hero");
-  const exhibitions = await getViewingRoomExhibitions();
+  const t = await getTranslations("viewingRoom");
+  const roomItems = await getViewingRoomItems();
 
   return (
     <div className="viewing_room_page">
       <div className="viewing_room_hero">
         <div className="viewing_room_hero_infos">
-          <h4>{t("headline")}</h4>
-          <p>{t("description")}</p>
+          <h4>{t("hero.headline")}</h4>
+          <p>{t("hero.description")}</p>
         </div>
         <div className="separator"></div>
       </div>
@@ -22,22 +22,40 @@ export default async function Page() {
       <div className="viewing_room_wrapper">
         <section className="section">
           <div className="section_elements_wrapper three_elements">
-            {exhibitions.map((exhibition: any) => (
+            {roomItems.map(({ title, lieu, slug, image }: any) => (
               <SmallCard
-                key={exhibition.title}
-                name={exhibition.title}
-                subline={
-                  exhibition.artists.length > 2
-                    ? "exposition collective"
-                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
-                }
-                link={`/viewing-room/${exhibition.slug}`}
-                image={exhibition.cover}
+                key={title}
+                name={title}
+                subline={lieu}
+                link={`/viewing-room/${slug}`}
+                image={image}
               />
             ))}
           </div>
         </section>
       </div>
+
+      <section className="section">
+        <div className="section_header">
+          <h4 className="section_title">{t("sections.catalog")}</h4>
+        </div>
+        <div className="iframe_container">
+          <iframe
+            style={{
+              border: "none",
+              width: "100%",
+              height: "100%",
+              left: 0,
+              top: 0,
+            }}
+            src="https://online.fliphtml5.com/cgphb/cyff/"
+            seamless
+            scrolling="no"
+            frameBorder={0}
+            allowFullScreen
+          ></iframe>
+        </div>
+      </section>
     </div>
   );
 }

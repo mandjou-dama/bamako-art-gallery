@@ -9,31 +9,27 @@ type Props = {
   image?: any;
   journal?: string;
   title?: string;
+  notArticle?: boolean;
 };
 
 import "./styles.css";
 
-const ActuCard = async ({ link, image, journal, title }: Props) => {
+const ActuCard = async ({ link, image, journal, title, notArticle }: Props) => {
   const t = await getTranslations("components");
 
   return (
     <Link target="_blank" href={link ? link : ""} className="actu_card">
-      <Image
-        width={1260}
-        height={750}
-        src={urlFor(image).auto("format").width(300).url()}
-        alt=""
-      />
+      <img src={urlFor(image).auto("format").width(300).url()} alt={title} />
 
       <div className="actu_card_infos">
         <div>
-          <p className="actu_card_info_subline">{journal || "Jeune Afrique"}</p>
-          <p className="actu_card_info_title">{title || "Titre"}</p>
+          {journal && <p className="actu_card_info_subline">{journal}</p>}
+          <p className="actu_card_info_title">{title}</p>
         </div>
 
         <div className="actu_card_link_wrapper">
           <div className="actu_card_link_text">
-            <p>{t("actuCard.link")}</p>
+            <p>{!notArticle ? t("actuCard.link2") : t("actuCard.link")}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

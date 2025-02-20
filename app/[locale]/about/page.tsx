@@ -3,38 +3,19 @@ import Image from "next/image";
 
 import { urlFor } from "@/sanity/lib/image";
 
-import { getBagDetails } from "@/sanity/sanity.queries";
+import { getBagDetails, getBagSliderImages } from "@/sanity/sanity.queries";
 
 import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
 import { PortableTextBlock } from "next-sanity";
-
-const team = [
-  {
-    name: "Kadiatou Sylla",
-    role: "Directrice",
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    name: "Madina Bah",
-    role: "Art Advisor",
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    name: "Kadi Maïga",
-    role: "Financière",
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-];
+import Slider from "@/components/slider/slider";
 
 export default async function Page() {
   const t = await getTranslations("about");
   const locale = await getLocale();
   const bag = await getBagDetails();
+  const images = await getBagSliderImages();
 
   const getDirectrice = bag.team.find((i: any) => i.role === "Directrice");
 
@@ -53,26 +34,23 @@ export default async function Page() {
           <div className="section_header">
             <h4 className="section_title">Bamako Art Gallery</h4>
           </div>
-          <div className="about_hero_images">
-            <img
-              src={
-                bag.image
-                  ? urlFor(bag.image).auto("format").quality(80).url()
-                  : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              alt=""
-            />
+          <div className="home_hero">
+            {images && <Slider slides={images.about_slider} />}
           </div>
 
-          <PortableText
-            className="portable_text"
-            value={
-              locale === "fr" ? bag.bio_fr : (bag.bio_en as PortableTextBlock[])
-            }
-          />
+          <div className="bag_description_container">
+            <PortableText
+              className="portable_text"
+              value={
+                locale === "fr"
+                  ? bag.bio_fr
+                  : (bag.bio_en as PortableTextBlock[])
+              }
+            />
+          </div>
         </section>
 
-        <section className="section">
+        {/* <section className="section">
           <div className="section_header">
             <h4 className="section_title">Kadiatou Sylla</h4>
           </div>
@@ -104,7 +82,7 @@ export default async function Page() {
               alt=""
             />
           </div>
-        </section>
+        </section> */}
 
         <section className="section">
           <div className="section_header">

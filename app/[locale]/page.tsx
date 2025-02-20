@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import "./page.css";
@@ -14,6 +14,8 @@ import {
   getArtistsForHome,
   fetchLatestNews,
   fetchHomeExhibitions,
+  getHomeSliderExhibitions,
+  getHomeSliderImages,
 } from "@/sanity/sanity.queries";
 
 //import categories images
@@ -23,30 +25,6 @@ import Sculpture from "@/public/assets/sculpture.jpeg";
 import Peinture from "@/public/assets/peinture.jpeg";
 import Slider from "@/components/slider/slider";
 
-const slides = [
-  {
-    link: "/works/serie/serie-1",
-    image:
-      "https://images.pexels.com/photos/30472381/pexels-photo-30472381/free-photo-of-portrait-de-mode-masculin-elegant-avec-un-eclairage-tamise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    name: "Exhibition 1",
-    year: 2023,
-  },
-  {
-    link: "/works/serie/serie-2",
-    image:
-      "https://images.pexels.com/photos/27067424/pexels-photo-27067424/free-photo-of-mur-gris-d-un-immeuble-de-bureaux.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    name: "Exhibition 2",
-    year: 2022,
-  },
-  {
-    link: "/works/serie/serie-3",
-    image:
-      "https://images.pexels.com/photos/30582649/pexels-photo-30582649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    name: "Exhibition 3",
-    year: 2021,
-  },
-];
-
 export default async function Home({
   params,
 }: {
@@ -54,9 +32,36 @@ export default async function Home({
 }) {
   const slug = (await params).locale;
   const t = await getTranslations("home");
+  const locale = await getLocale();
   const artists = await getArtistsForHome();
   const news = await fetchLatestNews();
   const exhibitions = await fetchHomeExhibitions();
+  const sliderExhibitions = await getHomeSliderExhibitions();
+  const sliderSimpleImages = await getHomeSliderImages();
+
+  const slides = sliderExhibitions.flatMap((item: any) => {
+    const link = `/expositions/${item.slug}`; // Create the link dynamically
+    const name = item.title; // Use the title as the name
+    const year = `${formatDate(item.date.date_debut)} - ${formatDate(item.date.date_fin)}`; // Format the date range
+
+    // Map over slider_images to create individual slides
+    return item.slider_images.map((image: any) => ({
+      link,
+      image: image.image, // Use the image URL directly
+      name,
+      year,
+    }));
+  });
+
+  // Helper function to format the date
+  function formatDate(dateString: any) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
 
   return (
     <div className="home_page">
@@ -68,7 +73,9 @@ export default async function Home({
 
         <div className="separator"></div>
 
-        <Slider slides={slides} />
+        <Slider
+          slides={slides.length > 0 ? slides : sliderSimpleImages.home_slider}
+        />
 
         <div className="separator"></div>
       </div>
@@ -107,7 +114,7 @@ export default async function Home({
         <div className="section_header">
           <h4 className="section_title">{t("sections.expositions.message")}</h4>
           <SeeMore
-            link="/viewing-room"
+            link="/expositions"
             message={t("sections.expositions.link")}
           />
         </div>
@@ -122,7 +129,7 @@ export default async function Home({
                   ? "exposition collective"
                   : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
               }
-              link={`/viewing-room/${exhibition.slug}`}
+              link={`/expositions/${exhibition.slug}`}
               fromSanity={true}
               image={exhibition.cover}
             />

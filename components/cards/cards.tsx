@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
 import { urlFor } from "@/sanity/lib/image";
+import { useTranslations } from "next-intl";
 
 import "./styles.css";
 
@@ -19,6 +20,7 @@ export const SmallCard = ({
   link,
   hideCategory = false,
   fromSanity = false,
+  isAvailable = false,
 }: {
   subline?: string;
   name?: string;
@@ -26,8 +28,11 @@ export const SmallCard = ({
   link?: string;
   hideCategory?: boolean;
   fromSanity?: boolean;
+  isAvailable?: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
+
+  const t = useTranslations("components");
 
   // GSAP animation
   useGSAP(() => {
@@ -87,6 +92,10 @@ export const SmallCard = ({
         <p className="small_card_footer_name">
           {name ? name : "Lorem ipsum, dolor sit amet consectetur adipisicing."}
         </p>
+
+        {isAvailable ? (
+          <p className="artwork_available">{t("artworkCard.available")}</p>
+        ) : null}
 
         <div className="separator"></div>
       </Link>

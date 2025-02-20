@@ -1,8 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
 import React from "react";
-import Image from "next/image";
-import { Link } from "@/i18n/routing";
 
 import {
   getArtworksByCategory,
@@ -14,6 +12,10 @@ import { ArtworkCard } from "@/components/cards/artwork_card";
 import "./page.css";
 
 type Params = Promise<{ name: string }>;
+
+export const metadata = {
+  title: "Catégorie",
+};
 
 function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -64,6 +66,7 @@ export default async function Page({ params }: { params: Params }) {
               title={artwork.title}
               artist={artwork.artist.fullName}
               year={artwork.year}
+              isAvailable={artwork.vendu === "oui" ? false : true}
               key={`${artwork.slug.current}+${artwork.title}`}
             />
           );
@@ -80,6 +83,7 @@ export default async function Page({ params }: { params: Params }) {
                 link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
                 title={artwork.title}
                 artist={artist[0]}
+                isAvailable={artwork.vendu === "oui" ? false : true}
                 year={artwork.year}
               />
             );

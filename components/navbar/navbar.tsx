@@ -35,8 +35,10 @@ const Navbar = () => {
       { href: "/artists", key: "artistes", label: t("artistes") },
       { href: "/expositions", key: "expositions", label: t("expositions") },
       { href: "/viewing-room", key: "viewingRoom", label: t("viewingRoom") },
+      { href: "/mali-art", key: "mali-art", label: "Mali Art Club" },
       { href: "/art-actu", key: "artActu", label: t("artActu") },
       { href: "/about", key: "aPropos", label: t("aPropos") },
+      { href: "/contact", key: "contact", label: "Contact" },
     ],
     [t]
   );
@@ -93,8 +95,13 @@ const Navbar = () => {
             Retour
           </button>
         ) : (
-          <Link href="/" className="logo">
-            <Image width={125} src={Logo} alt="Bamako Art Gallery Logo" />
+          <Link href="/" className="logo_wrapper">
+            <Image
+              className={styles.bag_logo}
+              width={175}
+              src={Logo}
+              alt="Bamako Art Gallery Logo"
+            />
           </Link>
         )}
 

@@ -63,7 +63,7 @@ button {
   margin: 0 auto;
   padding: 15px;
   position: relative;
-  padding-top: 100px;
+  padding-top: 120px;
 }
 
 .section {
@@ -119,7 +119,9 @@ button {
 }
 
 .section_elements_wrapper.two_elements .small_card_image_container {
-  height: 580px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
 }
 
 /* SECTION FOR ROUNDED FOUR ELEMENTS */
@@ -131,7 +133,7 @@ button {
 
 .section_elements_wrapper.rounded_four_elements .small_card_image_container {
   aspect-ratio: 1/1;
-  border-radius: 100%;
+  margin-bottom: 10px;
 }
 
 .section_elements_wrapper.rounded_four_elements .small_card {
@@ -306,7 +308,7 @@ button {
 
 @media screen and (max-width: 480px) {
   .section {
-    margin-top: 100px;
+    margin-top: 90px;
   }
   .section_header {
     flex-direction: column;
@@ -328,7 +330,6 @@ button {
     gap: 30px;
   }
   .section_elements_wrapper.two_elements .small_card_image_container {
-    height: 380px;
   }
   .section_elements_wrapper.four_elements {
     grid-template-columns: repeat(2, 1fr);
@@ -336,7 +337,7 @@ button {
   }
   .section_elements_wrapper.rounded_four_elements {
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 20px;
   }
   .section_elements_wrapper.three_elements .small_card_image_container {
     aspect-ratio: auto;

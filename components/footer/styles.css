@@ -128,11 +128,28 @@
   .footer {
     margin-top: 100px;
   }
+  .footer_row_link_wrapper {
+    width: 100%;
+  }
   .footer_newsletter_wrapper form input {
     padding: 20px;
     border-radius: 0px;
   }
+  .footer_newsletter_wrapper {
+    width: 100%;
+  }
   .footer_newsletter_wrapper form button {
     padding: 15px;
+  }
+  .footer_newsletter_wrapper form {
+    width: 100%;
+  }
+  .footer_row.copyright p {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+
+  .footer_row.copyright div a {
+    font-size: 12px;
   }
 }

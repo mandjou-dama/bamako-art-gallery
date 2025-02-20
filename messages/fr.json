@@ -9,7 +9,11 @@
   },
   "components": {
     "actuCard": {
-      "link": "Lire l'article"
+      "link": "Lire l'article",
+      "link2": "En savoir plus"
+    },
+    "artworkCard": {
+      "available": "Disponible"
     }
   },
   "home": {
@@ -67,13 +71,19 @@
     }
   },
   "exposition": {
-    "expoImages": "Vues de l'exposition",
+    "expoViews": "Vues de l'exposition",
+    "expoArtworks": "Oeuvres de l'exposition",
     "expoArtistes": "Artistes de l'exposition"
   },
   "viewingRoom": {
     "hero": {
       "headline": "Viewing Room",
       "description": "La Viewing Room vous offre une expérience immersive dans nos collections les plus captivantes. Que vous soyez chez vous ou en déplacement, découvrez des œuvres uniques, accompagnées de récits et d'histoires exclusives."
+    },
+    "sections": {
+      "images": "Images de l'évènement",
+      "artworks": "Oeuvres exposées",
+      "catalog": "Grand Catalogue"
     }
   },
   "artActu": {
@@ -137,5 +147,17 @@
     "taille": "Dimensions",
     "price": "Prix",
     "category": "Catégorie"
+  },
+  "contact": {
+    "social": "Réseaux Sociaux",
+    "map": "Carte",
+    "openMap": "Ouvrir sur Google Map",
+    "hour": "Du Lundi au Samedi, De 10H à 18H",
+    "street": "Baco Djicoroni ACI, Rue: 636, Porte:528 Près de la sotelma Malitel, Bamako, Mali"
+  },
+  "maliArt": {
+    "subline": "Mali Art Club est une association dédiée à la promotion et à la valorisation de l’art contemporain malien.",
+    "join": "Rejoindre le club",
+    "activity": "Nos Activités"
   }
 }

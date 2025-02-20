@@ -1,32 +1,37 @@
 .section.exposition_page {
 }
 
-.exposition_page_hero {
+.section_header.viewing {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.exposition_page_hero img {
-  width: 100%;
-  object-fit: cover;
+.section.exposition_images_section.no_desc {
+  margin-top: 30px;
 }
 
-.section.exposition_right {
-  margin-top: 0px;
+.section_title.viewing {
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.viewing_page_hero {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
-.exposition_date {
-  text-transform: uppercase;
-  margin-bottom: 10px;
+.viewing_page_hero img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 16/9;
 }
 
-.exposition_date span {
-  font-weight: 600;
+.viewing_page_hero .separator {
+  margin: 30px 0px;
 }
 
 .exposition_description {
@@ -36,14 +41,28 @@
   gap: 10px;
 }
 
-.exposition_images {
+.viewing_images {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.viewing_images img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.viewing_artworks {
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
 }
 
-.exposition_images img {
+.viewing_artworks img {
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;
@@ -91,5 +110,21 @@
   .exposition_artists {
     grid-template-columns: repeat(1, 1fr);
     gap: 50px;
+  }
+  .section_header.viewing {
+    margin-top: 30px;
+  }
+  .section_title.viewing {
+    font-size: 18px;
+  }
+  .viewing_images {
+    gap: 30px;
+  }
+  .viewing_artworks {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .section.exposition_images_section.no_desc {
+    margin-top: 0px;
   }
 }

@@ -9,6 +9,8 @@ export default async function Page() {
   const t = await getTranslations("expositions");
 
   const upComing = await getExhibitionsByTimeline("À venir");
+  const current = await getExhibitionsByTimeline("En cours");
+  const passed = await getExhibitionsByTimeline("Passée");
 
   return (
     <div className="expositions_page">
@@ -21,16 +23,29 @@ export default async function Page() {
       </div>
 
       <div className="expositions_wrapper">
-        {/* <section className="section">
-          <div className="section_header">
-            <h4 className="section_title">{t("sections.enCours")}</h4>
-          </div>
+        {current.length === 0 ? null : (
+          <section className="section">
+            <div className="section_header">
+              <h4 className="section_title">{t("sections.enCours")}</h4>
+            </div>
 
-          <div className="section_elements_wrapper two_elements">
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-          </div>
-        </section> */}
+            <div className="section_elements_wrapper two_elements">
+              {current.map((exhibition: any) => (
+                <SmallCard
+                  key={exhibition.title}
+                  name={exhibition.title}
+                  subline={
+                    exhibition.artists.length > 2
+                      ? "exposition collective"
+                      : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                  }
+                  link={`/expositions/${exhibition.slug}`}
+                  image={exhibition.cover}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="section">
           <div className="section_header">
@@ -54,15 +69,24 @@ export default async function Page() {
           </div>
         </section>
 
-        {/* <section className="section">
+        <section className="section">
           <h4 className="section_title">{t("sections.passer")}</h4>
           <div className="section_elements_wrapper four_elements">
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
-            <SmallCard link="/expositions/kjhj" />
+            {passed.map((exhibition: any) => (
+              <SmallCard
+                key={exhibition.title}
+                name={exhibition.title}
+                subline={
+                  exhibition.artists.length > 2
+                    ? "exposition collective"
+                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                }
+                link={`/expositions/${exhibition.slug}`}
+                image={exhibition.cover}
+              />
+            ))}
           </div>
-        </section> */}
+        </section>
       </div>
     </div>
   );

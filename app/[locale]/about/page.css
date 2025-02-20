@@ -15,7 +15,7 @@
 }
 
 .about_hero_infos p {
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   font-weight: 200;
   width: 60%;
@@ -41,6 +41,17 @@
   font-weight: 200;
 }
 
+.bag_description_container {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bag_description_container .prose.portable_text {
+  width: 65%;
+}
+
 .about_section {
   margin-top: 30px;
   display: grid;
@@ -57,7 +68,7 @@
 .team_container {
   margin-top: 30px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 50px;
 }
 
@@ -87,6 +98,78 @@
   font-weight: 300;
 }
 
+.home_hero_slider {
+  width: 100%;
+  height: 65vh;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: opacity 1s ease-in-out;
+}
+
+.home_hero_slider img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+}
+
+.home_hero_slider_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+  background: rgb(30, 30, 30);
+  background: linear-gradient(
+    0deg,
+    rgba(30, 30, 30, 0.8) 0%,
+    rgba(217, 217, 217, 0) 50%,
+    rgba(217, 217, 217, 0) 100%
+  );
+}
+
+.hero_slider_footer {
+  z-index: 3;
+  padding: 2rem;
+  color: white;
+  text-transform: uppercase;
+}
+
+.hero_slider_footer h3 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.hero_slider_expo_date {
+  font-weight: 300;
+}
+
+.hero_slider_footer_infos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero_slider_footer_arrows {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero_slider_footer_arrows svg {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.hero_slider_footer_arrows svg:hover {
+  transform: scale(1.2);
+}
+
 @media screen and (max-width: 859px) {
   .about_hero_infos p {
     width: 100%;
@@ -101,9 +184,42 @@
     gap: 30px;
   }
 
+  .bag_description_container .prose.portable_text {
+    width: 95%;
+  }
+
   .team_container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+  }
+}
+
+@media screen and (max-width: 712px) {
+  .home_hero_slider {
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+  }
+
+  .home_hero_slider_overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(30, 30, 30, 0.8) 0%,
+      rgba(30, 30, 30, 0.8) 100%
+    );
+  }
+
+  .home_hero_slider .background_image {
+    filter: blur(5px);
+  }
+
+  .home_hero_slider .front_image {
+    aspect-ratio: 16/9;
+    height: auto;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30px);
+    z-index: 4;
   }
 }
 
@@ -112,8 +228,22 @@
     height: auto;
   }
 
+  .team_container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
   .team_card {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bag_description_container {
+    margin-top: 30px;
   }
 
   .team_card img {
@@ -127,5 +257,12 @@
 
   .member_name {
     font-size: 14px;
+  }
+  .home_hero_slider {
+    height: 50vh;
+  }
+  .home_hero_slider .front_image {
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }

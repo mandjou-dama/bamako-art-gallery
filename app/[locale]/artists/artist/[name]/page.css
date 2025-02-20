@@ -4,6 +4,11 @@
   gap: 180px;
 }
 
+.artist_page_hero.no_image {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .section.artist_page_hero {
   margin-top: 30px;
 }
@@ -38,7 +43,7 @@
 }
 
 /* PRESSE CONTAINER */
-.section_elements_wrapper.presse {
+/* .section_elements_wrapper.presse {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 50px;
@@ -52,9 +57,9 @@
   gap: 15px;
   text-transform: uppercase;
   text-align: center;
-}
+} */
 
-.image_container {
+/* .image_container {
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;
@@ -68,16 +73,16 @@
   width: 80%;
   height: 80%;
   aspect-ratio: 1/1;
-}
+} */
 
-.presse_container .from {
+/* .presse_container .from {
   font-weight: 200;
   font-size: 14px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  -webkit-line-clamp: 1;
   overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis at the end */
+  text-overflow: ellipsis;
 }
 
 .presse_container .title {
@@ -85,9 +90,55 @@
   font-size: 14px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+.exposition_images {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+}
+
+.exposition_images img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.artwork_infos_1 {
+  margin-top: 5px;
+}
+
+.artwork_infos_1 {
+  margin-top: 5px;
+}
+
+.artwork_infos_artist {
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.artwork_infos_title {
+  font-size: 18px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 1; /* Limit to 2 lines */
   overflow: hidden;
   text-overflow: ellipsis; /* Add ellipsis at the end */
+}
+
+.artwork_infos_2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.artwork_infos_2 p {
+  font-size: 14px;
+  font-weight: 200;
 }
 
 @media screen and (max-width: 859px) {
@@ -106,11 +157,18 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
   }
+  .exposition_images {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (max-width: 480px) {
   .section_elements_wrapper.presse {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+  .exposition_images {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }

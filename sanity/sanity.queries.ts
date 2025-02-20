@@ -17,10 +17,10 @@ export const getArtworksByCategory = async (category: string) => {
     *[_type == "artwork" && category == $category] {
       title,
       slug,
+      vendu,
       "image": image.asset->url,
       artist->{ fullName },
       year,
-      price,
       images
     }
   `;
@@ -41,6 +41,7 @@ export const getArtworkBySlug = async (slug: string) => {
       "description_en": description[_key == "en"][0].value,
       "technique_fr": technique[_key == "fr"][0].value,
       "technique_en": technique[_key == "en"][0].value,
+      vendu,
       artist->{ 
         fullName, 
       },
@@ -220,6 +221,8 @@ export const getArtworkByArtist = async (artistSlug: string) => {
     *[_type == "artwork" && references(*[_type == "artist" && slug.current == $artistSlug]._id)] {
       title,
       slug,
+      vendu,
+      year,
       "image": image.asset->url,
       artist->{ fullName },
     }
@@ -239,7 +242,7 @@ export const getSeriesByArtist = async (artistSlug: string) => {
         title,
         "slug": slug.current,
         "image": images.asset->url,
-        price,
+        year
       },
       artists[]->{ fullName },
     }
@@ -250,6 +253,7 @@ export const getSeriesByArtist = async (artistSlug: string) => {
   return data;
 };
 
+// TODO : DELETE THIS FETCH
 export const getExhibition = async (slug: string) => {
   const query = groq`
     *[_type == "exhibition" && slug.current == $slug][0] {
@@ -260,10 +264,7 @@ export const getExhibition = async (slug: string) => {
       "description_en": description[_key == "en"][0].value,
       artists[]->{ 
         fullName,
-        "description_fr": description[_key == "fr"][0].value,
-        "description_en": description[_key == "en"][0].value,
-        "bio_fr": bio[_key == "fr"][0].value,
-        "bio_en": bio[_key == "en"][0].value,
+        "slug": slug.current,
        },
       artworks[]->{
         title,
@@ -271,7 +272,6 @@ export const getExhibition = async (slug: string) => {
         "image": image.asset->url,
         artist->{ fullName },
         year,
-        price,
         images
       },
       series[]->{
@@ -282,7 +282,76 @@ export const getExhibition = async (slug: string) => {
           "slug": slug.current,
           title,
           year,
-          price,
+          "images": images.asset->url
+        }
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getExhibitionInfos = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      title,
+      "slug": slug.current,
+      "cover": cover.asset->url,
+      "description_fr": description[_key == "fr"][0].value,
+      "description_en": description[_key == "en"][0].value,
+      artists[]->{ 
+        fullName,
+        "slug": slug.current,
+       },
+      presses[] {
+        "image" : photo.asset->url,
+        link,
+        title,
+        journal
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getExhibitionViews = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      views[] {
+        "image" : asset->url
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getExhibitionArtworks = async (slug: string) => {
+  const query = groq`
+    *[_type == "exhibition" && slug.current == $slug][0] {
+      artworks[]->{
+        title,
+        vendu,
+        "slug": slug.current,
+        "image": image.asset->url,
+        artist->{ fullName },
+        year,
+        images
+      },
+      series[]->{
+        title,
+        vendu,
+        year,
+        artists[]->{ fullName },
+        "slug": slug.current,
+        artworks[]{
+          "slug": slug.current,
+          title,
+          year,
           "images": images.asset->url
         }
       }
@@ -332,7 +401,6 @@ export const getBagDetails = async () => {
     *[_type == "bag"][0] {
       "bio_fr": bio[_key == "fr"][0].value,
       "bio_en": bio[_key == "en"][0].value,
-      "image": image.asset->url,
       tel,
       email,
       team[]{
@@ -400,5 +468,151 @@ export const getExhibitionsByTimeline = async (timeline: string) => {
   } catch (error) {
     console.error("Error fetching exhibitions by timeline:", error);
     return [];
+  }
+};
+
+// FETCHES FOR VIEWING ROOM
+export const getViewingRoomItems = async () => {
+  const query = groq`
+     *[_type == "viewing"] {
+        title,
+        lieu,
+        "slug": slug.current,
+        "image": image.asset->url,
+    }
+  `;
+
+  try {
+    const roomItems = await client.fetch(query);
+    return roomItems || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching viewing room items:", error);
+    return null;
+  }
+};
+
+export const getViewingRoomItem = async (slug: string) => {
+  const query = groq`
+      *[_type == "viewing" && slug.current == $slug][0] {
+        title,
+        "image": image.asset->url,
+        "description_fr": description[_key == "fr"][0].value,
+        "description_en": description[_key == "en"][0].value,
+        images[] {
+          "image": asset->url
+        }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getViewingRoomItemArtwork = async (slug: string) => {
+  const query = groq`
+      *[_type == "viewing" && slug.current == $slug][0] {
+        artworks[]->{
+        title,
+        "slug": slug.current,
+        "image": image.asset->url,
+        artist->{ fullName },
+        year,
+        images
+      },
+      series[]->{
+        title,
+        artists[]->{ fullName },
+        "slug": slug.current,
+        artworks[]{
+          "slug": slug.current,
+          title,
+          year,
+          "images": images.asset->url
+        }
+      }
+    }
+  `;
+
+  const params = { slug };
+  return await client.fetch(query, params);
+};
+
+export const getBagSliderImages = async () => {
+  const query = groq`
+    *[_type == "bag"][0] {
+      about_slider[] {
+          "image": asset->url
+        }
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
+  }
+};
+
+export const getMaliArtClubInfos = async () => {
+  const query = groq`
+     *[_type == "bag"][0] {
+      art_club[0] {
+        "description_fr": desc[_key == "fr"][0].value,
+        "description_en": desc[_key == "en"][0].value,
+        links[] {
+          link,
+          "image": photo.asset->url,
+          title
+        }
+      } 
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
+  }
+};
+
+export async function getHomeSliderExhibitions() {
+  const query = groq`*[_type == "exhibition" && slider == true] | order(_createdAt desc) {
+    title,
+    "slug": slug.current,
+    timeline,
+    date,
+    slider_images[] {
+      "image": asset->url
+    }
+  }`;
+
+  try {
+    const exhibitions = await client.fetch(query);
+    return exhibitions;
+  } catch (error) {
+    console.error("Error fetching exhibitions:", error);
+    return [];
+  }
+}
+
+export const getHomeSliderImages = async () => {
+  const query = groq`
+    *[_type == "bag"][0] {
+      home_slider[] {
+          "image": asset->url
+        }
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
   }
 };
