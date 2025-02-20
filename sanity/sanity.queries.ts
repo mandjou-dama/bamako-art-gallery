@@ -221,6 +221,8 @@ export const getArtworkByArtist = async (artistSlug: string) => {
     *[_type == "artwork" && references(*[_type == "artist" && slug.current == $artistSlug]._id)] {
       title,
       slug,
+      vendu,
+      year,
       "image": image.asset->url,
       artist->{ fullName },
     }
@@ -240,7 +242,7 @@ export const getSeriesByArtist = async (artistSlug: string) => {
         title,
         "slug": slug.current,
         "image": images.asset->url,
-        price,
+        year
       },
       artists[]->{ fullName },
     }
@@ -333,6 +335,7 @@ export const getExhibitionArtworks = async (slug: string) => {
     *[_type == "exhibition" && slug.current == $slug][0] {
       artworks[]->{
         title,
+        vendu,
         "slug": slug.current,
         "image": image.asset->url,
         artist->{ fullName },
@@ -341,6 +344,8 @@ export const getExhibitionArtworks = async (slug: string) => {
       },
       series[]->{
         title,
+        vendu,
+        year,
         artists[]->{ fullName },
         "slug": slug.current,
         artworks[]{

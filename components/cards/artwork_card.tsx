@@ -63,7 +63,7 @@ export const ArtworkCard = ({
           <p className="artwork_infos_title">{title}</p>
         </div>
         <div className="artwork_infos_2">
-          <p>{year !== 0 ? year : ""}</p>
+          {year !== 0 && <p>{year}</p>}
           {isAvailable ? (
             <p className="artwork_available">{t("artworkCard.available")}</p>
           ) : null}

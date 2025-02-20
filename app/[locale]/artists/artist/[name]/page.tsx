@@ -15,6 +15,7 @@ import {
 } from "@/sanity/sanity.queries";
 
 import { SmallCard } from "@/components/cards/cards";
+import { ArtworkCard } from "@/components/cards/artwork_card";
 
 import "./page.css";
 
@@ -127,27 +128,29 @@ export default async function ArtistPage({ params }: { params: Params }) {
       {artworks.length > 0 ? (
         <section className="section">
           <h4 className="section_title">{t("work")}</h4>
-          <div className="section_elements_wrapper four_elements">
+          <div className="exposition_images">
             {artworks.map((artwork: any) => (
-              <SmallCard
-                key={artwork.title}
-                name={artwork.title}
-                link={`/works/${artwork.slug.current}`}
-                subline={artwork.artist.fullName}
+              <ArtworkCard
+                key={`${artwork.slug.current}+${artwork.title}`}
                 image={artwork.image}
-                fromSanity
+                title={artwork.title}
+                artist={artwork.artist.fullName}
+                link={`/works/${artwork.slug.current}`}
+                isAvailable={artwork.vendu === "oui" ? false : true}
+                year={artwork.year}
               />
             ))}
 
             {series.map((serie: any) => {
               return serie.artworks.map((artwork: any) => (
-                <SmallCard
-                  key={artwork.title}
-                  name={artwork.title}
-                  link={`/works/serie/${artwork.slug}?serie=${serie.slug.current}`}
-                  subline={artist.fullName}
+                <ArtworkCard
+                  key={`${artwork.slug.current}+${artwork.title}`}
                   image={artwork.image}
-                  fromSanity
+                  title={artwork.title}
+                  artist={artist.fullName}
+                  link={`/works/serie/${artwork.slug}?serie=${serie.slug.current}`}
+                  isAvailable={artwork.vendu === "oui" ? false : true}
+                  year={artwork.year}
                 />
               ));
             })}

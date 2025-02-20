@@ -119,6 +119,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
                   title={artwork.title}
                   artist={artwork.artist.fullName}
                   link={`/works/${artwork.slug}`}
+                  isAvailable={artwork.vendu === "oui" ? false : true}
                   year={artwork.year}
                 />
               );
@@ -137,6 +138,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
                       title={`${artwork.title} - ${serieTitle}`}
                       link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
                       artist={serieArtist[0]}
+                      isAvailable={artwork.vendu === "oui" ? false : true}
                       year={artwork.year}
                     />
                   );

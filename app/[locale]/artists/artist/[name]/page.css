@@ -95,6 +95,52 @@
   text-overflow: ellipsis;
 } */
 
+.exposition_images {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+}
+
+.exposition_images img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.artwork_infos_1 {
+  margin-top: 5px;
+}
+
+.artwork_infos_1 {
+  margin-top: 5px;
+}
+
+.artwork_infos_artist {
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.artwork_infos_title {
+  font-size: 18px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis at the end */
+}
+
+.artwork_infos_2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.artwork_infos_2 p {
+  font-size: 14px;
+  font-weight: 200;
+}
+
 @media screen and (max-width: 859px) {
   .artist_page_hero {
     display: flex;
@@ -111,11 +157,18 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
   }
+  .exposition_images {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (max-width: 480px) {
   .section_elements_wrapper.presse {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+  .exposition_images {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }

@@ -1,8 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
 import React from "react";
-import Image from "next/image";
-import { Link } from "@/i18n/routing";
 
 import {
   getArtworksByCategory,
@@ -81,6 +79,7 @@ export default async function Page({ params }: { params: Params }) {
                 link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
                 title={artwork.title}
                 artist={artist[0]}
+                isAvailable={artwork.vendu === "oui" ? false : true}
                 year={artwork.year}
               />
             );
