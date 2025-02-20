@@ -21,10 +21,15 @@ export default defineType({
     }),
     defineField({
       name: "about_slider",
-      title: "Images du slider sur la page À Propos",
+      title: "Images du carrousel de la page À Propos",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
-      validation: (Rule) => Rule.max(3),
+    }),
+    defineField({
+      name: "home_slider",
+      title: "Images du carrousel sur la page d'accueil",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
     }),
     defineField({
       name: "tel",

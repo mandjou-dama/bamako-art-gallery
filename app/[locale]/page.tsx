@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import "./page.css";
@@ -14,6 +14,8 @@ import {
   getArtistsForHome,
   fetchLatestNews,
   fetchHomeExhibitions,
+  getHomeSliderExhibitions,
+  getHomeSliderImages,
 } from "@/sanity/sanity.queries";
 
 //import categories images
@@ -23,23 +25,6 @@ import Sculpture from "@/public/assets/sculpture.jpeg";
 import Peinture from "@/public/assets/peinture.jpeg";
 import Slider from "@/components/slider/slider";
 
-const slides = [
-  {
-    link: "/expositions/bolon",
-    image:
-      "https://scontent-lhr8-1.xx.fbcdn.net/v/t39.30808-6/475480776_977437894488353_6320175630276585998_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeH479MKMPmdXtft-peptQf8aqFeNBYwiKFqoV40FjCIoURVL_B8u13NnhEcCMM4yeeWGPXmwDhOkvJCkeOJnSaj&_nc_ohc=yBF0hFJDjC8Q7kNvgHbyQVg&_nc_oc=AdhUYGVznn-vUHFofrgLZKVMJICzblk4-ZIKs1-eLZ1_ziSuUmUyGWC6e91675HOUIrcxsLdFqYenR1PbeOTmPIF&_nc_zt=23&_nc_ht=scontent-lhr8-1.xx&_nc_gid=AaKEEPXmVgWgJ49wavFlrmm&oh=00_AYAyTXz6DePAmF7dnSQmyMuFWSYQnYEpBKsJOcZe04HrzA&oe=67B8BBD1",
-    name: "Bôlon",
-    year: "DU 15 MARS AU 14 JUIN 2025",
-  },
-  {
-    link: "/expositions/bolon",
-    image:
-      "https://cdn.sanity.io/images/o4huj4e2/production/d1132f330a8ad3526d325572b7062cdd1266281a-1080x1080.jpg",
-    name: "Bôlon",
-    year: "DU 15 MARS AU 14 JUIN 2025",
-  },
-];
-
 export default async function Home({
   params,
 }: {
@@ -47,9 +32,36 @@ export default async function Home({
 }) {
   const slug = (await params).locale;
   const t = await getTranslations("home");
+  const locale = await getLocale();
   const artists = await getArtistsForHome();
   const news = await fetchLatestNews();
   const exhibitions = await fetchHomeExhibitions();
+  const sliderExhibitions = await getHomeSliderExhibitions();
+  const sliderSimpleImages = await getHomeSliderImages();
+
+  const slides = sliderExhibitions.flatMap((item: any) => {
+    const link = `/expositions/${item.slug}`; // Create the link dynamically
+    const name = item.title; // Use the title as the name
+    const year = `${formatDate(item.date.date_debut)} - ${formatDate(item.date.date_fin)}`; // Format the date range
+
+    // Map over slider_images to create individual slides
+    return item.slider_images.map((image: any) => ({
+      link,
+      image: image.image, // Use the image URL directly
+      name,
+      year,
+    }));
+  });
+
+  // Helper function to format the date
+  function formatDate(dateString: any) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
 
   return (
     <div className="home_page">
@@ -61,7 +73,9 @@ export default async function Home({
 
         <div className="separator"></div>
 
-        <Slider slides={slides} />
+        <Slider
+          slides={slides.length > 0 ? slides : sliderSimpleImages.home_slider}
+        />
 
         <div className="separator"></div>
       </div>

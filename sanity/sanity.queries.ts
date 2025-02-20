@@ -467,7 +467,6 @@ export const getExhibitionsByTimeline = async (timeline: string) => {
 };
 
 // FETCHES FOR VIEWING ROOM
-
 export const getViewingRoomItems = async () => {
   const query = groq`
      *[_type == "viewing"] {
@@ -563,6 +562,44 @@ export const getMaliArtClubInfos = async () => {
           title
         }
       } 
+    }
+  `;
+
+  try {
+    const bagDetails = await client.fetch(query);
+    return bagDetails || null; // Retourne null si aucun document trouvé
+  } catch (error) {
+    console.error("Error fetching bag details:", error);
+    return null;
+  }
+};
+
+export async function getHomeSliderExhibitions() {
+  const query = groq`*[_type == "exhibition" && slider == true] | order(_createdAt desc) {
+    title,
+    "slug": slug.current,
+    timeline,
+    date,
+    slider_images[] {
+      "image": asset->url
+    }
+  }`;
+
+  try {
+    const exhibitions = await client.fetch(query);
+    return exhibitions;
+  } catch (error) {
+    console.error("Error fetching exhibitions:", error);
+    return [];
+  }
+}
+
+export const getHomeSliderImages = async () => {
+  const query = groq`
+    *[_type == "bag"][0] {
+      home_slider[] {
+          "image": asset->url
+        }
     }
   `;
 

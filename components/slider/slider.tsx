@@ -103,11 +103,14 @@ const Slider = ({ slides }: Props) => {
             <div className="home_hero_slider_overlay"></div>
 
             <div className="hero_slider_footer">
-              <h3 className="hero_slider_expo_name">{slide.name}</h3>
+              <h3 className="hero_slider_expo_name">
+                {slide.name ? slide.name : null}
+              </h3>
 
               <div className="hero_slider_footer_infos">
-                <p className="hero_slider_expo_date">{slide.year}</p>
-
+                <p className="hero_slider_expo_date">
+                  {slide.year ? slide.year : null}
+                </p>
                 <div className="hero_slider_footer_arrows">
                   <svg
                     onClick={(e) => {
