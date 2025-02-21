@@ -1,6 +1,5 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 import "./page.css";
 
 //import components

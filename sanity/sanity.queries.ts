@@ -408,7 +408,7 @@ export const getBagDetails = async () => {
         role,
         "bio_fr": bio[_key == "fr"][0].value,
         "bio_en": bio[_key == "en"][0].value,
-        "image": image.asset->url
+        "image": photo.asset->url
       }
     }
   `;

@@ -31,8 +31,8 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bamakoartgallery.com"),
   title: {
-    default: "Bamako Art Galley",
-    template: "%s | Bamako Art Galley",
+    default: "Bamako Art Gallery",
+    template: "%s | Bamako Art Gallery",
   },
   description:
     "Fondée en 2018 par Kadiatou Sylla, Bamako Art Gallery (BAG) est un lieu d’échanges artistiques dédié à l’art contemporain, antique, au design et à l’artisanat d’Afrique de l’Ouest. BAG valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",

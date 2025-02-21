@@ -1,14 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import "./styles.css";
+
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
 
 type Props = {
   title: string;
   content: string;
 };
 
+gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger plugin
+
 export const EngagementCard = ({ title, content }: Props) => {
+  const cardRef = useRef<HTMLDivElement>(null); // Ref for the card element
+
+  // GSAP animation
+  useGSAP(() => {
+    if (cardRef.current) {
+      gsap.from(cardRef.current, {
+        opacity: 0,
+        y: 50, // Start slightly below
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardRef.current, // Trigger animation when the card enters the viewport
+          start: "top 80%", // Start animation when the top of the card is 80% in view
+          toggleActions: "play none none", // Play animation on enter, reverse on leave
+        },
+      });
+    }
+  }, []); // Empty dependency array ensures this runs once
+
   return (
-    <div className="engagement_card">
+    <div ref={cardRef} className="engagement_card">
       <div className="engagement_card_icon">
         <svg
           width="50"
