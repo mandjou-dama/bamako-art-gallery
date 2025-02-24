@@ -31,17 +31,60 @@ export default defineType({
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
     }),
+    // defineField({
+    //   name: "tel",
+    //   title: "Numéro de téléphone de la galerie",
+    //   type: "string",
+    //   validation: (Rule) => Rule.required(),
+    // }),
+    // defineField({
+    //   name: "email",
+    //   title: "Email de la galerie",
+    //   type: "string",
+    //   validation: (Rule) => Rule.required(),
+    // }),
     defineField({
-      name: "tel",
-      title: "Numéro de téléphone de la galerie",
-      type: "string",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "email",
-      title: "Email de la galerie",
-      type: "string",
-      validation: (Rule) => Rule.required(),
+      name: "contact",
+      title: "Informations Générales",
+      description: "Veuillez saisir les informations générales de la galerie.",
+      type: "object",
+      fieldsets: [
+        {
+          name: "contact_infos",
+          title: "Contact Infos",
+        },
+      ],
+      fields: [
+        {
+          name: "tel",
+          title: "Numéro de téléphone de la galerie",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "email",
+          title: "Email de la galerie",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "open",
+          title: "Heure d'ouverture",
+          type: "internationalizedArrayString",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "location",
+          title: "Adresse",
+          type: "internationalizedArrayString",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: false, // Defines if the fieldset should be collapsed by default or not
+        modal: { type: "popover" }, //Makes the modal type a popover
+      },
     }),
     defineField({
       name: "art_club",
