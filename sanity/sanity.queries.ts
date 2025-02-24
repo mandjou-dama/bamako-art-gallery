@@ -401,8 +401,6 @@ export const getBagDetails = async () => {
     *[_type == "bag"][0] {
       "bio_fr": bio[_key == "fr"][0].value,
       "bio_en": bio[_key == "en"][0].value,
-      tel,
-      email,
       team[]{
         nom,
         role,
@@ -425,8 +423,14 @@ export const getBagDetails = async () => {
 export const getBagContact = async () => {
   const query = groq`
     *[_type == "bag"][0] {
-      tel,
-      email,
+      contact {
+        tel,
+        email,
+        "open_fr": open[_key == "fr"][0].value,
+        "open_en": open[_key == "en"][0].value,
+        "location_fr": location[_key == "fr"][0].value,
+        "location_en": location[_key == "en"][0].value,
+      }
     }
   `;
 
