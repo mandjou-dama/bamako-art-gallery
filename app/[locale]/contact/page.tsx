@@ -1,5 +1,9 @@
 import React from "react";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getBagContact } from "@/sanity/sanity.queries";
+
+import PortableText from "@/components/portable_text/portable_text";
+import { type PortableTextBlock } from "next-sanity";
 
 import "./page.css";
 import {
@@ -19,6 +23,9 @@ type Props = {};
 
 async function Page({}: Props) {
   const t = await getTranslations("contact");
+  const locale = await getLocale();
+
+  const details = await getBagContact();
 
   return (
     <div className="contact_page">
@@ -37,20 +44,28 @@ async function Page({}: Props) {
         <div className="contact_container">
           <div className="contact_element_wrapper">
             <Clock />
-            <p>{t("hour")}</p>
+            <p>
+              {locale === "fr"
+                ? details.contact.open_fr
+                : details.contact.open_en}
+            </p>
           </div>
           <div className="contact_element_wrapper">
             <Location />
-            <p>{t("street")}</p>
+            <p>
+              {locale === "fr"
+                ? details.contact.location_fr
+                : details.contact.location_en}
+            </p>
           </div>
           <div className="contact_element_wrapper">
             <Phone />
-            <a href="tel:+22366667932">+223 66 66 79 32</a>
+            <a href={`tel:${details.contact.tel}`}>{details.contact.tel}</a>
           </div>
           <div className="contact_element_wrapper">
             <Mail />
-            <a href="mailto:contact@bamakoartgallery.com">
-              contact@bamakoartgallery.com
+            <a href={`mailto:${details.contact.email}`}>
+              {details.contact.email}
             </a>
           </div>
         </div>
