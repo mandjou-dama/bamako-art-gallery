@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bamako Art Gallery",
     description:
-      "Bamako Art Galley valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
+      "Bamako Art Gallery valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
     url: "https://bamakoartgallery.com",
     siteName: "Bamako Art Gallery",
     images: [
