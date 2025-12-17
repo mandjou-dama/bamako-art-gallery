@@ -66,13 +66,8 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
 };
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+export default async function LocaleLayout(props: any) {
+  const { children, params } = props;
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
@@ -82,12 +77,11 @@ export default async function LocaleLayout({
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
 
   return (
     <html lang={locale}>
       <body className={`${poppins.className}`}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider>
           <NewsletterPopup />
           <Navbar />
           <Cursor />
