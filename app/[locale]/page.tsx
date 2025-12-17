@@ -1,4 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import { cacheLife } from "next/cache";
+
 import { Link } from "@/i18n/routing";
 import "./page.css";
 
@@ -29,6 +31,9 @@ export default async function Home({
 }: {
   params: Promise<{ locale: string }>;
 }) {
+  "use cache";
+  cacheLife("hours");
+
   const slug = (await params).locale;
   const t = await getTranslations("home");
   const locale = await getLocale();
@@ -41,7 +46,9 @@ export default async function Home({
   const slides = sliderExhibitions.flatMap((item: any) => {
     const link = `/expositions/${item.slug}`; // Create the link dynamically
     const name = item.title; // Use the title as the name
-    const year = `${formatDate(item.date.date_debut)} - ${formatDate(item.date.date_fin)}`; // Format the date range
+    const year = `${formatDate(item.date.date_debut)} - ${formatDate(
+      item.date.date_fin
+    )}`; // Format the date range
 
     // Map over slider_images to create individual slides
     return item.slider_images.map((image: any) => ({
@@ -126,7 +133,9 @@ export default async function Home({
               subline={
                 exhibition.artists.length > 2
                   ? "exposition collective"
-                  : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                  : `${exhibition.artists[0]?.fullName}${
+                      exhibition.artists[1]?.fullName ? "," : ""
+                    } ${exhibition.artists[1]?.fullName || ""}`
               }
               link={`/expositions/${exhibition.slug}`}
               fromSanity={true}
