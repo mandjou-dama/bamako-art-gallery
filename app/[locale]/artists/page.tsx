@@ -2,10 +2,14 @@ import { getTranslations } from "next-intl/server";
 import ArtistCard from "@/components/cards/artist";
 
 import { getArtistsForArtistsPage } from "@/sanity/sanity.queries";
+import { cacheLife } from "next/cache";
 
 import "./page.css";
 
 export default async function Page() {
+  "use cache";
+  cacheLife("hours");
+
   const t = await getTranslations("artistes.hero");
   const artists = await getArtistsForArtistsPage();
 

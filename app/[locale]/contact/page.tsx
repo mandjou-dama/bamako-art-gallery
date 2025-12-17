@@ -1,6 +1,7 @@
 import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getBagContact } from "@/sanity/sanity.queries";
+import { cacheLife } from "next/cache";
 
 import PortableText from "@/components/portable_text/portable_text";
 import { type PortableTextBlock } from "next-sanity";
@@ -22,6 +23,9 @@ import CustomMap from "@/components/map/map";
 type Props = {};
 
 async function Page({}: Props) {
+  "use cache";
+  cacheLife("hours");
+
   const t = await getTranslations("contact");
   const locale = await getLocale();
 

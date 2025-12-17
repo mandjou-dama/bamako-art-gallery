@@ -1,5 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
+import { cacheLife } from "next/cache";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -12,6 +13,9 @@ import { PortableTextBlock } from "next-sanity";
 import Slider from "@/components/slider/slider";
 
 export default async function Page() {
+  "use cache";
+  cacheLife("hours");
+
   const t = await getTranslations("about");
   const locale = await getLocale();
   const bag = await getBagDetails();

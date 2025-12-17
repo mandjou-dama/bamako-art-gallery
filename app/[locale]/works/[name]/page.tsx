@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
+import { cacheLife } from "next/cache";
 
 import { getArtworkBySlug } from "@/sanity/sanity.queries";
 import { urlFor } from "@/sanity/lib/image";
@@ -14,6 +15,9 @@ import { AnimatedImage } from "@/components/animated_image/animated_image";
 type Params = Promise<{ name: string }>;
 
 export default async function WorkPage({ params }: { params: Params }) {
+  "use cache";
+  cacheLife("hours");
+
   const { name } = await params;
   const locale = await getLocale();
   const t = await getTranslations("artwork");

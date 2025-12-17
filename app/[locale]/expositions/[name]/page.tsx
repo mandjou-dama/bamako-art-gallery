@@ -1,6 +1,7 @@
 import React from "react";
 import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
+import { cacheLife } from "next/cache";
 
 import {
   getExhibitionViews,
@@ -19,6 +20,9 @@ import { Link } from "@/i18n/routing";
 type Params = Promise<{ name: string }>;
 
 export default async function ExpositionPage({ params }: { params: Params }) {
+  "use cache";
+  cacheLife("hours");
+
   const { name } = await params;
   const locale = await getLocale();
   const t = await getTranslations("exposition");

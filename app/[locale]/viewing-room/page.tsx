@@ -1,11 +1,16 @@
 import { getTranslations } from "next-intl/server";
 import { getViewingRoomItems } from "@/sanity/sanity.queries";
+import React from "react";
+import { cacheLife } from "next/cache";
 
 import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
 
 export default async function Page() {
+  "use cache";
+  cacheLife("hours");
+
   const t = await getTranslations("viewingRoom");
   const roomItems = await getViewingRoomItems();
 

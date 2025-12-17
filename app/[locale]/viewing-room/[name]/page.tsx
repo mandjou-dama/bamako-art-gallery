@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
+import { cacheLife } from "next/cache";
 
 import {
   getExhibition,
@@ -20,6 +21,9 @@ import "./page.css";
 type Params = Promise<{ name: string }>;
 
 export default async function ViewingRoomPage({ params }: { params: Params }) {
+  "use cache";
+  cacheLife("hours");
+
   const { name } = await params;
   const locale = await getLocale();
   const t = await getTranslations("viewingRoom");

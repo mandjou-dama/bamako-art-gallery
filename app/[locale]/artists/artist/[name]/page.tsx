@@ -4,6 +4,7 @@ import Link from "next/link";
 import PortableText from "@/components/portable_text/portable_text";
 import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
+import { cacheLife } from "next/cache";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -40,6 +41,9 @@ const presses = [
 type Params = Promise<{ name: string }>;
 
 export default async function ArtistPage({ params }: { params: Params }) {
+  "use cache";
+  cacheLife("hours");
+
   const { name } = await params;
   const locale = await getLocale();
   const t = await getTranslations("artiste");
