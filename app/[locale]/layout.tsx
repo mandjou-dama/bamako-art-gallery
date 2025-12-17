@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import type { Metadata } from "next";
 import "../globals.css";
 
 import { getMessages } from "next-intl/server";
@@ -10,6 +10,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
+import pick from "lodash/pick";
 
 // components
 import Navbar from "@/components/navbar/navbar";
@@ -22,12 +23,6 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
-
-// export const metadata: Metadata = {
-//   title: "Bamako Art Gallery",
-//   description:
-//     "Fondée en 2018 par Kadiatou Sylla, Bamako Art Gallery (BAG) est un lieu d’échanges artistiques dédié à l’art contemporain, antique, au design et à l’artisanat d’Afrique de l’Ouest. BAG valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
-// };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bamakoartgallery.com"),
@@ -89,6 +84,10 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   // Providing all messages to the client
   // side is the easiest way to get started
+
+  const messages = await getMessages();
+
+  // console.log(JSON.stringify(messages, null, 2));
 
   return (
     <html lang={locale}>

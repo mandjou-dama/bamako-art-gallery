@@ -1,9 +1,7 @@
-import React, { use } from "react";
 import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";
 import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
-import { cacheLife } from "next/cache";
 
 import "./page.css";
 import ActuCard from "@/components/cards/actu";
@@ -13,10 +11,7 @@ export default async function Page({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  "use cache";
-  cacheLife("hours");
-
-  const { locale } = use(params);
+  const { locale } = await params;
   // Enable static rendering
   setRequestLocale(locale);
 

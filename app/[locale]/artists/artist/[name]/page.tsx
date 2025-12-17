@@ -1,10 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { Suspense } from "react";
+
 import PortableText from "@/components/portable_text/portable_text";
 import { type PortableTextBlock } from "next-sanity";
-import { getLocale, getTranslations } from "next-intl/server";
-import { cacheLife } from "next/cache";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -38,14 +36,22 @@ const presses = [
   },
 ];
 
-type Params = Promise<{ name: string }>;
+type Params = Promise<{ name: string; locale: string }>;
 
-export default async function ArtistPage({ params }: { params: Params }) {
-  "use cache";
-  cacheLife("hours");
+export default function ArtistPage({ params }: { params: Params }) {
+  return (
+    <div className="artist_page">
+      <Suspense fallback={<div>Loading…</div>}>
+        <ArtistContent params={params} />
+      </Suspense>
+    </div>
+  );
+}
 
-  const { name } = await params;
-  const locale = await getLocale();
+async function ArtistContent({ params }: { params: Params }) {
+  const { name, locale } = await params;
+  // Use the locale from params for server translations
+  setRequestLocale(locale);
   const t = await getTranslations("artiste");
 
   const artist = await getArtistBySlug(name);
@@ -54,7 +60,7 @@ export default async function ArtistPage({ params }: { params: Params }) {
   const series = await getSeriesByArtist(name);
 
   return (
-    <div className="artist_page">
+    <>
       <section
         className={`section ${!artist.image ? "artist_page_hero no_image" : "artist_page_hero"} `}
       >
@@ -181,6 +187,6 @@ export default async function ArtistPage({ params }: { params: Params }) {
           ))}
         </div>
       </section> */}
-    </div>
+    </>
   );
 }

@@ -1,7 +1,5 @@
 import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import { getViewingRoomItems } from "@/sanity/sanity.queries";
-import React, { use } from "react";
-import { cacheLife } from "next/cache";
 
 import { SmallCard } from "@/components/cards/cards";
 
@@ -12,10 +10,7 @@ export default async function Page({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  "use cache";
-  cacheLife("hours");
-
-  const { locale } = use(params);
+  const { locale } = await params;
   // Enable static rendering
   setRequestLocale(locale);
 

@@ -1,7 +1,4 @@
-import { use } from "react";
 import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
-import { cacheLife } from "next/cache";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -18,10 +15,7 @@ export default async function Page({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  "use cache";
-  cacheLife("hours");
-
-  const { locale } = use(params);
+  const { locale } = await params;
   // Enable static rendering
   setRequestLocale(locale);
 

@@ -1,8 +1,5 @@
-import Image from "next/image";
-import React from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { urlFor } from "@/sanity/lib/image";
-import { cacheLife } from "next/cache";
 
 import { getSeriesArtworkBySlug } from "@/sanity/sanity.queries";
 
@@ -21,9 +18,6 @@ export default async function SeriePage({
   params: Params;
   searchParams: SearchParams;
 }) {
-  "use cache";
-  cacheLife("hours");
-
   const { name } = await params;
   const { serie } = await searchParams;
   const locale = await getLocale();

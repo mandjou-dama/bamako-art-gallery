@@ -1,8 +1,7 @@
 import Image from "next/image";
-import React, { use } from "react";
+import React, { Suspense } from "react";
 import { type PortableTextBlock } from "next-sanity";
-import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
-import { cacheLife } from "next/cache";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import {
   getExhibition,
@@ -20,11 +19,18 @@ import "./page.css";
 
 type Params = Promise<{ name: string; locale: string }>;
 
-export default async function ViewingRoomPage({ params }: { params: Params }) {
-  "use cache";
-  cacheLife("hours");
+export default function ViewingRoomPage({ params }: { params: Params }) {
+  return (
+    <div className="exposition_page">
+      <Suspense fallback={<div>Loading…</div>}>
+        <ViewingRoomContent params={params} />
+      </Suspense>
+    </div>
+  );
+}
 
-  const { name, locale } = use(params);
+async function ViewingRoomContent({ params }: { params: Params }) {
+  const { name, locale } = await params;
   // Enable static rendering
   setRequestLocale(locale);
 
@@ -35,7 +41,7 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
   const roomArtworks = await getViewingRoomItemArtwork(name);
 
   return (
-    <div className="exposition_page">
+    <>
       <div className="viewing_page_hero">
         <div className="section_header viewing">
           <h4 className="section_title viewing">
@@ -129,6 +135,6 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
           </div>
         </section>
       ) : null}
-    </div>
+    </>
   );
 }

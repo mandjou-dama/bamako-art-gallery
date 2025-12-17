@@ -1,8 +1,5 @@
 import { getTranslations } from "next-intl/server";
 
-import React from "react";
-import { cacheLife } from "next/cache";
-
 import {
   getArtworksByCategory,
   getSeriesWithArtworksByCategory,
@@ -27,9 +24,6 @@ function formatCurrency(amount: number, locale: string = "en-US"): string {
 }
 
 export default async function Page({ params }: { params: Params }) {
-  "use cache";
-  cacheLife("hours");
-
   const t = await getTranslations("work");
   const { name } = await params;
   const artworks = await getArtworksByCategory(capitalizeFirstLetter(name));

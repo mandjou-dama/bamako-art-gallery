@@ -5,6 +5,8 @@ import { apiVersion } from "./env";
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
+const REVALIDATE_TIME = 86400;
+
 const client = createClient({
   projectId: projectId,
   dataset: dataset,
@@ -26,7 +28,9 @@ export const getArtworksByCategory = async (category: string) => {
   `;
 
   const params = { category }; // Pass the category as a parameter
-  const data = await client.fetch(query, params);
+  const data = await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 
   return data;
 };
@@ -54,7 +58,11 @@ export const getArtworkBySlug = async (slug: string) => {
   `;
 
   try {
-    const artwork = await client.fetch(query, { slug });
+    const artwork = await client.fetch(
+      query,
+      { slug },
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return artwork || null; // Retourne null si l'œuvre n'est pas trouvée
   } catch (error) {
     console.error("Error fetching artwork:", error);
@@ -82,7 +90,9 @@ export const getSeriesWithArtworksByCategory = async (category: string) => {
   `;
 
   const params = { category }; // Pass the category as a parameter
-  const data = await client.fetch(query, params);
+  const data = await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 
   return data;
 };
@@ -109,7 +119,11 @@ export const getArtistsForArtistsPage = async () => {
     }
   `;
 
-  const data = await client.fetch(query);
+  const data = await client.fetch(
+    query,
+    {},
+    { next: { revalidate: REVALIDATE_TIME } }
+  );
   return data;
 };
 
@@ -125,7 +139,11 @@ export async function getArtistBySlug(slug: string) {
   }`;
 
   try {
-    const artist = await client.fetch(query, { slug });
+    const artist = await client.fetch(
+      query,
+      { slug },
+      { next: { revalidate: 86400 } }
+    );
     return artist || null; // Return null if no artist found
   } catch (error) {
     console.error("Error fetching artist:", error);
@@ -142,7 +160,11 @@ export async function fetchLatestNews() {
   }`;
 
   try {
-    const news = await client.fetch(query);
+    const news = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return news;
   } catch (error) {
     console.error("Error fetching news:", error);
@@ -159,7 +181,11 @@ export async function getAllNews() {
   }`;
 
   try {
-    const news = await client.fetch(query);
+    const news = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return news;
   } catch (error) {
     console.error("Error fetching news:", error);
@@ -176,7 +202,11 @@ export async function fetchHomeExhibitions() {
   }`;
 
   try {
-    const exhibitions = await client.fetch(query);
+    const exhibitions = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return exhibitions;
   } catch (error) {
     console.error("Error fetching exhibitions:", error);
@@ -193,7 +223,11 @@ export async function getViewingRoomExhibitions() {
   }`;
 
   try {
-    const exhibitions = await client.fetch(query);
+    const exhibitions = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return exhibitions;
   } catch (error) {
     console.error("Error fetching exhibitions:", error);
@@ -212,7 +246,9 @@ export const getExhibitionsByArtist = async (artistSlug: string) => {
   `;
 
   const params = { artistSlug }; // Pass the artist slug as a parameter
-  const data = await client.fetch(query, params);
+  const data = await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
   return data;
 };
 
@@ -229,7 +265,9 @@ export const getArtworkByArtist = async (artistSlug: string) => {
   `;
 
   const params = { artistSlug }; // Pass the artist slug as a parameter
-  const data = await client.fetch(query, params);
+  const data = await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
   return data;
 };
 
@@ -249,7 +287,9 @@ export const getSeriesByArtist = async (artistSlug: string) => {
   `;
 
   const params = { artistSlug }; // Pass the artist slug as a parameter
-  const data = await client.fetch(query, params);
+  const data = await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
   return data;
 };
 
@@ -289,7 +329,9 @@ export const getExhibition = async (slug: string) => {
   `;
 
   const params = { slug };
-  return await client.fetch(query, params);
+  return await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 };
 
 export const getExhibitionInfos = async (slug: string) => {
@@ -314,7 +356,9 @@ export const getExhibitionInfos = async (slug: string) => {
   `;
 
   const params = { slug };
-  return await client.fetch(query, params);
+  return await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 };
 
 export const getExhibitionViews = async (slug: string) => {
@@ -327,7 +371,9 @@ export const getExhibitionViews = async (slug: string) => {
   `;
 
   const params = { slug };
-  return await client.fetch(query, params);
+  return await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 };
 
 export const getExhibitionArtworks = async (slug: string) => {
@@ -359,7 +405,9 @@ export const getExhibitionArtworks = async (slug: string) => {
   `;
 
   const params = { slug };
-  return await client.fetch(query, params);
+  return await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 };
 
 export const getSeriesArtworkBySlug = async (
@@ -388,7 +436,9 @@ export const getSeriesArtworkBySlug = async (
   const params = { seriesSlug, artworkSlug };
 
   try {
-    const data = await client.fetch(query, params);
+    const data = await client.fetch(query, params, {
+      next: { revalidate: REVALIDATE_TIME },
+    });
     return data || null; // Retourne null si l'œuvre n'est pas trouvée
   } catch (error) {
     console.error("Error fetching series artwork:", error);
@@ -412,7 +462,11 @@ export const getBagDetails = async () => {
   `;
 
   try {
-    const bagDetails = await client.fetch(query);
+    const bagDetails = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
     console.error("Error fetching bag details:", error);
@@ -435,7 +489,11 @@ export const getBagContact = async () => {
   `;
 
   try {
-    const bagDetails = await client.fetch(query);
+    const bagDetails = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
     console.error("Error fetching bag details:", error);
@@ -467,7 +525,9 @@ export const getExhibitionsByTimeline = async (timeline: string) => {
   const params = { timeline };
 
   try {
-    const exhibitions = await client.fetch(query, params);
+    const exhibitions = await client.fetch(query, params, {
+      next: { revalidate: REVALIDATE_TIME },
+    });
     return exhibitions;
   } catch (error) {
     console.error("Error fetching exhibitions by timeline:", error);
@@ -487,7 +547,11 @@ export const getViewingRoomItems = async () => {
   `;
 
   try {
-    const roomItems = await client.fetch(query);
+    const roomItems = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return roomItems || null; // Retourne null si aucun document trouvé
   } catch (error) {
     console.error("Error fetching viewing room items:", error);
@@ -509,7 +573,9 @@ export const getViewingRoomItem = async (slug: string) => {
   `;
 
   const params = { slug };
-  return await client.fetch(query, params);
+  return await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 };
 
 export const getViewingRoomItemArtwork = async (slug: string) => {
@@ -538,7 +604,9 @@ export const getViewingRoomItemArtwork = async (slug: string) => {
   `;
 
   const params = { slug };
-  return await client.fetch(query, params);
+  return await client.fetch(query, params, {
+    next: { revalidate: REVALIDATE_TIME },
+  });
 };
 
 export const getBagSliderImages = async () => {
@@ -551,7 +619,11 @@ export const getBagSliderImages = async () => {
   `;
 
   try {
-    const bagDetails = await client.fetch(query);
+    const bagDetails = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
     console.error("Error fetching bag details:", error);
@@ -575,7 +647,11 @@ export const getMaliArtClubInfos = async () => {
   `;
 
   try {
-    const bagDetails = await client.fetch(query);
+    const bagDetails = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
     console.error("Error fetching bag details:", error);
@@ -595,7 +671,11 @@ export async function getHomeSliderExhibitions() {
   }`;
 
   try {
-    const exhibitions = await client.fetch(query);
+    const exhibitions = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return exhibitions;
   } catch (error) {
     console.error("Error fetching exhibitions:", error);
@@ -613,7 +693,11 @@ export const getHomeSliderImages = async () => {
   `;
 
   try {
-    const bagDetails = await client.fetch(query);
+    const bagDetails = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
     console.error("Error fetching bag details:", error);
