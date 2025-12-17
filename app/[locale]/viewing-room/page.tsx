@@ -1,15 +1,23 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import { getViewingRoomItems } from "@/sanity/sanity.queries";
-import React from "react";
+import React, { use } from "react";
 import { cacheLife } from "next/cache";
 
 import { SmallCard } from "@/components/cards/cards";
 
 import "./page.css";
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   "use cache";
   cacheLife("hours");
+
+  const { locale } = use(params);
+  // Enable static rendering
+  setRequestLocale(locale);
 
   const t = await getTranslations("viewingRoom");
   const roomItems = await getViewingRoomItems();

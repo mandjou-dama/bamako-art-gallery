@@ -1,4 +1,5 @@
-import { getTranslations } from "next-intl/server";
+import React, { use } from "react";
+import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import ActuCard from "@/components/cards/actu";
 
 import { getAllNews } from "@/sanity/sanity.queries";
@@ -6,9 +7,17 @@ import { cacheLife } from "next/cache";
 
 import "./page.css";
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   "use cache";
   cacheLife("hours");
+
+  const { locale } = use(params);
+  // Enable static rendering
+  setRequestLocale(locale);
 
   const t = await getTranslations("artActu.hero");
   const news = await getAllNews();

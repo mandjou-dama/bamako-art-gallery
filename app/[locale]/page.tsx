@@ -1,5 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { cacheLife } from "next/cache";
+import { use } from "react";
+import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/routing";
 import "./page.css";
@@ -34,9 +37,13 @@ export default async function Home({
   "use cache";
   cacheLife("hours");
 
+  const { locale } = use(params);
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const slug = (await params).locale;
   const t = await getTranslations("home");
-  const locale = await getLocale();
+  // const locale = await getLocale();
   const artists = await getArtistsForHome();
   const news = await fetchLatestNews();
   const exhibitions = await fetchHomeExhibitions();

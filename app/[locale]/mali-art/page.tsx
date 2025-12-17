@@ -1,5 +1,5 @@
-import React from "react";
-import { getTranslations, getLocale } from "next-intl/server";
+import React, { use } from "react";
+import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";
 import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
@@ -8,11 +8,18 @@ import { cacheLife } from "next/cache";
 import "./page.css";
 import ActuCard from "@/components/cards/actu";
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   "use cache";
   cacheLife("hours");
 
-  const locale = await getLocale();
+  const { locale } = use(params);
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const t = await getTranslations("maliArt");
   const artClub = await getMaliArtClubInfos();
 
