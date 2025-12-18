@@ -1,9 +1,9 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { Suspense } from "react";
+
 import PortableText from "@/components/portable_text/portable_text";
 import { type PortableTextBlock } from "next-sanity";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -18,33 +18,40 @@ import { SmallCard } from "@/components/cards/cards";
 import { ArtworkCard } from "@/components/cards/artwork_card";
 
 import "./page.css";
+import { client } from "@/sanity/lib/client";
 
-const presses = [
-  {
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    from: "Jeune Afrique",
-    title: "La foire investic monte en puissance",
-    link: "https://google.com",
-  },
-  {
-    image:
-      "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    from: "The New York Times",
-    title:
-      "Bringing Anne Frank’s Secret Annex to New York, and the World Covered windows, peeling ",
-    link: "https://google.com",
-  },
-];
+export const dynamic = "force-static";
 
-type Params = Promise<{ name: string }>;
+export async function generateStaticParams() {
+  const artists = await client.fetch(
+    `*[_type == "artist" && defined(slug.current)]{
+      "name": slug.current
+    }`,
+    {},
+    {
+      next: {
+        revalidate: 86400 * 10,
+        tags: ["artists"],
+      },
+    }
+  );
+
+  return artists.map((artist: { name: string }) => ({
+    name: artist.name,
+  }));
+}
+
+type Params = Promise<{ name: string; locale: string }>;
 
 export default async function ArtistPage({ params }: { params: Params }) {
-  const { name } = await params;
-  const locale = await getLocale();
+  const { name, locale } = await params;
+  // Use the locale from params for server translations
+  setRequestLocale(locale);
   const t = await getTranslations("artiste");
 
   const artist = await getArtistBySlug(name);
+  if (!artist) notFound();
+
   const exhibitions = await getExhibitionsByArtist(name);
   const artworks = await getArtworkByArtist(name);
   const series = await getSeriesByArtist(name);
@@ -148,7 +155,8 @@ export default async function ArtistPage({ params }: { params: Params }) {
                   image={artwork.image}
                   title={artwork.title}
                   artist={artist.fullName}
-                  link={`/works/serie/${artwork.slug}?serie=${serie.slug.current}`}
+                  // link={`/works/serie/${artwork.slug}?serie=${serie.slug.current}`}
+                  link={`/works/serie/${serie.slug.current}/${artwork.slug}`}
                   isAvailable={artwork.vendu === "oui" ? false : true}
                   year={artwork.year}
                 />

@@ -1,5 +1,6 @@
-import { getTranslations, getLocale } from "next-intl/server";
-import Image from "next/image";
+export const dynamic = "force-static";
+
+import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -11,9 +12,14 @@ import "./page.css";
 import { PortableTextBlock } from "next-sanity";
 import Slider from "@/components/slider/slider";
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   const t = await getTranslations("about");
-  const locale = await getLocale();
   const bag = await getBagDetails();
   const images = await getBagSliderImages();
 
@@ -49,40 +55,6 @@ export default async function Page() {
             />
           </div>
         </section>
-
-        {/* <section className="section">
-          <div className="section_header">
-            <h4 className="section_title">Kadiatou Sylla</h4>
-          </div>
-
-          <div className="about_section">
-            {getDirectrice.bio_fr ? (
-              <PortableText
-                className="portable_text"
-                value={
-                  locale === "fr"
-                    ? getDirectrice.bio_fr
-                    : (getDirectrice.bio_en as PortableTextBlock[])
-                }
-              />
-            ) : (
-              <p className="about_hero_description">
-                Biographie de la directrice
-              </p>
-            )}
-
-            <Image
-              width={1260}
-              height={750}
-              src={
-                getDirectrice.image
-                  ? urlFor(getDirectrice.image).auto("format").quality(80).url()
-                  : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              alt=""
-            />
-          </div>
-        </section> */}
 
         <section className="section">
           <div className="section_header">

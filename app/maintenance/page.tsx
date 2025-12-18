@@ -1,4 +1,3 @@
-import React from "react";
 import Countdown from "@/components/countdown/countdown";
 
 import Image from "next/image";

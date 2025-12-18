@@ -1,12 +1,12 @@
-import Image from "next/image";
-import React from "react";
+export const dynamic = "force-static";
+
 import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import {
-  getExhibition,
   getViewingRoomItem,
   getViewingRoomItemArtwork,
+  getViewingRoomItems,
 } from "@/sanity/sanity.queries";
 
 import { urlFor } from "@/sanity/lib/image";
@@ -17,14 +17,24 @@ import { AnimatedImage } from "@/components/animated_image/animated_image";
 
 import "./page.css";
 
-type Params = Promise<{ name: string }>;
+export async function generateStaticParams() {
+  const rooms = await getViewingRoomItems();
+
+  if (!rooms) return [];
+
+  return rooms.map((room: { slug: string }) => ({
+    name: room.slug,
+  }));
+}
+
+type Params = Promise<{ name: string; locale: string }>;
 
 export default async function ViewingRoomPage({ params }: { params: Params }) {
   const { name } = await params;
   const locale = await getLocale();
+
   const t = await getTranslations("viewingRoom");
 
-  const exhibition = await getExhibition(name);
   const room = await getViewingRoomItem(name);
   const roomArtworks = await getViewingRoomItemArtwork(name);
 
@@ -113,7 +123,8 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
                       key={`${artwork.slug}+${artwork.title}+${index}`}
                       image={artwork.images}
                       title={`${artwork.title} - ${serieTitle}`}
-                      link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                      // link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                      link={`/works/serie/${serie.slug}/${artwork.slug}`}
                       artist={serieArtist[0]}
                       year={artwork.year}
                     />

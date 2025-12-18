@@ -1,6 +1,6 @@
-import { getTranslations } from "next-intl/server";
+export const dynamic = "force-static";
 
-import React from "react";
+import { getTranslations } from "next-intl/server";
 
 import {
   getArtworksByCategory,
@@ -11,6 +11,15 @@ import { ArtworkCard } from "@/components/cards/artwork_card";
 
 import "./page.css";
 
+export async function generateStaticParams() {
+  return [
+    { name: "photographie" },
+    { name: "peinture" },
+    { name: "sculpture" },
+    { name: "design" },
+  ];
+}
+
 type Params = Promise<{ name: string }>;
 
 export const metadata = {
@@ -19,10 +28,6 @@ export const metadata = {
 
 function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function formatCurrency(amount: number, locale: string = "en-US"): string {
-  return new Intl.NumberFormat(locale, {}).format(amount);
 }
 
 export default async function Page({ params }: { params: Params }) {
@@ -80,7 +85,8 @@ export default async function Page({ params }: { params: Params }) {
               <ArtworkCard
                 key={`${artwork.price}+${artwork.title}+${index}`}
                 image={artwork.images}
-                link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                // link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                link={`/works/serie/${serie.slug}/${artwork.slug}`}
                 title={artwork.title}
                 artist={artist[0]}
                 isAvailable={artwork.vendu === "oui" ? false : true}

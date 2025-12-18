@@ -1,5 +1,6 @@
-import React from "react";
-import { getTranslations, getLocale } from "next-intl/server";
+export const dynamic = "force-static";
+
+import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";
 import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
@@ -9,10 +10,11 @@ import ActuCard from "@/components/cards/actu";
 
 export default async function Page() {
   const locale = await getLocale();
+  // Enable static rendering
+
   const t = await getTranslations("maliArt");
   const artClub = await getMaliArtClubInfos();
 
-  console.log(artClub);
   return (
     <div className="art_club_page">
       <div className="art_club_hero">

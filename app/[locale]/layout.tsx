@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import type { Metadata } from "next";
 import "../globals.css";
 
-//
-import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
 import { ToastContainer } from "react-toastify";
 import { useNewsletterStore } from "@/store/useNewsletter";
+
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
+import pick from "lodash/pick";
 
 // components
 import Navbar from "@/components/navbar/navbar";
@@ -16,17 +18,13 @@ import Menu from "@/components/menu/menu";
 import Cursor from "@/components/cursor/cursor";
 import Footer from "@/components/footer/footer";
 import NewsletterPopup from "@/components/newsletter/newsletter_popup";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
-
-// export const metadata: Metadata = {
-//   title: "Bamako Art Gallery",
-//   description:
-//     "Fondée en 2018 par Kadiatou Sylla, Bamako Art Gallery (BAG) est un lieu d’échanges artistiques dédié à l’art contemporain, antique, au design et à l’artisanat d’Afrique de l’Ouest. BAG valorise la créativité malienne avec une approche éthique axée sur le développement des talents artistiques et la promotion de la conscience culturelle.",
-// };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bamakoartgallery.com"),
@@ -66,37 +64,48 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
 };
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
+type Props = {
   children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const { locale } = await params;
+  params: Promise<{ locale: string }>;
+};
 
+// Provide all possible locales for static generation of the route `/[locale]`
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function LocaleLayout({ children, params }: Props) {
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
+  // Enable static rendering
+  setRequestLocale(locale);
+
   // Providing all messages to the client
   // side is the easiest way to get started
+
   const messages = await getMessages();
+
+  // console.log(JSON.stringify(messages, null, 2));
 
   return (
     <html lang={locale}>
       <body className={`${poppins.className}`}>
-        <NextIntlClientProvider messages={messages}>
-          <NewsletterPopup />
-          <Navbar />
-          <Cursor />
-          <ToastContainer position="top-left" theme="dark" />
-          <div className="container">
-            <Menu />
-            {children}
-            <Footer />
-          </div>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Suspense fallback={<Loading />}>
+            <NewsletterPopup />
+            <Navbar />
+            <Cursor />
+            <ToastContainer position="top-left" theme="dark" />
+            <div className="container">
+              <Menu />
+              {children}
+              <Footer />
+            </div>
+          </Suspense>
         </NextIntlClientProvider>
       </body>
     </html>

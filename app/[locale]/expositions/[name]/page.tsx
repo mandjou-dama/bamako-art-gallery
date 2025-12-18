@@ -1,4 +1,5 @@
-import React from "react";
+export const dynamic = "force-static";
+
 import { type PortableTextBlock } from "next-sanity";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -6,6 +7,7 @@ import {
   getExhibitionViews,
   getExhibitionInfos,
   getExhibitionArtworks,
+  getExhibitionsByTimeline,
 } from "@/sanity/sanity.queries";
 import { ArtworkCard } from "@/components/cards/artwork_card";
 import { AnimatedImage } from "@/components/animated_image/animated_image";
@@ -15,6 +17,20 @@ import PortableText from "@/components/portable_text/portable_text";
 
 import "./page.css";
 import { Link } from "@/i18n/routing";
+
+export async function generateStaticParams() {
+  const [upComing, current, passed] = await Promise.all([
+    getExhibitionsByTimeline("À venir"),
+    getExhibitionsByTimeline("En cours"),
+    getExhibitionsByTimeline("Passée"),
+  ]);
+
+  const allExhibitions = [...upComing, ...current, ...passed];
+
+  return allExhibitions.map((exhibition: any) => ({
+    name: exhibition.slug,
+  }));
+}
 
 type Params = Promise<{ name: string }>;
 
@@ -136,7 +152,8 @@ export default async function ExpositionPage({ params }: { params: Params }) {
                       key={`${artwork.slug}+${artwork.title}+${index}`}
                       image={artwork.images}
                       title={`${artwork.title} - ${serieTitle}`}
-                      link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                      // link={`/works/serie/${artwork.slug}?serie=${serie.slug}`}
+                      link={`/works/serie/${serie.slug}/${artwork.slug}`}
                       artist={serieArtist[0]}
                       isAvailable={artwork.vendu === "oui" ? false : true}
                       year={artwork.year}

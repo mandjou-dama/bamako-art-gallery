@@ -1,4 +1,8 @@
-import { getTranslations, getLocale } from "next-intl/server";
+export const dynamic = "force-static";
+
+import { getTranslations } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
+
 import { Link } from "@/i18n/routing";
 import "./page.css";
 
@@ -24,24 +28,37 @@ import Sculpture from "@/public/assets/sculpture.jpeg";
 import Peinture from "@/public/assets/peinture.jpeg";
 import Slider from "@/components/slider/slider";
 
+export async function generateStaticParams() {
+  return [{ locale: "fr" }, { locale: "en" }];
+}
+
 export default async function Home({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const slug = (await params).locale;
+  const { locale } = await params;
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  const slug = locale;
   const t = await getTranslations("home");
-  const locale = await getLocale();
-  const artists = await getArtistsForHome();
-  const news = await fetchLatestNews();
-  const exhibitions = await fetchHomeExhibitions();
-  const sliderExhibitions = await getHomeSliderExhibitions();
-  const sliderSimpleImages = await getHomeSliderImages();
+  // const locale = await getLocale();
+  const [artists, news, exhibitions, sliderExhibitions, sliderSimpleImages] =
+    await Promise.all([
+      getArtistsForHome(),
+      fetchLatestNews(),
+      fetchHomeExhibitions(),
+      getHomeSliderExhibitions(),
+      getHomeSliderImages(),
+    ]);
 
   const slides = sliderExhibitions.flatMap((item: any) => {
     const link = `/expositions/${item.slug}`; // Create the link dynamically
     const name = item.title; // Use the title as the name
-    const year = `${formatDate(item.date.date_debut)} - ${formatDate(item.date.date_fin)}`; // Format the date range
+    const year = `${formatDate(item.date.date_debut)} - ${formatDate(
+      item.date.date_fin
+    )}`; // Format the date range
 
     // Map over slider_images to create individual slides
     return item.slider_images.map((image: any) => ({
@@ -126,7 +143,9 @@ export default async function Home({
               subline={
                 exhibition.artists.length > 2
                   ? "exposition collective"
-                  : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                  : `${exhibition.artists[0]?.fullName}${
+                      exhibition.artists[1]?.fullName ? "," : ""
+                    } ${exhibition.artists[1]?.fullName || ""}`
               }
               link={`/expositions/${exhibition.slug}`}
               fromSanity={true}

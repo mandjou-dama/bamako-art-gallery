@@ -1,9 +1,7 @@
-import React from "react";
+export const dynamic = "force-static";
+
 import { getLocale, getTranslations } from "next-intl/server";
 import { getBagContact } from "@/sanity/sanity.queries";
-
-import PortableText from "@/components/portable_text/portable_text";
-import { type PortableTextBlock } from "next-sanity";
 
 import "./page.css";
 import {
