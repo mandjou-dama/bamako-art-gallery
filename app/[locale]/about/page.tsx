@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 
 import { urlFor } from "@/sanity/lib/image";

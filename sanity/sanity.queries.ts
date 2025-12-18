@@ -14,6 +14,28 @@ const client = createClient({
   useCdn: false,
 });
 
+export const getAllArtworks = async () => {
+  const query = groq`
+      *[_type == "artwork"] {
+      "slug": slug.current,
+      }
+  `;
+
+  try {
+    const artworks = await client.fetch(
+      query,
+      {},
+      {
+        next: { revalidate: REVALIDATE_TIME },
+      }
+    );
+    return artworks || [];
+  } catch (error) {
+    console.error("Error fetching artworks:", error);
+    return [];
+  }
+};
+
 export const getArtworksByCategory = async (category: string) => {
   const query = groq`
     *[_type == "artwork" && category == $category] {
@@ -146,7 +168,7 @@ export async function getArtistBySlug(slug: string) {
     const artist = await client.fetch(
       query,
       { slug },
-      { next: { revalidate: 86400 } }
+      { next: { revalidate: REVALIDATE_TIME } }
     );
     return artist || null; // Return null if no artist found
   } catch (error) {
@@ -447,6 +469,69 @@ export const getSeriesArtworkBySlug = async (
   } catch (error) {
     console.error("Error fetching series artwork:", error);
     return null;
+  }
+};
+
+// New: fetch the series and artwork by artwork slug only (when no series slug in search params)
+export const getSeriesArtworkByArtworkSlug = async (artworkSlug: string) => {
+  const query = groq`
+    *[_type == "series" && count(artworks[slug.current == $artworkSlug]) > 0][0] {
+      title,
+      slug,
+      artists[]->{ fullName },
+      "artwork": artworks[slug.current == $artworkSlug][0] {
+        title,
+        "slug": slug.current,
+        category,
+        "technique_fr": technique[_key == "fr"][0].value,
+        "technique_en": technique[_key == "en"][0].value,
+        dimensions,
+        year,
+        price,
+        "image": images.asset->url
+      }
+    }
+  `;
+
+  try {
+    const data = await client.fetch(
+      query,
+      { artworkSlug },
+      {
+        next: { revalidate: REVALIDATE_TIME },
+      }
+    );
+    return data || null;
+  } catch (error) {
+    console.error("Error fetching series artwork by artwork slug:", error);
+    return null;
+  }
+};
+export const getAllSeriesSlugsWithArtworks = async () => {
+  const query = groq`
+    *[_type == "series"] {
+      "seriesSlug": slug.current,
+      "artworks": artworks[] { "slug": slug.current }
+    }
+  `;
+
+  try {
+    const series = await client.fetch(
+      query,
+      {},
+      { next: { revalidate: REVALIDATE_TIME } }
+    );
+    // Retourne un tableau de { seriesSlug, artworkSlug }
+    const params: { name: string; serie: string }[] = [];
+    series.forEach((s: any) => {
+      s.artworks.forEach((a: any) => {
+        params.push({ name: a.slug, serie: s.seriesSlug });
+      });
+    });
+    return params;
+  } catch (error) {
+    console.error("Error fetching series slugs:", error);
+    return [];
   }
 };
 

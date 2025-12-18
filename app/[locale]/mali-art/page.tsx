@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";

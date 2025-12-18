@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import ActuCard from "@/components/cards/actu";
 

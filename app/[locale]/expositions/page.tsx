@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getTranslations } from "next-intl/server";
 import { SmallCard } from "@/components/cards/cards";
 
@@ -47,27 +49,29 @@ export default async function Page() {
           </section>
         )}
 
-        <section className="section">
-          <div className="section_header">
-            <h4 className="section_title">{t("sections.aVenir")}</h4>
-          </div>
+        {upComing.length > 0 ? (
+          <section className="section">
+            <div className="section_header">
+              <h4 className="section_title">{t("sections.aVenir")}</h4>
+            </div>
 
-          <div className="section_elements_wrapper two_elements">
-            {upComing.map((exhibition: any) => (
-              <SmallCard
-                key={exhibition.title}
-                name={exhibition.title}
-                subline={
-                  exhibition.artists.length > 2
-                    ? "exposition collective"
-                    : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
-                }
-                link={`/expositions/${exhibition.slug}`}
-                image={exhibition.cover}
-              />
-            ))}
-          </div>
-        </section>
+            <div className="section_elements_wrapper two_elements">
+              {upComing.map((exhibition: any) => (
+                <SmallCard
+                  key={exhibition.title}
+                  name={exhibition.title}
+                  subline={
+                    exhibition.artists.length > 2
+                      ? "exposition collective"
+                      : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
+                  }
+                  link={`/expositions/${exhibition.slug}`}
+                  image={exhibition.cover}
+                />
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="section">
           <h4 className="section_title">{t("sections.passer")}</h4>

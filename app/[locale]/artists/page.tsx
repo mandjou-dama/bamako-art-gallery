@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getTranslations } from "next-intl/server";
 import ArtistCard from "@/components/cards/artist";
 

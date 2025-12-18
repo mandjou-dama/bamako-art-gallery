@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getLocale, getTranslations } from "next-intl/server";
 import { getBagContact } from "@/sanity/sanity.queries";
 

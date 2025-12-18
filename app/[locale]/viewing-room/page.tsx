@@ -1,4 +1,6 @@
-import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
+export const dynamic = "force-static";
+
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getViewingRoomItems } from "@/sanity/sanity.queries";
 
 import { SmallCard } from "@/components/cards/cards";

@@ -1,30 +1,37 @@
+export const dynamic = "force-static";
+
 import { getLocale, getTranslations } from "next-intl/server";
 import { urlFor } from "@/sanity/lib/image";
 
-import { getSeriesArtworkBySlug } from "@/sanity/sanity.queries";
+import {
+  getAllSeriesSlugsWithArtworks,
+  getSeriesArtworkBySlug,
+} from "@/sanity/sanity.queries";
 
 import PortableText from "@/components/portable_text/portable_text";
 import { PortableTextBlock } from "next-sanity";
 
 import "./page.css";
 
-type Params = Promise<{ name: string }>;
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+type Params = Promise<{ seriesSlug: string; artworkSlug: string }>;
 
-export default async function SeriePage({
-  params,
-  searchParams,
-}: {
-  params: Params;
-  searchParams: SearchParams;
-}) {
-  const { name } = await params;
-  const { serie } = await searchParams;
+export async function generateStaticParams({}: {}) {
+  const allParams = await getAllSeriesSlugsWithArtworks();
+  // Now each param should have both seriesSlug and artworkSlug
+  return allParams.map((p) => ({
+    seriesSlug: p.serie,
+    artworkSlug: p.name,
+  }));
+}
+
+export default async function SeriePage({ params }: { params: Params }) {
+  const { seriesSlug, artworkSlug } = await params;
+
   const locale = await getLocale();
   const t = await getTranslations("artwork");
 
   //@ts-ignore
-  const artwork = await getSeriesArtworkBySlug(serie, name);
+  const artwork = await getSeriesArtworkBySlug(seriesSlug, artworkSlug);
 
   const mailContent = (artwork: any) => {
     if (locale === "fr")
@@ -32,6 +39,10 @@ export default async function SeriePage({
     if (locale === "en")
       return `mailto:contact@bamakoartgallery.com?subject=Inquiry about ${encodeURIComponent(artwork.title)} by ${encodeURIComponent(artwork.artists[0].fullName)}&body=Hello,%0D%0A%0D%0AI am interested in '${encodeURIComponent(artwork.title)}' by '${encodeURIComponent(artwork.artists[0].fullName)}'.%0D%0A%0D%0AThanks!`;
   };
+
+  if (!artwork) {
+    return <div>Artwork not found</div>;
+  }
 
   return (
     <div className="work_page">
@@ -118,15 +129,6 @@ export default async function SeriePage({
           </a>
         </section>
       </div>
-
-      {/* <section className="section work_images_section">
-          <div className="section_header">
-            <h4 className="section_title">Voir plus d'images</h4>
-          </div>
-  
-          <div className="work_images">
-          </div>
-        </section> */}
     </div>
   );
 }
