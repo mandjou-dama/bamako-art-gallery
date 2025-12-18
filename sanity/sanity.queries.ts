@@ -106,7 +106,11 @@ export const getArtistsForHome = async () => {
     }
   `;
 
-  const data = await client.fetch(query);
+  const data = await client.fetch(
+    query,
+    {},
+    { next: { revalidate: REVALIDATE_TIME } }
+  );
   return data;
 };
 

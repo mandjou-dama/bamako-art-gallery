@@ -6,19 +6,13 @@ import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
 import "./page.css";
 import ActuCard from "@/components/cards/actu";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export default async function Page() {
+  const locale = await getLocale();
   // Enable static rendering
-  setRequestLocale(locale);
 
   const t = await getTranslations("maliArt");
   const artClub = await getMaliArtClubInfos();
 
-  console.log(artClub);
   return (
     <div className="art_club_page">
       <div className="art_club_hero">

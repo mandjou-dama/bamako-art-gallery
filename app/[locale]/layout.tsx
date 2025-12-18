@@ -18,6 +18,8 @@ import Menu from "@/components/menu/menu";
 import Cursor from "@/components/cursor/cursor";
 import Footer from "@/components/footer/footer";
 import NewsletterPopup from "@/components/newsletter/newsletter_popup";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -92,16 +94,18 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale}>
       <body className={`${poppins.className}`}>
-        <NextIntlClientProvider>
-          <NewsletterPopup />
-          <Navbar />
-          <Cursor />
-          <ToastContainer position="top-left" theme="dark" />
-          <div className="container">
-            <Menu />
-            {children}
-            <Footer />
-          </div>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Suspense fallback={<Loading />}>
+            <NewsletterPopup />
+            <Navbar />
+            <Cursor />
+            <ToastContainer position="top-left" theme="dark" />
+            <div className="container">
+              <Menu />
+              {children}
+              <Footer />
+            </div>
+          </Suspense>
         </NextIntlClientProvider>
       </body>
     </html>
