@@ -5,7 +5,7 @@ import { apiVersion } from "./env";
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
-const REVALIDATE_TIME = 86400;
+const REVALIDATE_TIME = 86400 * 10;
 
 const client = createClient({
   projectId: projectId,
