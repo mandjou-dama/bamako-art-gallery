@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 
@@ -26,6 +28,10 @@ import Sculpture from "@/public/assets/sculpture.jpeg";
 import Peinture from "@/public/assets/peinture.jpeg";
 import Slider from "@/components/slider/slider";
 
+export async function generateStaticParams() {
+  return [{ locale: "fr" }, { locale: "en" }];
+}
+
 export default async function Home({
   params,
 }: {
@@ -38,11 +44,14 @@ export default async function Home({
   const slug = locale;
   const t = await getTranslations("home");
   // const locale = await getLocale();
-  const artists = await getArtistsForHome();
-  const news = await fetchLatestNews();
-  const exhibitions = await fetchHomeExhibitions();
-  const sliderExhibitions = await getHomeSliderExhibitions();
-  const sliderSimpleImages = await getHomeSliderImages();
+  const [artists, news, exhibitions, sliderExhibitions, sliderSimpleImages] =
+    await Promise.all([
+      getArtistsForHome(),
+      fetchLatestNews(),
+      fetchHomeExhibitions(),
+      getHomeSliderExhibitions(),
+      getHomeSliderImages(),
+    ]);
 
   const slides = sliderExhibitions.flatMap((item: any) => {
     const link = `/expositions/${item.slug}`; // Create the link dynamically
