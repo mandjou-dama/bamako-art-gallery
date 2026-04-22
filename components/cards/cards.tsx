@@ -61,7 +61,10 @@ export const SmallCard = ({
       <Link scroll={true} href={link ? link : ""}>
         <div className="small_card_image_container">
           {fromSanity && (
-            <img src={urlFor(image).auto("format").width(720).url()} alt="" />
+            <img
+              src={urlFor(image).width(800).fit("max").auto("format").url()}
+              alt=""
+            />
           )}
           {!fromSanity && <Image width={600} height={750} src={image} alt="" />}
         </div>

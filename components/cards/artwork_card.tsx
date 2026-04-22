@@ -54,7 +54,7 @@ export const ArtworkCard = ({
     <div className="artwork_card" ref={cardRef}>
       <Link href={link}>
         <img
-          src={urlFor(image).auto("format").width(720).url()}
+          src={urlFor(image).width(800).fit("max").auto("format").url()}
           alt={title}
           className="artwork_image"
         />

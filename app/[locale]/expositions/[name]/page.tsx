@@ -50,7 +50,12 @@ export default async function ExpositionPage({ params }: { params: Params }) {
         <AnimatedImage
           src={
             exhibitionInfos.cover
-              ? urlFor(exhibitionInfos.cover).auto("format").quality(80).url()
+              ? urlFor(exhibitionInfos.cover)
+                  .width(800)
+                  .fit("max")
+                  .auto("format")
+                  .quality(80)
+                  .url()
               : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt={`${exhibitionInfos.title} cover image`}
@@ -110,7 +115,12 @@ export default async function ExpositionPage({ params }: { params: Params }) {
               return (
                 <AnimatedImage
                   key={image.image}
-                  src={urlFor(image.image).auto("format").quality(80).url()}
+                  src={urlFor(image.image)
+                    .width(800)
+                    .fit("max")
+                    .auto("format")
+                    .quality(80)
+                    .url()}
                   alt=""
                 />
               );
@@ -175,8 +185,10 @@ export default async function ExpositionPage({ params }: { params: Params }) {
                   <div className="image_container">
                     <img
                       src={urlFor(presse.image)
+                        .width(800)
+                        .fit("max")
                         .auto("format")
-                        .quality(80)
+                        .quality(70)
                         .url()}
                       alt=""
                     />

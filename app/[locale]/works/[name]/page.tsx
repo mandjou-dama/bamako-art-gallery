@@ -43,7 +43,12 @@ export default async function WorkPage({ params }: { params: Params }) {
         <AnimatedImage
           src={
             artwork.image
-              ? urlFor(artwork.image).auto("format").quality(100).url()
+              ? urlFor(artwork.image)
+                  .width(800)
+                  .fit("max")
+                  .auto("format")
+                  .quality(100)
+                  .url()
               : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt=""

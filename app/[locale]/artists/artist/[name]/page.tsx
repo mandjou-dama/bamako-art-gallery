@@ -33,7 +33,7 @@ export async function generateStaticParams() {
         revalidate: 86400 * 10,
         tags: ["artists"],
       },
-    }
+    },
   );
 
   return artists.map((artist: { name: string }) => ({
@@ -96,7 +96,12 @@ export default async function ArtistPage({ params }: { params: Params }) {
           <img
             src={
               artist.image
-                ? urlFor(artist.image).auto("format").quality(80).url()
+                ? urlFor(artist.image)
+                    .width(800)
+                    .fit("max")
+                    .auto("format")
+                    .quality(80)
+                    .url()
                 : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             }
             alt=""
