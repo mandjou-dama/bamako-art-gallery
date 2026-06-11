@@ -21,6 +21,7 @@ import "./page.css";
 import { client } from "@/sanity/lib/client";
 
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const artists = await client.fetch(
@@ -30,7 +31,7 @@ export async function generateStaticParams() {
     {},
     {
       next: {
-        revalidate: 86400 * 10,
+        revalidate: 86400 * 3,
         tags: ["artists"],
       },
     },
@@ -47,7 +48,7 @@ export default async function ArtistPage({ params }: { params: Params }) {
   const { name, locale } = await params;
   // Use the locale from params for server translations
   setRequestLocale(locale);
-  const t = await getTranslations("artiste");
+  const t = await getTranslations({ locale, namespace: "artiste" });
 
   const artist = await getArtistBySlug(name);
   if (!artist) notFound();
@@ -126,7 +127,9 @@ export default async function ArtistPage({ params }: { params: Params }) {
                 name={exhibition.title}
                 subline={
                   exhibition.artists.length > 2
-                    ? "exposition collective"
+                    ? locale === "fr"
+                      ? "exposition collective"
+                      : "group exhibition"
                     : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
                 }
                 link={`/expositions/${exhibition.slug.current}`}

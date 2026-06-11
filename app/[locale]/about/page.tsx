@@ -1,6 +1,6 @@
 export const dynamic = "force-static";
 
-import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -18,8 +18,9 @@ export default async function Page({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
-  const t = await getTranslations("about");
+  const t = await getTranslations({ locale, namespace: "about" });
   const bag = await getBagDetails();
   const images = await getBagSliderImages();
 

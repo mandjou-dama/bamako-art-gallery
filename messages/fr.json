@@ -112,6 +112,7 @@
     },
     "newsletter": {
       "placeholder": "votre adresse email",
+      "popupDescription": "Ne manquez rien de l'actualité artistique ! Inscrivez-vous à notre newsletter pour découvrir en avant-première nos expositions, artistes et événements spéciaux.",
       "loading": "Chargement",
       "button": "s'inscrire",
       "message": "Merci pour votre inscription ! Restez à l'affût de nos actus.",

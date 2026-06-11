@@ -1,6 +1,6 @@
 export const dynamic = "force-static";
 
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getBagContact } from "@/sanity/sanity.queries";
 
 import "./page.css";
@@ -17,11 +17,15 @@ import {
 import { Link } from "@/i18n/routing";
 import CustomMap from "@/components/map/map";
 
-type Props = {};
+type Props = {
+  params: Promise<{ locale: string }>;
+};
 
-async function Page({}: Props) {
-  const t = await getTranslations("contact");
-  const locale = await getLocale();
+async function Page({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "contact" });
 
   const details = await getBagContact();
 

@@ -28,6 +28,7 @@ const Navbar = () => {
   const locale = useLocale();
   const t = useTranslations("navbar");
   const { setIsOpen } = useMenuStore();
+  const pathnameWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
 
   // Define navigation links
   const navLinks: NavLink[] = useMemo(
@@ -123,7 +124,7 @@ const Navbar = () => {
           <div className={styles.lang_container}>
             {langLinks.map(({ lang }) => (
               <Link
-                href={`${pathname.replace(`/${locale}`, "/")}`}
+                href={pathnameWithoutLocale}
                 locale={lang}
                 key={lang}
                 className={

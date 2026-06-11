@@ -16,7 +16,7 @@ export default async function Page({
   // Enable static rendering
   setRequestLocale(locale);
 
-  const t = await getTranslations("artActu.hero");
+  const t = await getTranslations({ locale, namespace: "artActu.hero" });
   const news = await getAllNews();
 
   return (

@@ -112,6 +112,7 @@
     },
     "newsletter": {
       "placeholder": "Your email address",
+      "popupDescription": "Stay close to the gallery's latest news. Subscribe to discover our exhibitions, artists, and special events first.",
       "loading": "Loading",
       "button": "Sign Up",
       "message": "Thank you for subscribing! Stay tuned for our latest updates.",

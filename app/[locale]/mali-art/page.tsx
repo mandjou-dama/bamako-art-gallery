@@ -1,6 +1,6 @@
 export const dynamic = "force-static";
 
-import { getTranslations, getLocale, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { PortableTextBlock } from "next-sanity";
 import PortableText from "@/components/portable_text/portable_text";
 import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
@@ -8,11 +8,15 @@ import { getMaliArtClubInfos } from "@/sanity/sanity.queries";
 import "./page.css";
 import ActuCard from "@/components/cards/actu";
 
-export default async function Page() {
-  const locale = await getLocale();
-  // Enable static rendering
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-  const t = await getTranslations("maliArt");
+  const t = await getTranslations({ locale, namespace: "maliArt" });
   const artClub = await getMaliArtClubInfos();
 
   return (

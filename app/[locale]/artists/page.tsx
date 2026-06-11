@@ -1,14 +1,21 @@
 export const dynamic = "force-static";
 
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import ArtistCard from "@/components/cards/artist";
 
 import { getArtistsForArtistsPage } from "@/sanity/sanity.queries";
 
 import "./page.css";
 
-export default async function Page() {
-  const t = await getTranslations("artistes.hero");
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "artistes.hero" });
   const artists = await getArtistsForArtistsPage();
 
   return (

@@ -1,7 +1,8 @@
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
 import { type PortableTextBlock } from "next-sanity";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import {
   getViewingRoomItem,
@@ -30,10 +31,10 @@ export async function generateStaticParams() {
 type Params = Promise<{ name: string; locale: string }>;
 
 export default async function ViewingRoomPage({ params }: { params: Params }) {
-  const { name } = await params;
-  const locale = await getLocale();
+  const { locale, name } = await params;
+  setRequestLocale(locale);
 
-  const t = await getTranslations("viewingRoom");
+  const t = await getTranslations({ locale, namespace: "viewingRoom" });
 
   const room = await getViewingRoomItem(name);
   const roomArtworks = await getViewingRoomItemArtwork(name);

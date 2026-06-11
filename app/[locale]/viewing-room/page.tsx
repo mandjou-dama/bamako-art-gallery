@@ -16,7 +16,7 @@ export default async function Page({
   // Enable static rendering
   setRequestLocale(locale);
 
-  const t = await getTranslations("viewingRoom");
+  const t = await getTranslations({ locale, namespace: "viewingRoom" });
   const roomItems = await getViewingRoomItems();
 
   return (

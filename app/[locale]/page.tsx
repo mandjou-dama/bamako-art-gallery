@@ -42,7 +42,7 @@ export default async function Home({
   setRequestLocale(locale);
 
   const slug = locale;
-  const t = await getTranslations("home");
+  const t = await getTranslations({ locale, namespace: "home" });
   // const locale = await getLocale();
   const [artists, news, exhibitions, sliderExhibitions, sliderSimpleImages] =
     await Promise.all([
@@ -101,19 +101,19 @@ export default async function Home({
         <div className="section_elements_wrapper four_elements">
           <SmallCard
             image={Peinture}
-            name="Peinture"
+            name={locale === "fr" ? "Peinture" : "Painting"}
             link={`/works/category/peinture`}
             fromSanity={false}
           />
           <SmallCard
             image={Photography}
-            name="Photographie"
+            name={locale === "fr" ? "Photographie" : "Photography"}
             link={`/works/category/photographie`}
             fromSanity={false}
           />
           <SmallCard
             image={Sculpture}
-            name="Sculpture"
+            name={locale === "fr" ? "Sculpture" : "Sculpture"}
             link={`/works/category/sculpture`}
             fromSanity={false}
           />
@@ -130,6 +130,7 @@ export default async function Home({
         <div className="section_header">
           <h4 className="section_title">{t("sections.expositions.message")}</h4>
           <SeeMore
+            locale={locale}
             link="/expositions"
             message={t("sections.expositions.link")}
           />
@@ -142,7 +143,9 @@ export default async function Home({
               name={exhibition.title}
               subline={
                 exhibition.artists.length > 2
-                  ? "exposition collective"
+                  ? locale === "fr"
+                    ? "exposition collective"
+                    : "group exhibition"
                   : `${exhibition.artists[0]?.fullName}${
                       exhibition.artists[1]?.fullName ? "," : ""
                     } ${exhibition.artists[1]?.fullName || ""}`
@@ -158,7 +161,11 @@ export default async function Home({
       <section className="section">
         <div className="section_header">
           <h4 className="section_title">{t("sections.artistes.message")}</h4>
-          <SeeMore link="/artists" message={t("sections.artistes.link")} />
+          <SeeMore
+            locale={locale}
+            link="/artists"
+            message={t("sections.artistes.link")}
+          />
         </div>
 
         <div className="section_elements_wrapper rounded_four_elements">
@@ -190,7 +197,12 @@ export default async function Home({
           ))}
         </div>
 
-        <Link scroll={true} href={"/art-actu"} className="see_more_actu">
+        <Link
+          scroll={true}
+          href={"/art-actu"}
+          locale={locale}
+          className="see_more_actu"
+        >
           {t("sections.artActu.link")}
           <svg
             xmlns="http://www.w3.org/2000/svg"

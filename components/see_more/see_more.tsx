@@ -4,12 +4,14 @@ import { Link } from "@/i18n/routing";
 type Props = {
   message: string;
   link?: string;
+  locale?: string;
 };
 
-function SeeMore({ message, link }: Props) {
+function SeeMore({ message, link, locale }: Props) {
   return (
     <Link
       href={link ? link : ""}
+      locale={locale}
       style={{
         display: "flex",
         alignItems: "center",

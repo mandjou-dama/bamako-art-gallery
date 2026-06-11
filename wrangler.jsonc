@@ -1,10 +1,14 @@
 {
-  "name": "bamako-art-gallery",
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
+  "name": "bamako-art-gallery",
+  // Set this to today's date
   "compatibility_date": "2026-06-11",
-  "vars": {
-    "NEXT_PUBLIC_SANITY_PROJECT_ID": "o4huj4e2",
-    "NEXT_PUBLIC_SANITY_DATASET": "production",
-    "NEXT_PUBLIC_SANITY_API_VERSION": "2025-01-25",
-  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
 }

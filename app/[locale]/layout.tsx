@@ -2,15 +2,12 @@ import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import "../globals.css";
 
-import { getMessages } from "next-intl/server";
 import { ToastContainer } from "react-toastify";
-import { useNewsletterStore } from "@/store/useNewsletter";
 
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
-import pick from "lodash/pick";
 
 // components
 import Navbar from "@/components/navbar/navbar";
@@ -84,10 +81,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   // Enable static rendering
   setRequestLocale(locale);
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-
-  const messages = await getMessages();
+  const messages = (await import(`../../messages/${locale}.json`)).default;
 
   // console.log(JSON.stringify(messages, null, 2));
 

@@ -1,14 +1,21 @@
 export const dynamic = "force-static";
 
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SmallCard } from "@/components/cards/cards";
 
 import { getExhibitionsByTimeline } from "@/sanity/sanity.queries";
 
 import "./page.css";
 
-export default async function Page() {
-  const t = await getTranslations("expositions");
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "expositions" });
 
   const upComing = await getExhibitionsByTimeline("À venir");
   const current = await getExhibitionsByTimeline("En cours");
@@ -38,7 +45,9 @@ export default async function Page() {
                   name={exhibition.title}
                   subline={
                     exhibition.artists.length > 2
-                      ? "exposition collective"
+                      ? locale === "fr"
+                        ? "exposition collective"
+                        : "group exhibition"
                       : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
                   }
                   link={`/expositions/${exhibition.slug}`}
@@ -62,7 +71,9 @@ export default async function Page() {
                   name={exhibition.title}
                   subline={
                     exhibition.artists.length > 2
-                      ? "exposition collective"
+                      ? locale === "fr"
+                        ? "exposition collective"
+                        : "group exhibition"
                       : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
                   }
                   link={`/expositions/${exhibition.slug}`}
@@ -82,7 +93,9 @@ export default async function Page() {
                 name={exhibition.title}
                 subline={
                   exhibition.artists.length > 2
-                    ? "exposition collective"
+                    ? locale === "fr"
+                      ? "exposition collective"
+                      : "group exhibition"
                     : `${exhibition.artists[0]?.fullName}${exhibition.artists[1]?.fullName ? "," : ""} ${exhibition.artists[1]?.fullName || ""}`
                 }
                 link={`/expositions/${exhibition.slug}`}

@@ -1,6 +1,7 @@
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { getAllArtworks, getArtworkBySlug } from "@/sanity/sanity.queries";
 import { urlFor } from "@/sanity/lib/image";
@@ -11,7 +12,7 @@ import "./page.css";
 import { PortableTextBlock } from "next-sanity";
 import { AnimatedImage } from "@/components/animated_image/animated_image";
 
-type Params = Promise<{ name: string }>;
+type Params = Promise<{ locale: string; name: string }>;
 
 export const generateStaticParams = async () => {
   const artworks = await getAllArtworks();
@@ -24,9 +25,10 @@ export const generateStaticParams = async () => {
 };
 
 export default async function WorkPage({ params }: { params: Params }) {
-  const { name } = await params;
-  const locale = await getLocale();
-  const t = await getTranslations("artwork");
+  const { locale, name } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "artwork" });
 
   const artwork = await getArtworkBySlug(name);
 

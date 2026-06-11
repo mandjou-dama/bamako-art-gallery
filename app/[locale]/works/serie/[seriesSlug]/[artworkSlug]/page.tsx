@@ -1,6 +1,7 @@
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { urlFor } from "@/sanity/lib/image";
 
 import {
@@ -13,7 +14,11 @@ import { PortableTextBlock } from "next-sanity";
 
 import "./page.css";
 
-type Params = Promise<{ seriesSlug: string; artworkSlug: string }>;
+type Params = Promise<{
+  locale: string;
+  seriesSlug: string;
+  artworkSlug: string;
+}>;
 
 export async function generateStaticParams({}: {}) {
   const allParams = await getAllSeriesSlugsWithArtworks();
@@ -25,10 +30,10 @@ export async function generateStaticParams({}: {}) {
 }
 
 export default async function SeriePage({ params }: { params: Params }) {
-  const { seriesSlug, artworkSlug } = await params;
+  const { locale, seriesSlug, artworkSlug } = await params;
+  setRequestLocale(locale);
 
-  const locale = await getLocale();
-  const t = await getTranslations("artwork");
+  const t = await getTranslations({ locale, namespace: "artwork" });
 
   //@ts-ignore
   const artwork = await getSeriesArtworkBySlug(seriesSlug, artworkSlug);

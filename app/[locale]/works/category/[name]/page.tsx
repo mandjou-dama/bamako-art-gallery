@@ -1,6 +1,7 @@
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import {
   getArtworksByCategory,
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
   ];
 }
 
-type Params = Promise<{ name: string }>;
+type Params = Promise<{ locale: string; name: string }>;
 
 export const metadata = {
   title: "Catégorie",
@@ -31,8 +32,10 @@ function capitalizeFirstLetter(str: string) {
 }
 
 export default async function Page({ params }: { params: Params }) {
-  const t = await getTranslations("work");
-  const { name } = await params;
+  const { locale, name } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "work" });
   const artworks = await getArtworksByCategory(capitalizeFirstLetter(name));
   const series = await getSeriesWithArtworksByCategory(
     capitalizeFirstLetter(name)
@@ -56,7 +59,9 @@ export default async function Page({ params }: { params: Params }) {
     <div className="works_page">
       <div className="works_hero">
         <div className="works_hero_infos">
-          <h4>Oeuvres en {getTitle()}</h4>
+          <h4>
+            {locale === "fr" ? "Oeuvres en" : "Works in"} {getTitle()}
+          </h4>
           <p>{getDescription()}</p>
         </div>
         <div className="separator"></div>

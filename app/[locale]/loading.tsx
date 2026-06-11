@@ -1,9 +1,5 @@
-import { getLocale } from "next-intl/server";
-
 export default async function Loading() {
   // Or a custom loading skeleton component
-
-  const locale = await getLocale();
   return (
     <div className="loader_wrapper">
       <div className="loader" title="2">
@@ -33,7 +29,6 @@ export default async function Loading() {
           </path>
         </svg>
       </div>
-      <p>{locale === "fr" ? "Chargement..." : "Loading..."}</p>
     </div>
   );
 }

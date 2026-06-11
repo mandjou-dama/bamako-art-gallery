@@ -1,7 +1,8 @@
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
 import { type PortableTextBlock } from "next-sanity";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import {
   getExhibitionViews,
@@ -32,13 +33,14 @@ export async function generateStaticParams() {
   }));
 }
 
-type Params = Promise<{ name: string }>;
+type Params = Promise<{ locale: string; name: string }>;
 
 export default async function ExpositionPage({ params }: { params: Params }) {
-  const { name } = await params;
-  const locale = await getLocale();
-  const t = await getTranslations("exposition");
-  const t2 = await getTranslations("artiste");
+  const { locale, name } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "exposition" });
+  const t2 = await getTranslations({ locale, namespace: "artiste" });
 
   const exhibitionInfos = await getExhibitionInfos(name);
   const exhibitionArtViews = await getExhibitionViews(name);
@@ -91,6 +93,7 @@ export default async function ExpositionPage({ params }: { params: Params }) {
                 {exhibitionInfos.artists.map((artist: any) => (
                   <div key={artist.fullName}>
                     <Link
+                      locale={locale}
                       href={`/artists/artist/${artist.slug}`}
                       className="expo_artist_name"
                     >

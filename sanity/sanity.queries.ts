@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId } from "./env";
 
-const REVALIDATE_TIME = 86400 * 10;
+const REVALIDATE_TIME = 86400 * 3;
 
 const client = createClient({
   projectId: projectId,

@@ -1,37 +1,43 @@
 // app/api/brevo/route.ts
 import { NextResponse } from "next/server";
-import * as brevo from "@getbrevo/brevo";
+import { BrevoClient } from "@getbrevo/brevo";
 
 export async function POST(request: Request) {
   try {
     const { email } = await request.json();
 
-    // Initialize the Brevo API client
-    let apiInstance = new brevo.ContactsApi();
+    if (!email || typeof email !== "string") {
+      return NextResponse.json(
+        { success: false, error: "A valid email is required" },
+        { status: 400 }
+      );
+    }
 
-    const brevoKey = process.env.NEXT_PUBLIC_BREVO_API!;
+    const brevoKey =
+      process.env.BREVO_API_KEY ?? process.env.NEXT_PUBLIC_BREVO_API;
 
     if (!brevoKey) {
       throw new Error("Brevo API key is not defined in environment variables");
     }
 
-    apiInstance.setApiKey(
-      brevo.ContactsApiApiKeys.apiKey,
-      brevoKey // Use environment variable for security
-    );
+    const brevo = new BrevoClient({
+      apiKey: brevoKey,
+    });
 
-    // Create a new contact
-    let createNew = new brevo.CreateContact();
-    createNew.email = email;
-    createNew.listIds = [2];
+    const data = await brevo.contacts.createContact({
+      email,
+      listIds: [2],
+    });
 
-    // Call the Brevo API
-    const data = await apiInstance.createContact(createNew);
-
-    // Return the response
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (error) {
     console.error("Error creating contact:", error);
-    return NextResponse.json({ success: false, error: error }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
   }
 }

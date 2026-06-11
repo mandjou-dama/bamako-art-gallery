@@ -71,17 +71,13 @@ const NewsletterPopup = () => {
     <div className={styles.newsletterPopup}>
       <div className={styles.newsletterContent}>
         <h2>Newsletter</h2>
-        <p>
-          Ne manquez rien de l’actualité artistique ! Inscrivez-vous à notre
-          newsletter pour découvrir en avant-première nos expositions, artistes
-          et événements spéciaux
-        </p>
+        <p>{t("newsletter.popupDescription")}</p>
         <form className={styles.newsletterForm} onSubmit={onSubmit}>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Votre adresse email"
+            placeholder={t("newsletter.placeholder")}
             required
           />
           <button disabled={loading} type="submit">
