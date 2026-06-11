@@ -50,7 +50,12 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
         <AnimatedImage
           src={
             room.image
-              ? urlFor(room.image).auto("format").quality(80).url()
+              ? urlFor(room.image)
+                  .width(800)
+                  .fit("max")
+                  .auto("format")
+                  .quality(70)
+                  .url()
               : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
           alt={`${room.title} cover image`}
@@ -84,7 +89,12 @@ export default async function ViewingRoomPage({ params }: { params: Params }) {
             return (
               <AnimatedImage
                 key={image.image}
-                src={urlFor(image.image).auto("format").quality(80).url()}
+                src={urlFor(image.image)
+                  .width(800)
+                  .fit("max")
+                  .auto("format")
+                  .quality(70)
+                  .url()}
                 alt=""
               />
             );

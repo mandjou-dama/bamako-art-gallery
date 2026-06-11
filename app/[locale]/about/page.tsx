@@ -67,7 +67,12 @@ export default async function Page({
                 <img
                   src={
                     image
-                      ? urlFor(image).auto("format").quality(70).url()
+                      ? urlFor(image)
+                          .width(800)
+                          .fit("max")
+                          .auto("format")
+                          .quality(70)
+                          .url()
                       : "https://images.pexels.com/photos/14867613/pexels-photo-14867613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   }
                   alt={nom}

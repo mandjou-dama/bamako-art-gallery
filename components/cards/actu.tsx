@@ -49,7 +49,15 @@ const ActuCard = ({ link, image, journal, title, notArticle }: Props) => {
       href={link ? link : ""}
       className="actu_card"
     >
-      <img src={urlFor(image).auto("format").width(300).url()} alt={title} />
+      <img
+        src={urlFor(image)
+          .width(800)
+          .fit("max")
+          .auto("format")
+          .width(300)
+          .url()}
+        alt={title}
+      />
 
       <div className="actu_card_infos">
         <div>
