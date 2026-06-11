@@ -8,9 +8,9 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 const REVALIDATE_TIME = 86400 * 10;
 
 const client = createClient({
-  projectId: projectId || "o4huj4e2",
-  dataset: dataset || "production",
-  apiVersion: apiVersion || "2025-01-25",
+  projectId: "o4huj4e2",
+  dataset: "production",
+  apiVersion: "2025-01-25",
   useCdn: false,
 });
 

@@ -6,9 +6,9 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
 const client = createClient({
-  projectId: projectId || "o4huj4e2",
-  dataset: dataset || "production",
-  apiVersion: apiVersion || "2025-01-25",
+  projectId: "o4huj4e2",
+  dataset: "production",
+  apiVersion: "2025-01-25",
   useCdn: false,
 });
 
