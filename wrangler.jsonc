@@ -2,4 +2,9 @@
   "name": "bamako-art-gallery",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-06-11",
+  "vars": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "o4huj4e2",
+    "NEXT_PUBLIC_SANITY_DATASET": "production",
+    "NEXT_PUBLIC_SANITY_API_VERSION": "2025-01-25",
+  },
 }

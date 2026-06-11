@@ -1,16 +1,13 @@
 import { groq } from "next-sanity";
 import { createClient } from "next-sanity";
-import { apiVersion } from "./env";
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+import { apiVersion, dataset, projectId } from "./env";
 
 const REVALIDATE_TIME = 86400 * 10;
 
 const client = createClient({
-  projectId: "o4huj4e2",
-  dataset: "production",
-  apiVersion: "2025-01-25",
+  projectId: projectId,
+  dataset: dataset,
+  apiVersion: apiVersion,
   useCdn: false,
 });
 
