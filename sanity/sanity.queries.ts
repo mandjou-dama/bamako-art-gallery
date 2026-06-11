@@ -8,9 +8,9 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 const REVALIDATE_TIME = 86400 * 10;
 
 const client = createClient({
-  projectId: projectId,
-  dataset: dataset,
-  apiVersion: apiVersion,
+  projectId: projectId || "o4huj4e2",
+  dataset: dataset || "production",
+  apiVersion: apiVersion || "2025-01-25",
   useCdn: false,
 });
 
@@ -27,7 +27,7 @@ export const getAllArtworks = async () => {
       {},
       {
         next: { revalidate: REVALIDATE_TIME, tags: ["artworks"] },
-      }
+      },
     );
     return artworks || [];
   } catch (error) {
@@ -83,7 +83,7 @@ export const getArtworkBySlug = async (slug: string) => {
     const artwork = await client.fetch(
       query,
       { slug },
-      { next: { revalidate: REVALIDATE_TIME, tags: ["artworks"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["artworks"] } },
     );
     return artwork || null; // Retourne null si l'œuvre n'est pas trouvée
   } catch (error) {
@@ -131,7 +131,7 @@ export const getArtistsForHome = async () => {
   const data = await client.fetch(
     query,
     {},
-    { next: { revalidate: REVALIDATE_TIME, tags: ["artists"] } }
+    { next: { revalidate: REVALIDATE_TIME, tags: ["artists"] } },
   );
   return data;
 };
@@ -148,7 +148,7 @@ export const getArtistsForArtistsPage = async () => {
   const data = await client.fetch(
     query,
     {},
-    { next: { revalidate: REVALIDATE_TIME, tags: ["artists"] } }
+    { next: { revalidate: REVALIDATE_TIME, tags: ["artists"] } },
   );
   return data;
 };
@@ -168,7 +168,7 @@ export async function getArtistBySlug(slug: string) {
     const artist = await client.fetch(
       query,
       { slug },
-      { next: { revalidate: REVALIDATE_TIME, tags: ["artists"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["artists"] } },
     );
     return artist || null; // Return null if no artist found
   } catch (error) {
@@ -189,7 +189,7 @@ export async function fetchLatestNews() {
     const news = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["news"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["news"] } },
     );
     return news;
   } catch (error) {
@@ -210,7 +210,7 @@ export async function getAllNews() {
     const news = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["news"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["news"] } },
     );
     return news;
   } catch (error) {
@@ -231,7 +231,7 @@ export async function fetchHomeExhibitions() {
     const exhibitions = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["exhibitions"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["exhibitions"] } },
     );
     return exhibitions;
   } catch (error) {
@@ -252,7 +252,7 @@ export async function getViewingRoomExhibitions() {
     const exhibitions = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["exhibitions"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["exhibitions"] } },
     );
     return exhibitions;
   } catch (error) {
@@ -438,7 +438,7 @@ export const getExhibitionArtworks = async (slug: string) => {
 
 export const getSeriesArtworkBySlug = async (
   seriesSlug: string,
-  artworkSlug: string
+  artworkSlug: string,
 ) => {
   const query = groq`
     *[_type == "series" && slug.current == $seriesSlug][0] {
@@ -499,7 +499,7 @@ export const getSeriesArtworkByArtworkSlug = async (artworkSlug: string) => {
       { artworkSlug },
       {
         next: { revalidate: REVALIDATE_TIME, tags: ["series"] },
-      }
+      },
     );
     return data || null;
   } catch (error) {
@@ -520,7 +520,7 @@ export const getAllSeriesSlugsWithArtworks = async () => {
     const series = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["series"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["series"] } },
     );
     // Retourne un tableau de { seriesSlug, artworkSlug }
     const params: { name: string; serie: string }[] = [];
@@ -555,7 +555,7 @@ export const getBagDetails = async () => {
     const bagDetails = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } },
     );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
@@ -582,7 +582,7 @@ export const getBagContact = async () => {
     const bagDetails = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } },
     );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
@@ -640,7 +640,7 @@ export const getViewingRoomItems = async () => {
     const roomItems = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["viewing"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["viewing"] } },
     );
     return roomItems || null; // Retourne null si aucun document trouvé
   } catch (error) {
@@ -712,7 +712,7 @@ export const getBagSliderImages = async () => {
     const bagDetails = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } },
     );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
@@ -740,7 +740,7 @@ export const getMaliArtClubInfos = async () => {
     const bagDetails = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } },
     );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
@@ -764,7 +764,7 @@ export async function getHomeSliderExhibitions() {
     const exhibitions = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["exhibitions"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["exhibitions"] } },
     );
     return exhibitions;
   } catch (error) {
@@ -786,7 +786,7 @@ export const getHomeSliderImages = async () => {
     const bagDetails = await client.fetch(
       query,
       {},
-      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } }
+      { next: { revalidate: REVALIDATE_TIME, tags: ["bag"] } },
     );
     return bagDetails || null; // Retourne null si aucun document trouvé
   } catch (error) {
