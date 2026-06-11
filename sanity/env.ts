@@ -1,33 +1,13 @@
-console.log("SANITY ENV CHECK");
-
-console.log(
-  "NEXT_PUBLIC_SANITY_DATASET =",
-
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-);
-
-console.log(
-  "NEXT_PUBLIC_SANITY_PROJECT_ID =",
-
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-);
-
-console.log(
-  "NEXT_PUBLIC_SANITY_API_VERSION =",
-
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION,
-);
-
 export const apiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2025-01-25";
 
 export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   "Missing environment variable: NEXT_PUBLIC_SANITY_DATASET",
 );
 
 export const projectId = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "o4huj4e2",
   "Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID",
 );
 
